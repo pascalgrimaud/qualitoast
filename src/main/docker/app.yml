@@ -6,9 +6,14 @@ services:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATASOURCE_URL=jdbc:postgresql://qualitoast-postgresql:5432/QualiToast
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=qualitoast-elasticsearch:9300
         ports:
             - 8080:8080
     qualitoast-postgresql:
         extends:
             file: postgresql.yml
             service: qualitoast-postgresql
+    qualitoast-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: qualitoast-elasticsearch
