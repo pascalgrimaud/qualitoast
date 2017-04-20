@@ -36,6 +36,7 @@
     "languages": [
       "fr",
       "en"
-    ]
+    ],
+    "herokuAppName": "qualitoast"
   }
 }
