@@ -33,7 +33,7 @@ script:
   - chmod +x mvnw
   - ./mvnw clean test
   - yarn test
-  - if [ "$TRAVIS_REPO_SLUG" = "pascalgrimaud/qualitoast" ] && [ "$TRAVIS_BRANCH" = "heroku" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+  - if [ "$TRAVIS_REPO_SLUG" = "pascalgrimaud/qualitoast" ] && [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
       ./mvnw com.heroku.sdk:heroku-maven-plugin:1.1.1:deploy -DskipTests -Pprod -Dheroku.appName=qualitoast ;
     else
       ./mvnw package -Pprod -DskipTests ;
