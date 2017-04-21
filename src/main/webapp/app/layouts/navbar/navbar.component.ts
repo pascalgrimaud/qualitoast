@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
         private profileService: ProfileService,
         private router: Router
     ) {
-        this.version = DEBUG_INFO_ENABLED ? 'v' + VERSION : '';
+        this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
         this.languageService.addLocation('home');
     }
