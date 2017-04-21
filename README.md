@@ -1,4 +1,9 @@
 # QualiToast
+
+| Master                                             | Dev                                             |
+|:---------------------------------------------------|:------------------------------------------------|
+| [![Build Status][travis-image-master]][travis-url] | [![Build Status][travis-image-dev]][travis-url] |
+
 This application was generated using JHipster 4.3.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.3.0](https://jhipster.github.io/documentation-archive/v4.3.0).
 
 ## Development
@@ -153,3 +158,7 @@ To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-c
 [Protractor]: https://angular.github.io/protractor/
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
+
+[travis-image-master]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=master
+[travis-image-dev]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=dev
+[travis-url]: https://travis-ci.org/pascalgrimaud/qualitoast/branches
