@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Campagne.
+    -->
+    <changeSet id="20170422204528-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="application_id"
+                                 baseTableName="campagne"
+                                 constraintName="fk_campagne_application_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="application"/>
+
+        <addForeignKeyConstraint baseColumnNames="typetest_id"
+                                 baseTableName="campagne"
+                                 constraintName="fk_campagne_typetest_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="type_test"/>
+
+        <addForeignKeyConstraint baseColumnNames="resultat_id"
+                                 baseTableName="campagne"
+                                 constraintName="fk_campagne_resultat_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="resultat"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,36 @@
+entity Campagne (campagne) {
+  version String required,
+  datedebut LocalDate required,
+  datefin LocalDate,
+  commentaire String,
+  bloquant Integer min(0),
+  majeur Integer min(0),
+  mineur Integer min(0),
+  evolution Integer min(0),
+  termine Boolean
+}
+paginate Campagne with pagination
+
+entity Application (application) {
+  code String required,
+  nom String,
+  description String
+}
+paginate Application with pagination
+
+entity TypeTest (type_test) {
+  code String required,
+  nom String
+}
+paginate TypeTest with pagination
+
+entity Resultat (resultat) {
+  code String required
+}
+paginate Resultat with pagination
+
+relationship ManyToOne {
+  Campagne{application required} to Application,
+  Campagne{typetest required} to TypeTest,
+  Campagne{resultat required} to Resultat
+}

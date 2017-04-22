@@ -1,0 +1,22 @@
+{
+    "qualiToastApp": {
+        "resultat" : {
+            "home": {
+                "title": "Resultats",
+                "createLabel": "Create a new Resultat",
+                "createOrEditLabel": "Create or edit a Resultat",
+                "search": "Search for Resultat"
+            },
+            "created": "A new Resultat is created with identifier {{ param }}",
+            "updated": "A Resultat is updated with identifier {{ param }}",
+            "deleted": "A Resultat is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Resultat {{ id }}?"
+            },
+            "detail": {
+                "title": "Resultat"
+            },
+            "code": "Code"
+        }
+    }
+}

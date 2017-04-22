@@ -1,0 +1,33 @@
+{
+    "qualiToastApp": {
+        "campagne" : {
+            "home": {
+                "title": "Campagnes",
+                "createLabel": "Create a new Campagne",
+                "createOrEditLabel": "Create or edit a Campagne",
+                "search": "Search for Campagne"
+            },
+            "created": "A new Campagne is created with identifier {{ param }}",
+            "updated": "A Campagne is updated with identifier {{ param }}",
+            "deleted": "A Campagne is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Campagne {{ id }}?"
+            },
+            "detail": {
+                "title": "Campagne"
+            },
+            "version": "Version",
+            "datedebut": "Datedebut",
+            "datefin": "Datefin",
+            "commentaire": "Commentaire",
+            "bloquant": "Bloquant",
+            "majeur": "Majeur",
+            "mineur": "Mineur",
+            "evolution": "Evolution",
+            "termine": "Termine",
+            "application": "Application",
+            "typetest": "Typetest",
+            "resultat": "Resultat"
+        }
+    }
+}

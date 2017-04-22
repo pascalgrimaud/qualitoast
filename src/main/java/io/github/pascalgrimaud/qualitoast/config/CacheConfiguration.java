@@ -42,6 +42,10 @@ public class CacheConfiguration {
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Campagne.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Application.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.TypeTest.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Resultat.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

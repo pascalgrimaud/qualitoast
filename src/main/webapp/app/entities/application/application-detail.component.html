@@ -1,0 +1,33 @@
+
+<div *ngIf="application">
+    <h2><span jhiTranslate="qualiToastApp.application.detail.title">Application</span> {{application.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="qualiToastApp.application.code">Code</span></dt>
+        <dd>
+            <span>{{application.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.application.nom">Nom</span></dt>
+        <dd>
+            <span>{{application.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.application.description">Description</span></dt>
+        <dd>
+            <span>{{application.description}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'application/'+ application.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

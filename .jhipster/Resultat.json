@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170422204531",
+    "entityTableName": "resultat",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no"
+}
