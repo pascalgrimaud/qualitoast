@@ -33,7 +33,6 @@
             <th jhiSortBy="version"><span jhiTranslate="qualiToastApp.campagne.version">Version</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="datedebut"><span jhiTranslate="qualiToastApp.campagne.datedebut">Datedebut</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="datefin"><span jhiTranslate="qualiToastApp.campagne.datefin">Datefin</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="commentaire"><span jhiTranslate="qualiToastApp.campagne.commentaire">Commentaire</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="bloquant"><span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="majeur"><span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="mineur"><span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span> <span class="fa fa-sort"></span></th>
@@ -51,7 +50,6 @@
                 <td>{{campagne.version}}</td>
                 <td>{{campagne.datedebut | date:'mediumDate'}}</td>
                 <td>{{campagne.datefin | date:'mediumDate'}}</td>
-                <td>{{campagne.commentaire}}</td>
                 <td>{{campagne.bloquant}}</td>
                 <td>{{campagne.majeur}}</td>
                 <td>{{campagne.mineur}}</td>
@@ -59,17 +57,17 @@
                 <td>{{campagne.termine}}</td>
                 <td>
                     <div *ngIf="campagne.application">
-                        <a [routerLink]="['../application', campagne.application?.id ]" >{{campagne.application?.id}}</a>
+                        <a [routerLink]="['../application', campagne.application?.id ]" >{{campagne.application?.code}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="campagne.typetest">
-                        <a [routerLink]="['../type-test', campagne.typetest?.id ]" >{{campagne.typetest?.id}}</a>
+                        <a [routerLink]="['../type-test', campagne.typetest?.id ]" >{{campagne.typetest?.code}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="campagne.resultat">
-                        <a [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.id}}</a>
+                        <a [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
                     </div>
                 </td>
                 <td class="text-right">

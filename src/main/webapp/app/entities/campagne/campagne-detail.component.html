@@ -43,19 +43,19 @@
         <dt><span jhiTranslate="qualiToastApp.campagne.application">Application</span></dt>
         <dd>
             <div *ngIf="campagne.application">
-                <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.id}}</a>
+                <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.code}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="qualiToastApp.campagne.typetest">Typetest</span></dt>
         <dd>
             <div *ngIf="campagne.typetest">
-                <a [routerLink]="['/type-test', campagne.typetest?.id]">{{campagne.typetest?.id}}</a>
+                <a [routerLink]="['/type-test', campagne.typetest?.id]">{{campagne.typetest?.code}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span></dt>
         <dd>
             <div *ngIf="campagne.resultat">
-                <a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.id}}</a>
+                <a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a>
             </div>
         </dd>
     </dl>

@@ -13,16 +13,52 @@
                    [(ngModel)]="campagne.id" readonly />
         </div>
         <div class="form-group">
+            <label jhiTranslate="qualiToastApp.campagne.application" for="field_application">Application</label>
+            <select class="form-control" id="field_application" name="application" [(ngModel)]="campagne.application"  required>
+                <option [ngValue]="applicationOption.id === campagne.application?.id ? campagne.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.code}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.application?.dirty && editForm.controls.application?.invalid)">
+            <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.application?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.version" for="field_version">Version</label>
             <input type="text" class="form-control" name="version" id="field_version"
-                [(ngModel)]="campagne.version"
-            required />
+                   [(ngModel)]="campagne.version"
+                   required />
             <div [hidden]="!(editForm.controls.version?.dirty && editForm.controls.version?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.version?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
+                       [hidden]="!editForm.controls.version?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
                 </small>
             </div>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Typetest</label>
+            <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="campagne.typetest"  required>
+                <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.code}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.typetest?.dirty && editForm.controls.typetest?.invalid)">
+            <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.typetest?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="qualiToastApp.campagne.resultat" for="field_resultat">Resultat</label>
+            <select class="form-control" id="field_resultat" name="resultat" [(ngModel)]="campagne.resultat"  required>
+                <option [ngValue]="resultatOption.id === campagne.resultat?.id ? campagne.resultat : resultatOption" *ngFor="let resultatOption of resultats; trackBy: trackResultatById">{{resultatOption.code}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.resultat?.dirty && editForm.controls.resultat?.invalid)">
+            <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.resultat?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.datedebut" for="field_datedebut">Datedebut</label>
@@ -125,43 +161,6 @@
             <input type="checkbox" class="form-control" name="termine" id="field_termine"
                 [(ngModel)]="campagne.termine"
              />
-        </div>
-
-        <div class="form-group">
-            <label jhiTranslate="qualiToastApp.campagne.application" for="field_application">Application</label>
-            <select class="form-control" id="field_application" name="application" [(ngModel)]="campagne.application"  required>
-                <option [ngValue]="applicationOption.id === campagne.application?.id ? campagne.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.id}}</option>
-            </select>
-        </div>
-        <div [hidden]="!(editForm.controls.application?.dirty && editForm.controls.application?.invalid)">
-            <small class="form-text text-danger"
-                [hidden]="!editForm.controls.application?.errors?.required" jhiTranslate="entity.validation.required">
-                This field is required.
-            </small>
-        </div>
-        <div class="form-group">
-            <label jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Typetest</label>
-            <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="campagne.typetest"  required>
-                <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.id}}</option>
-            </select>
-        </div>
-        <div [hidden]="!(editForm.controls.typetest?.dirty && editForm.controls.typetest?.invalid)">
-            <small class="form-text text-danger"
-                [hidden]="!editForm.controls.typetest?.errors?.required" jhiTranslate="entity.validation.required">
-                This field is required.
-            </small>
-        </div>
-        <div class="form-group">
-            <label jhiTranslate="qualiToastApp.campagne.resultat" for="field_resultat">Resultat</label>
-            <select class="form-control" id="field_resultat" name="resultat" [(ngModel)]="campagne.resultat"  required>
-                <option [ngValue]="resultatOption.id === campagne.resultat?.id ? campagne.resultat : resultatOption" *ngFor="let resultatOption of resultats; trackBy: trackResultatById">{{resultatOption.id}}</option>
-            </select>
-        </div>
-        <div [hidden]="!(editForm.controls.resultat?.dirty && editForm.controls.resultat?.invalid)">
-            <small class="form-text text-danger"
-                [hidden]="!editForm.controls.resultat?.errors?.required" jhiTranslate="entity.validation.required">
-                This field is required.
-            </small>
         </div>
     </div>
     <div class="modal-footer">
