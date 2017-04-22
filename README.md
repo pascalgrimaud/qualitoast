@@ -1,8 +1,6 @@
 # QualiToast
 
-| Master                                             | Dev                                             |
-|:---------------------------------------------------|:------------------------------------------------|
-| [![Build Status][travis-image-master]][travis-url] | [![Build Status][travis-image-dev]][travis-url] |
+[![Build Status][travis-image-master]][travis-url]
 
 This application was generated using JHipster 4.3.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.3.0](https://jhipster.github.io/documentation-archive/v4.3.0).
 
