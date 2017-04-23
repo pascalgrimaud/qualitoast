@@ -67,7 +67,26 @@
                 </td>
                 <td>
                     <div *ngIf="campagne.resultat">
-                        <a [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
+                      <div *ngIf="campagne.resultat.code == 'Ok';else ko">
+                        <a class="text-success btn-sm"  [routerLink]="['../resultat', campagne.resultat?.id ]" >
+                          <i class="fa fa-check"></i>
+                        </a>
+                      </div>
+
+                      <ng-template #ko>
+                        <div *ngIf="campagne.resultat.code == 'Ko';else warning">
+                          <a class="text-danger btn-sm"[routerLink]="['../resultat', campagne.resultat?.id ]" >
+                            <i class="fa fa-close"></i>
+                          </a>
+                        </div>
+                      </ng-template>
+                      <ng-template #warning>
+                        <div>
+                          <a class="text-warning btn-sm"[routerLink]="['../resultat', campagne.resultat?.id ]" >
+                          <i class="fa fa-warning"></i>
+                          </a>
+                        </div>
+                      </ng-template>
                     </div>
                 </td>
                 <td class="text-right">
