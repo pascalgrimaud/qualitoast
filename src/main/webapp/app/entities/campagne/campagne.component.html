@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="campagnes">
         <table class="table table-striped">
-            <thead>
+            <thead class="table thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="version"><span jhiTranslate="qualiToastApp.campagne.version">Version</span> <span class="fa fa-sort"></span></th>

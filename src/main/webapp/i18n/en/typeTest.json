@@ -2,7 +2,7 @@
     "qualiToastApp": {
         "typeTest" : {
             "home": {
-                "title": "Type Tests",
+                "title": "Test type",
                 "createLabel": "Create a new Type Test",
                 "createOrEditLabel": "Create or edit a Type Test",
                 "search": "Search for Type Test"

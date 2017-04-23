@@ -2,19 +2,19 @@
     "qualiToastApp": {
         "typeTest" : {
             "home": {
-                "title": "TypeTests",
-                "createLabel": "Créer un nouveau Type Test",
-                "createOrEditLabel": "Créer ou éditer un Type Test",
-                "search": "Recherche pour Type Test"
+                "title": "Type de tests",
+                "createLabel": "Créer un nouveau type de tests",
+                "createOrEditLabel": "Créer ou éditer un type de tests",
+                "search": "Rechercher un type de tests"
             },
-            "created": "Un nouveau Type Test a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Type Test avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Type Test avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau type de test a été créé avec l'identifiant {{ param }}",
+            "updated": "Le type de test avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le type de test avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Type Test {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le type de test {{ id }} ?"
             },
             "detail": {
-                "title": "Type Test"
+                "title": "Type de tests"
             },
             "code": "Code",
             "nom": "Nom"

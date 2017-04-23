@@ -2,7 +2,7 @@
     "qualiToastApp": {
         "application" : {
             "home": {
-                "title": "Applications",
+                "title": "Liste des applications",
                 "createLabel": "Créer un nouveau Application",
                 "createOrEditLabel": "Créer ou éditer un Application",
                 "search": "Recherche pour Application"
