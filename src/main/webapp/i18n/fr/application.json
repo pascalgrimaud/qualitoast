@@ -3,15 +3,15 @@
         "application" : {
             "home": {
                 "title": "Liste des applications",
-                "createLabel": "Créer un nouveau Application",
-                "createOrEditLabel": "Créer ou éditer un Application",
-                "search": "Recherche pour Application"
+                "createLabel": "Créer une nouvelle application",
+                "createOrEditLabel": "Créer ou modifier une application",
+                "search": "Rechercher une application"
             },
-            "created": "Un nouveau Application a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Application avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Application avec l'identifiant {{ param }} a été supprimé",
+            "created": "Une nouvelle application a été créée avec l'identifiant {{ param }}",
+            "updated": "L'application avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "L'application avec l'identifiant {{ param }} a été supprimée",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Application {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer l'application {{ id }} ?"
             },
             "detail": {
                 "title": "Application"
