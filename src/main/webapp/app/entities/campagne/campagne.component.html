@@ -29,19 +29,19 @@
         <table class="table table-striped">
             <thead class="table thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="version"><span jhiTranslate="qualiToastApp.campagne.version">Version</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="datedebut"><span jhiTranslate="qualiToastApp.campagne.datedebut">Datedebut</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="datefin"><span jhiTranslate="qualiToastApp.campagne.datefin">Datefin</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="bloquant"><span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="majeur"><span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="mineur"><span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="evolution"><span jhiTranslate="qualiToastApp.campagne.evolution">Evolution</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="termine"><span jhiTranslate="qualiToastApp.campagne.termine">Termine</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="application.id"><span jhiTranslate="qualiToastApp.campagne.application">Application</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="typetest.id"><span jhiTranslate="qualiToastApp.campagne.typetest">Typetest</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="resultat.id"><span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="version"><span jhiTranslate="qualiToastApp.campagne.version">Version</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="datedebut"><span jhiTranslate="qualiToastApp.campagne.datedebut">Datedebut</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="datefin"><span jhiTranslate="qualiToastApp.campagne.datefin">Datefin</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="bloquant"><span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="majeur"><span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="mineur"><span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="evolution"><span jhiTranslate="qualiToastApp.campagne.evolution">Evolution</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="termine"><span jhiTranslate="qualiToastApp.campagne.termine">Termine</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="application.id"><span jhiTranslate="qualiToastApp.campagne.application">Application</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="typetest.id"><span jhiTranslate="qualiToastApp.campagne.typetest">Typetest</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="resultat.id"><span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span> <span class="fa fa-sort"></span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -67,7 +67,26 @@
                 </td>
                 <td>
                     <div *ngIf="campagne.resultat">
-                        <a [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
+                        <div *ngIf="campagne.resultat.code == 'Ok';else ko">
+                            <a class="text-success btn-sm"  [routerLink]="['../resultat', campagne.resultat?.id ]" >
+                                <i class="fa fa-check"></i>
+                            </a>
+                        </div>
+
+                        <ng-template #ko>
+                            <div *ngIf="campagne.resultat.code == 'Ko';else warning">
+                                <a class="text-danger btn-sm"[routerLink]="['../resultat', campagne.resultat?.id ]" >
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </div>
+                        </ng-template>
+                        <ng-template #warning>
+                            <div>
+                                <a class="text-warning btn-sm"[routerLink]="['../resultat', campagne.resultat?.id ]" >
+                                    <i class="fa fa-warning"></i>
+                                </a>
+                            </div>
+                        </ng-template>
                     </div>
                 </td>
                 <td class="text-right">
@@ -98,12 +117,12 @@
             </tbody>
         </table>
     </div>
-        <div *ngIf="campagnes && campagnes.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
-            </div>
+    <div *ngIf="campagnes && campagnes.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
 </div>

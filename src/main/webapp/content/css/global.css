@@ -229,3 +229,10 @@ Navbar Pulse
 .table .thead-inverse th {
     background-color: #A991D4;
 }
+
+.fa {
+  width: 20px;
+  font-size: 20px;
+  display: inline-block;
+  text-align: center;
+}
