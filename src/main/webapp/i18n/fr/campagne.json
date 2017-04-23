@@ -3,31 +3,31 @@
         "campagne" : {
             "home": {
                 "title": "Campagnes",
-                "createLabel": "Créer un nouveau Campagne",
-                "createOrEditLabel": "Créer ou éditer un Campagne",
-                "search": "Recherche pour Campagne"
+                "createLabel": "Créer une nouvelle campagne",
+                "createOrEditLabel": "Créer ou éditer une campagne",
+                "search": "Rechercher une campagne"
             },
-            "created": "Un nouveau Campagne a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Campagne avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Campagne avec l'identifiant {{ param }} a été supprimé",
+            "created": "Une nouvelle campagne a été créé avec l'identifiant {{ param }}",
+            "updated": "La campagne avec l'identifiant {{ param }} a été mise à jour",
+            "deleted": "La campagne avec l'identifiant {{ param }} a été supprimée",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Campagne {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer la campagne {{ id }} ?"
             },
             "detail": {
-                "title": "Campagne"
+                "title": "Campagne de tests"
             },
             "version": "Version",
-            "datedebut": "Datedebut",
-            "datefin": "Datefin",
-            "commentaire": "Commentaire",
+            "datedebut": "Date de début",
+            "datefin": "Date de fin",
+            "commentaire": "Commentaires",
             "bloquant": "Bloquant",
             "majeur": "Majeur",
             "mineur": "Mineur",
             "evolution": "Evolution",
-            "termine": "Termine",
+            "termine": "Terminé",
             "application": "Application",
-            "typetest": "Typetest",
-            "resultat": "Resultat"
+            "typetest": "Type de test",
+            "resultat": "Résultat"
         }
     }
 }

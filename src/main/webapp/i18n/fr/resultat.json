@@ -2,19 +2,19 @@
     "qualiToastApp": {
         "resultat" : {
             "home": {
-                "title": "Resultats",
-                "createLabel": "Créer un nouveau Resultat",
-                "createOrEditLabel": "Créer ou éditer un Resultat",
-                "search": "Recherche pour Resultat"
+                "title": "Résultats",
+                "createLabel": "Ajouter un nouveau résultat",
+                "createOrEditLabel": "Ajouter ou éditer un résultat",
+                "search": "Rechercher un résultat"
             },
-            "created": "Un nouveau Resultat a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Resultat avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Resultat avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau résultat a été créé avec l'identifiant {{ param }}",
+            "updated": "Le résultat avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le résultat avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Resultat {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le résultat {{ id }} ?"
             },
             "detail": {
-                "title": "Resultat"
+                "title": "Résultat"
             },
             "code": "Code"
         }

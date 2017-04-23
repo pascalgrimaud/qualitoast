@@ -188,3 +188,44 @@ ui bootstrap tweaks
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+/* ==========================================================================
+Navbar Pulse
+========================================================================== */
+
+.btn-primary {
+  color: #fff;
+  background-color: #593196;
+  border-color: #593196;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #422470;
+  border-color: #3e2268;
+}
+.btn-primary:focus, .btn-primary.focus {
+  -webkit-box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
+          box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
+}
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: #593196;
+  border-color: #593196;
+}
+.btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #422470;
+  background-image: none;
+  border-color: #3e2268;
+}
+
+.table .thead-inverse th {
+    background-color: #A991D4;
+}
+
+.table .thead {
+    background-color: #A991D4;
+}
+
+.table .thead-inverse th {
+    background-color: #A991D4;
+}
