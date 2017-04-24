@@ -16,18 +16,18 @@
             "detail": {
                 "title": "Campagne de tests"
             },
-            "version": "Version",
-            "datedebut": "Date de début",
-            "datefin": "Date de fin",
-            "commentaire": "Commentaires",
-            "bloquant": "Bloquant",
-            "majeur": "Majeur",
-            "mineur": "Mineur",
-            "evolution": "Evolution",
-            "termine": "Terminé",
-            "application": "Application",
-            "typetest": "Type de test",
-            "resultat": "Résultat"
+            "application": "Application :",
+            "version": "Version :",
+            "typetest": "Type de test :",
+            "resultat": "Résultat :",
+            "datedebut": "Date de début :",
+            "datefin": "Date de fin :",
+            "commentaire": "Commentaires :",
+            "bloquant": "Bloquant :",
+            "majeur": "Majeur :",
+            "mineur": "Mineur :",
+            "evolution": "Evolution :",
+            "termine": "Terminé :"
         }
     }
 }

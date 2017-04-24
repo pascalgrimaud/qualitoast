@@ -236,3 +236,6 @@ Navbar Pulse
   display: inline-block;
   text-align: center;
 }
+.text-primary {
+  color: #593196 !important;
+}
