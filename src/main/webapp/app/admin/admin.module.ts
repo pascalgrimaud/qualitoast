@@ -26,7 +26,8 @@ import {
     LogsService,
     UserResolvePagingParams,
     UserResolve,
-    UserModalService
+    UserModalService,
+    ElasticsearchReindexComponent
 } from './';
 
 @NgModule({
@@ -48,7 +49,8 @@ import {
         JhiHealthModalComponent,
         JhiDocsComponent,
         JhiMetricsMonitoringComponent,
-        JhiMetricsMonitoringModalComponent
+        JhiMetricsMonitoringModalComponent,
+        ElasticsearchReindexComponent
     ],
     entryComponents: [
         UserMgmtDialogComponent,
