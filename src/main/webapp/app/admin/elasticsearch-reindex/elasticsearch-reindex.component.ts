@@ -18,6 +18,6 @@ export class ElasticsearchReindexComponent {
 
     reindex() {
         console.log('HELLO: elasticsearch-reindex component');
-        this.elasticsearchReindexService.reindex();
+        this.elasticsearchReindexService.reindex().subscribe();
     }
 }
