@@ -27,7 +27,8 @@ import {
     UserResolvePagingParams,
     UserResolve,
     UserModalService,
-    ElasticsearchReindexComponent
+    ElasticsearchReindexComponent,
+    ElasticsearchReindexService
 } from './';
 
 @NgModule({
@@ -66,7 +67,8 @@ import {
         LogsService,
         UserResolvePagingParams,
         UserResolve,
-        UserModalService
+        UserModalService,
+        ElasticsearchReindexService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
