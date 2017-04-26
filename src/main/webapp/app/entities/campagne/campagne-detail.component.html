@@ -80,16 +80,13 @@
             </dd>
         </dl>
     </div>
-    <button type="submit"
-    (click)="previousState()"
-    class="btn btn-info">
-    <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-</button>
-
-<button type="button"
-[routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
-replaceUrl="true"
-class="btn btn-primary">
-<span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-</button>
+    <button type="submit"    (click)="previousState()"    class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
 </div>
