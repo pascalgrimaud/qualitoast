@@ -16,7 +16,10 @@
             "detail": {
                 "title": "Campagne"
             },
+            "application": "Application",
             "version": "Version",
+            "typetest": "Typetest",
+            "resultat": "Resultat",
             "datedebut": "Datedebut",
             "datefin": "Datefin",
             "commentaire": "Commentaire",
@@ -24,10 +27,7 @@
             "majeur": "Majeur",
             "mineur": "Mineur",
             "evolution": "Evolution",
-            "termine": "Termine",
-            "application": "Application",
-            "typetest": "Typetest",
-            "resultat": "Resultat"
+            "termine": "Termine"
         }
     }
 }

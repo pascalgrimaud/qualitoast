@@ -53,13 +53,16 @@
                     </div>
                 </td>
                 <td>{{campagne.version}}</td>
-                <td>{{campagne.datedebut | date:'mediumDate'}}</td>
-                <td>{{campagne.datefin | date:'mediumDate'}}</td>
+                <td>{{campagne.datedebut | date:'dd/MM/yyyy'}}</td>
+                <td>{{campagne.datefin | date:'dd/MM/yyyy'}}</td>
                 <td>{{campagne.bloquant}}</td>
                 <td>{{campagne.majeur}}</td>
                 <td>{{campagne.mineur}}</td>
                 <td>{{campagne.evolution}}</td>
-                <td>{{campagne.termine}}</td>
+                <td>
+                    <div *ngIf="campagne.termine">OUI</div>
+                    <div *ngIf="!campagne.termine">En cours</div>
+                </td>
                 <td>
                     <div *ngIf="campagne.typetest">
                         <a [routerLink]="['../type-test', campagne.typetest?.id ]" >{{campagne.typetest?.code}}</a>

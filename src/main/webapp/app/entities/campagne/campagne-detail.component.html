@@ -3,69 +3,86 @@
     <h2><span jhiTranslate="qualiToastApp.campagne.detail.title">Campagne</span> {{campagne.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="qualiToastApp.campagne.version">Version</span></dt>
-        <dd>
-            <span>{{campagne.version}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.datedebut">Datedebut</span></dt>
-        <dd>
-            <span>{{campagne.datedebut | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.datefin">Datefin</span></dt>
-        <dd>
-            <span>{{campagne.datefin | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.commentaire">Commentaire</span></dt>
-        <dd>
-            <span>{{campagne.commentaire}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span></dt>
-        <dd>
-            <span>{{campagne.bloquant}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span></dt>
-        <dd>
-            <span>{{campagne.majeur}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span></dt>
-        <dd>
-            <span>{{campagne.mineur}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.evolution">Evolution</span></dt>
-        <dd>
-            <span>{{campagne.evolution}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.termine">Termine</span></dt>
-        <dd>
-            <span>{{campagne.termine}}</span>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.application">Application</span></dt>
-        <dd>
-            <div *ngIf="campagne.application">
-                <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.code}}</a>
+    <div class="row">
+        <dl class="col-md-6">
+            <dt><div *ngIf="campagne.application"><span jhiTranslate="qualiToastApp.campagne.application">Application : </span>&nbsp;&nbsp;
+                <span>
+                    <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.code}}</a>
+                </span>
             </div>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.typetest">Typetest</span></dt>
-        <dd>
-            <div *ngIf="campagne.typetest">
-                <a [routerLink]="['/type-test', campagne.typetest?.id]">{{campagne.typetest?.code}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span></dt>
-        <dd>
-            <div *ngIf="campagne.resultat">
-                <a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a>
-            </div>
-        </dd>
-    </dl>
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
+            </dt>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.version">Version</span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.version}}</span>
+                </b>
+            </dd>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.typetest">Type de test : </span>&nbsp;&nbsp;
+                <b>
+                    <span><a [routerLink]="['/type-test', campagne.typetest?.id]">{{campagne.typetest?.code}}</a></span>
+                </b>
+            </dd>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.datedebut">Date de début : </span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.datedebut | date:'dd/MM/yyyy'}}</span>
+                </b>
+            </dd>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.datefin">Date de fin : </span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.datefin | date:'dd/MM/yyyy'}}</span>
+                </b>
+            </dd>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.commentaire">Commentaire</span>&nbsp;&nbsp;
+                <b><span>{{campagne.commentaire}}</span></b>
+            </dd>
+        </dl>
+        <dl class="row-md-6">
+            <dd>
+                <div *ngIf="campagne.resultat">
+                    <span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span>&nbsp;&nbsp;
+                    <b>
+                        <span><a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a></span>
+                    </b>
+                </div>
+            </dd>
+            <dd class="text-danger">
+                <span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.bloquant}}</span>
+                </b>
+            </dd>
+            <dd class="text-warning">
+                <span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.majeur}}</span>
+                </b>
+            </dd>
+            <dd class="text-info">
+                <span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span>&nbsp;&nbsp;
+                <b><span>{{campagne.mineur}}</span></b>
+            </dd>
+            <dd class="text-primary">
+                <span jhiTranslate="qualiToastApp.campagne.evolution">Evolution</span>&nbsp;&nbsp;
+                <b>
+                    <span>{{campagne.evolution}}</span>
+                </b>
+            </dd>
+            <dd>
+                <span jhiTranslate="qualiToastApp.campagne.termine">Terminé</span>&nbsp;&nbsp;
+                <b>
+                    <span *ngIf="campagne.termine">OUI</span>
+                    <span *ngIf="!campagne.termine">En cours</span>
+                </b>
+            </dd>
+        </dl>
+    </div>
+    <button type="submit"    (click)="previousState()"    class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
-
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
             replaceUrl="true"
