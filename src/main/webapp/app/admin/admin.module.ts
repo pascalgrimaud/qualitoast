@@ -28,6 +28,7 @@ import {
     UserResolve,
     UserModalService,
     ElasticsearchReindexComponent,
+    ElasticsearchReindexModalComponent,
     ElasticsearchReindexService
 } from './';
 
@@ -51,13 +52,15 @@ import {
         JhiDocsComponent,
         JhiMetricsMonitoringComponent,
         JhiMetricsMonitoringModalComponent,
-        ElasticsearchReindexComponent
+        ElasticsearchReindexComponent,
+        ElasticsearchReindexModalComponent
     ],
     entryComponents: [
         UserMgmtDialogComponent,
         UserMgmtDeleteDialogComponent,
         JhiHealthModalComponent,
         JhiMetricsMonitoringModalComponent,
+        ElasticsearchReindexModalComponent
     ],
     providers: [
         AuditsService,
