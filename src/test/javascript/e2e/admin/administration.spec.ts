@@ -73,6 +73,14 @@ describe('administration', () => {
         });
     });
 
+    it('should load reindex elasticsearch', () => {
+        element(by.css('[routerLink="elasticsearch-reindex"]')).click();
+        const expect1 = /elasticsearch.reindex.title/;
+        element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            expect(value).toMatch(expect1);
+        });
+    });
+
     afterAll(() => {
         accountMenu.click();
         logout.click();
