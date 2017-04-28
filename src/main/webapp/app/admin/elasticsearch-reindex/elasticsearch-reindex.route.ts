@@ -4,5 +4,9 @@ import { ElasticsearchReindexComponent } from './elasticsearch-reindex.component
 
 export const elasticsearchReindexRoute: Route = {
     path: 'elasticsearch-reindex',
-    component: ElasticsearchReindexComponent
+    component: ElasticsearchReindexComponent,
+    data: {
+        authorities: ['ROLE_ADMIN'],
+        pageTitle: 'elasticsearch.reindex.title'
+    }
 };

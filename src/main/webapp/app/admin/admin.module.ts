@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { QualiToastSharedModule } from '../shared';
+import { QualiToastElasticsearchReindexModule } from './elasticsearch-reindex/elasticsearch-reindex.module';
 
 import {
     adminState,
@@ -26,16 +27,14 @@ import {
     LogsService,
     UserResolvePagingParams,
     UserResolve,
-    UserModalService,
-    ElasticsearchReindexComponent,
-    ElasticsearchReindexModalComponent,
-    ElasticsearchReindexService
+    UserModalService
 } from './';
 
 @NgModule({
     imports: [
         QualiToastSharedModule,
-        RouterModule.forRoot(adminState, { useHash: true })
+        RouterModule.forRoot(adminState, { useHash: true }),
+        QualiToastElasticsearchReindexModule
     ],
     declarations: [
         AuditsComponent,
@@ -51,16 +50,13 @@ import {
         JhiHealthModalComponent,
         JhiDocsComponent,
         JhiMetricsMonitoringComponent,
-        JhiMetricsMonitoringModalComponent,
-        ElasticsearchReindexComponent,
-        ElasticsearchReindexModalComponent
+        JhiMetricsMonitoringModalComponent
     ],
     entryComponents: [
         UserMgmtDialogComponent,
         UserMgmtDeleteDialogComponent,
         JhiHealthModalComponent,
-        JhiMetricsMonitoringModalComponent,
-        ElasticsearchReindexModalComponent
+        JhiMetricsMonitoringModalComponent
     ],
     providers: [
         AuditsService,
@@ -70,8 +66,7 @@ import {
         LogsService,
         UserResolvePagingParams,
         UserResolve,
-        UserModalService,
-        ElasticsearchReindexService
+        UserModalService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

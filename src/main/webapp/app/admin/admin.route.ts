@@ -9,7 +9,7 @@ import {
     metricsRoute,
     userMgmtRoute,
     userDialogRoute,
-    elasticsearchReindexRoute
+//    elasticsearchReindexRoute
 } from './';
 
 import { UserRouteAccessService } from '../shared';
@@ -21,8 +21,7 @@ const ADMIN_ROUTES = [
     healthRoute,
     logsRoute,
     ...userMgmtRoute,
-    metricsRoute,
-    elasticsearchReindexRoute
+    metricsRoute
 ];
 
 export const adminState: Routes = [{

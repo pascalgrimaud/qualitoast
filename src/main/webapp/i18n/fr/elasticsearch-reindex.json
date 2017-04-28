@@ -1,7 +1,7 @@
 {
     "elasticsearch": {
         "reindex": {
-            "accepted": "Request accepted, performing full Elasticsearch reindexing.",
+            "accepted": "Requête acceptée, lance toute la réindexation Elasticsearch.",
             "dialog": {
                 "title": "Confirmer la réindexation Elasticsearch",
                 "question": "Etes-vous certain de vouloir réindexer Elasticsearch? Celà peut prendre du temps!",
@@ -9,8 +9,8 @@
                 "confirm": "Réindexer"
             },
             "title": "Réindexer Elasticsearch",
-            "instructions1": "This will send a request to reindex all data from your primary datasource into Elasticsearch. This will fix missing data and mapping issues, however you will lose any ES data and mapping that was defined outside of your application. This request will return immediately and the reindexing will run in the background. You will see \"Elasticsearch: Successfully performed reindexing\" in your logs when this is complete.",
-            "instructions2": "This can take a long time and is susceptible to concurrency issues so it should be performed when the number of users is low.",
+            "instructions1": "Cette tâche va lancer une requête pour réindexer les données de votre base vers Elasticsearch. Cela va corriger les données manquantes. Cependant, vous allez perdre les autres données Elasticsearch qui ont été indexées en dehors de votre application. Cette requête va se lancer immédiatement et tourner en fond de tâche. Vous verrez \"Elasticsearch: Successfully performed reindexing\" dans vos logs lorsque ce sera terminé.",
+            "instructions2": "Cela peut prendre un moment pour être exécuté et est successible de provoquer des accès concurrents ; il est conseillé de lancer cette tâche lorsque le nombre d'utilisateurs est bas.",
             "go": "Lancer"
         }
     }
