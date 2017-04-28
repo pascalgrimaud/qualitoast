@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { QualiToastSharedModule } from '../../shared';
 
 import {
-    // adminState,
     ElasticsearchReindexComponent,
     ElasticsearchReindexModalComponent,
     ElasticsearchReindexService,

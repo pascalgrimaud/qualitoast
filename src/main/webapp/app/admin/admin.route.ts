@@ -8,8 +8,7 @@ import {
     logsRoute,
     metricsRoute,
     userMgmtRoute,
-    userDialogRoute,
-//    elasticsearchReindexRoute
+    userDialogRoute
 } from './';
 
 import { UserRouteAccessService } from '../shared';
