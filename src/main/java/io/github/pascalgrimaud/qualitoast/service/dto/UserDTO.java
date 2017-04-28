@@ -6,6 +6,7 @@ import io.github.pascalgrimaud.qualitoast.domain.Authority;
 import io.github.pascalgrimaud.qualitoast.domain.User;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.*;
 import java.time.ZonedDateTime;
@@ -19,7 +20,7 @@ public class UserDTO {
 
     private Long id;
 
-    @NotNull
+    @NotBlank
     @Pattern(regexp = Constants.LOGIN_REGEX)
     @Size(min = 1, max = 50)
     private String login;

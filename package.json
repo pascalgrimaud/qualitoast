@@ -100,7 +100,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "ngc": "ngc -p tsconfig-aot.json",
-    "cleanup": "rimraf target/",
+    "cleanup": "rimraf target/{aot,www}",
     "start": "yarn run webpack:dev",
     "webpack:build": "yarn run ngc && webpack --config webpack/webpack.vendor.js && webpack --config webpack/webpack.dev.js",
     "webpack:build:dev": "webpack --config webpack/webpack.dev.js",
