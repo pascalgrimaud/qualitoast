@@ -42,7 +42,7 @@ script:
   - ./mvnw clean test
   - yarn test
   - ./mvnw package -Pprod -DskipTests
-  - java -jar target/*.war
+  - java -jar target/*.war &
   - sleep 60
   - yarn e2e
 notifications:
