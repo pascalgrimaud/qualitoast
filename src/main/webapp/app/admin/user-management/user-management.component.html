@@ -8,7 +8,7 @@
     <jhi-alert></jhi-alert>
     <div class="table-responsive" *ngIf="users">
         <table class="table table-striped">
-            <thead>
+            <thead class="table thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span><span class="fa fa-sort"></span></th>
                 <th jhiSortBy="login"><span jhiTranslate="userManagement.login">Login</span> <span class="fa fa-sort"></span></th>
@@ -25,7 +25,7 @@
             <tbody *ngIf ="users">
             <tr *ngFor="let user of users; trackBy: trackIdentity">
                 <td><a [routerLink]="['../user-management', user.login]">{{user.id}}</a></td>
-                <td>{{user.login}}</td>
+                <td><a [routerLink]="['../user-management', user.login]">{{user.login}}</a></td>
                 <td>{{user.email}}</td>
                 <td>
                     <span class="badge badge-danger hand" (click)="setActive(user, true)" *ngIf="!user.activated"
@@ -33,7 +33,7 @@
                     <span class="badge badge-success hand" (click)="setActive(user, false)" *ngIf="user.activated"
                           jhiTranslate="userManagement.activated">Activated</span>
                 </td>
-                <td>{{user.langKey}}</td>
+                <td>{{user.langKey | findLanguageFromKey}}</td>
                 <td>
                     <div *ngFor="let authority of user.authorities">
                         <span class="tag tag-info">{{ authority }}</span>
