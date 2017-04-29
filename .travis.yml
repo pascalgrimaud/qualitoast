@@ -7,6 +7,12 @@ node_js:
   - "6.10.2"
 jdk:
   - oraclejdk8
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 sudo: false
 cache:
   directories:
@@ -31,9 +37,14 @@ install:
   - yarn install
 script:
   - chmod +x mvnw
+  - docker-compose -f src/main/docker/postgresql.yml up -d
+  - docker-compose -f src/main/docker/elasticsearch.yml up -d
   - ./mvnw clean test
   - yarn test
   - ./mvnw package -Pprod -DskipTests
+  - java -jar target/*.war
+  - sleep 60
+  - yarn e2e
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
