@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { QualiToastSharedModule } from '../shared';
+import { QualiToastElasticsearchReindexModule } from './elasticsearch-reindex/elasticsearch-reindex.module';
 
 import {
     adminState,
@@ -32,7 +33,8 @@ import {
 @NgModule({
     imports: [
         QualiToastSharedModule,
-        RouterModule.forRoot(adminState, { useHash: true })
+        RouterModule.forRoot(adminState, { useHash: true }),
+        QualiToastElasticsearchReindexModule
     ],
     declarations: [
         AuditsComponent,
@@ -54,7 +56,7 @@ import {
         UserMgmtDialogComponent,
         UserMgmtDeleteDialogComponent,
         JhiHealthModalComponent,
-        JhiMetricsMonitoringModalComponent,
+        JhiMetricsMonitoringModalComponent
     ],
     providers: [
         AuditsService,
