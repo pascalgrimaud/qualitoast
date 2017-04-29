@@ -169,7 +169,81 @@ entity detail page css
         margin-left: 0;
     }
 }
+.pagination {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0;
+}
 
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.page-item:last-child .page-link {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.page-item.active .page-link {
+  z-index: 2;
+  color: #fff;
+  background-color: #593196;
+  border-color: #593196;
+}
+.page-item.disabled .page-link {
+  color: #cbc8d0;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+
+.page-link {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #593196;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.page-link:focus, .page-link:hover {
+  color: #593196;
+  text-decoration: none;
+  background-color: #EDEDED;
+  border-color: #ddd;
+}
+
+.pagination-lg .page-link {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+}
+.pagination-lg .page-item:first-child .page-link {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.pagination-lg .page-item:last-child .page-link {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.pagination-sm .page-link {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+.pagination-sm .page-item:first-child .page-link {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+.pagination-sm .page-item:last-child .page-link {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
 /* ==========================================================================
 ui bootstrap tweaks
 ========================================================================== */
