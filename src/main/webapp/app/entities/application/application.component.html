@@ -39,8 +39,8 @@
             <tbody>
             <tr *ngFor="let application of applications ;trackBy: trackId">
                 <td><a [routerLink]="['../application', application.id ]">{{application.id}}</a></td>
-                <td>{{application.code}}</td>
-                <td>{{application.nom}}</td>
+                <td><a [routerLink]="['../application', application.id ]">{{application.code}}</a></td>
+                <td><a [routerLink]="['../application', application.id ]">{{application.nom}}</a></td>
                 <td>{{application.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
