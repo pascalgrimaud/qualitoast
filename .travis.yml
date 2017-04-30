@@ -44,7 +44,6 @@ script:
   - ./mvnw package -Pprod -DskipTests
   - java -jar target/*.war &
   - sleep 60
-  - yarn e2e
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
