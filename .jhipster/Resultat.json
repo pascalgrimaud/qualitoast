@@ -14,5 +14,5 @@
     "entityTableName": "resultat",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no"
+    "service": "serviceClass"
 }

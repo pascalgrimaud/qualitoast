@@ -2,9 +2,7 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.Resultat;
-
-import io.github.pascalgrimaud.qualitoast.repository.ResultatRepository;
-import io.github.pascalgrimaud.qualitoast.repository.search.ResultatSearchRepository;
+import io.github.pascalgrimaud.qualitoast.service.ResultatService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -39,13 +37,10 @@ public class ResultatResource {
 
     private static final String ENTITY_NAME = "resultat";
         
-    private final ResultatRepository resultatRepository;
+    private final ResultatService resultatService;
 
-    private final ResultatSearchRepository resultatSearchRepository;
-
-    public ResultatResource(ResultatRepository resultatRepository, ResultatSearchRepository resultatSearchRepository) {
-        this.resultatRepository = resultatRepository;
-        this.resultatSearchRepository = resultatSearchRepository;
+    public ResultatResource(ResultatService resultatService) {
+        this.resultatService = resultatService;
     }
 
     /**
@@ -62,8 +57,7 @@ public class ResultatResource {
         if (resultat.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new resultat cannot already have an ID")).body(null);
         }
-        Resultat result = resultatRepository.save(resultat);
-        resultatSearchRepository.save(result);
+        Resultat result = resultatService.save(resultat);
         return ResponseEntity.created(new URI("/api/resultats/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,8 +79,7 @@ public class ResultatResource {
         if (resultat.getId() == null) {
             return createResultat(resultat);
         }
-        Resultat result = resultatRepository.save(resultat);
-        resultatSearchRepository.save(result);
+        Resultat result = resultatService.save(resultat);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, resultat.getId().toString()))
             .body(result);
@@ -102,7 +95,7 @@ public class ResultatResource {
     @Timed
     public ResponseEntity<List<Resultat>> getAllResultats(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Resultats");
-        Page<Resultat> page = resultatRepository.findAll(pageable);
+        Page<Resultat> page = resultatService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/resultats");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,7 +110,7 @@ public class ResultatResource {
     @Timed
     public ResponseEntity<Resultat> getResultat(@PathVariable Long id) {
         log.debug("REST request to get Resultat : {}", id);
-        Resultat resultat = resultatRepository.findOne(id);
+        Resultat resultat = resultatService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(resultat));
     }
 
@@ -131,8 +124,7 @@ public class ResultatResource {
     @Timed
     public ResponseEntity<Void> deleteResultat(@PathVariable Long id) {
         log.debug("REST request to delete Resultat : {}", id);
-        resultatRepository.delete(id);
-        resultatSearchRepository.delete(id);
+        resultatService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,7 +140,7 @@ public class ResultatResource {
     @Timed
     public ResponseEntity<List<Resultat>> searchResultats(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Resultats for query {}", query);
-        Page<Resultat> page = resultatSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Resultat> page = resultatService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/resultats");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

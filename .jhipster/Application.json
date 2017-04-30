@@ -25,5 +25,5 @@
     "entityTableName": "application",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no"
+    "service": "serviceClass"
 }

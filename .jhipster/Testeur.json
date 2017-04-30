@@ -6,7 +6,7 @@
             "relationshipValidateRules": "required",
             "relationshipName": "typetest",
             "otherEntityName": "typeTest",
-            "otherEntityField": "code"
+            "otherEntityField": "nom"
         },
         {
             "relationshipType": "many-to-many",
@@ -43,5 +43,5 @@
     "entityTableName": "testeur",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no"
+    "service": "serviceClass"
 }

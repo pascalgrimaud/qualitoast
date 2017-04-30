@@ -21,5 +21,5 @@
     "entityTableName": "type_test",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no"
+    "service": "serviceClass"
 }
