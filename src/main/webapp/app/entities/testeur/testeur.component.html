@@ -29,7 +29,6 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="identifiant"><span jhiTranslate="qualiToastApp.testeur.identifiant">Identifiant</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.testeur.nom">Nom</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="prenom"><span jhiTranslate="qualiToastApp.testeur.prenom">Prenom</span> <span class="fa fa-sort"></span></th>
@@ -39,13 +38,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let testeur of testeurs ;trackBy: trackId">
-                <td><a [routerLink]="['../testeur', testeur.id ]">{{testeur.id}}</a></td>
                 <td>{{testeur.identifiant}}</td>
-                <td>{{testeur.nom}}</td>
+                <td><a [routerLink]="['../testeur', testeur.id ]">{{testeur.nom}}</a></td>
                 <td>{{testeur.prenom}}</td>
                 <td>
                     <div *ngIf="testeur.typetest">
-                        <a [routerLink]="['../type-test', testeur.typetest?.id ]" >{{testeur.typetest?.code}}</a>
+                        <a [routerLink]="['../type-test', testeur.typetest?.id ]" >{{testeur.typetest?.nom}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -54,21 +52,18 @@
                                 [routerLink]="['../testeur', testeur.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'testeur/'+ testeur.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'testeur/'+ testeur.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>
