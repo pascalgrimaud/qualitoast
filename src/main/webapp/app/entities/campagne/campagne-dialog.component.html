@@ -15,7 +15,7 @@
         <div class="form-group">
             <label jhiTranslate="qualiToastApp.campagne.application" for="field_application">Application</label>
             <select class="form-control" id="field_application" name="application" [(ngModel)]="campagne.application"  required>
-                <option [ngValue]="applicationOption.id === campagne.application?.id ? campagne.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.code}}</option>
+                <option [ngValue]="applicationOption.id === campagne.application?.id ? campagne.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.nom}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.application?.dirty && editForm.controls.application?.invalid)">
@@ -39,7 +39,7 @@
         <div class="form-group">
             <label jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Typetest</label>
             <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="campagne.typetest"  required>
-                <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.code}}</option>
+                <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.nom}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.typetest?.dirty && editForm.controls.typetest?.invalid)">
