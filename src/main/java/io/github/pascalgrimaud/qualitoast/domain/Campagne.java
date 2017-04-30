@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -70,6 +72,13 @@ public class Campagne implements Serializable {
     @ManyToOne(optional = false)
     @NotNull
     private Resultat resultat;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "campagne_testeur",
+               joinColumns = @JoinColumn(name="campagnes_id", referencedColumnName="id"),
+               inverseJoinColumns = @JoinColumn(name="testeurs_id", referencedColumnName="id"))
+    private Set<Testeur> testeurs = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -233,6 +242,31 @@ public class Campagne implements Serializable {
 
     public void setResultat(Resultat resultat) {
         this.resultat = resultat;
+    }
+
+    public Set<Testeur> getTesteurs() {
+        return testeurs;
+    }
+
+    public Campagne testeurs(Set<Testeur> testeurs) {
+        this.testeurs = testeurs;
+        return this;
+    }
+
+    public Campagne addTesteur(Testeur testeur) {
+        this.testeurs.add(testeur);
+        testeur.getCampagnes().add(this);
+        return this;
+    }
+
+    public Campagne removeTesteur(Testeur testeur) {
+        this.testeurs.remove(testeur);
+        testeur.getCampagnes().remove(this);
+        return this;
+    }
+
+    public void setTesteurs(Set<Testeur> testeurs) {
+        this.testeurs = testeurs;
     }
 
     @Override

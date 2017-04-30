@@ -21,6 +21,14 @@
             "relationshipName": "resultat",
             "otherEntityName": "resultat",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "campagne",
+            "relationshipName": "testeur",
+            "otherEntityName": "testeur",
+            "otherEntityField": "identifiant",
+            "ownerSide": true
         }
     ],
     "fields": [

@@ -27,7 +27,8 @@
             "majeur": "Majeur :",
             "mineur": "Mineur :",
             "evolution": "Evolution :",
-            "termine": "Terminé :"
+            "termine": "Terminé :",
+            "testeur": "Testeur"
         }
     }
 }

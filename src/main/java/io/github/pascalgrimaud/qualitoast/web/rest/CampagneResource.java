@@ -117,7 +117,7 @@ public class CampagneResource {
     @Timed
     public ResponseEntity<Campagne> getCampagne(@PathVariable Long id) {
         log.debug("REST request to get Campagne : {}", id);
-        Campagne campagne = campagneRepository.findOne(id);
+        Campagne campagne = campagneRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(campagne));
     }
 

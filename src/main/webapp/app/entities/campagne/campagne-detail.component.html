@@ -78,6 +78,12 @@
                     <span *ngIf="!campagne.termine">En cours</span>
                 </b>
             </dd>
+            <dt><span jhiTranslate="qualiToastApp.campagne.testeur">Testeur</span></dt>
+            <dd>
+            <span *ngFor="let testeur of campagne.testeurs; let last = last">
+                <a [routerLink]="['/testeur', testeur?.id ]">{{testeur.identifiant}}</a>{{last ? '' : ', '}}
+            </span>
+            </dd>
         </dl>
     </div>
     <button type="submit"    (click)="previousState()"    class="btn btn-info">

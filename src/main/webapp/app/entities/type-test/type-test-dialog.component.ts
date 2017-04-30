@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
@@ -40,14 +41,17 @@ export class TypeTestDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.typeTest.id !== undefined) {
-            this.typeTestService.update(this.typeTest)
-                .subscribe((res: TypeTest) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.typeTestService.update(this.typeTest));
         } else {
-            this.typeTestService.create(this.typeTest)
-                .subscribe((res: TypeTest) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.typeTestService.create(this.typeTest));
         }
+    }
+
+    private subscribeToSaveResponse(result: Observable<TypeTest>) {
+        result.subscribe((res: TypeTest) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
     private onSaveSuccess(result: TypeTest) {

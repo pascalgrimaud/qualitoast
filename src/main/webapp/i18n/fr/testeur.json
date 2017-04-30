@@ -1,0 +1,26 @@
+{
+    "qualiToastApp": {
+        "testeur" : {
+            "home": {
+                "title": "Testeurs",
+                "createLabel": "Créer un nouveau Testeur",
+                "createOrEditLabel": "Créer ou éditer un Testeur",
+                "search": "Recherche pour Testeur"
+            },
+            "created": "Un nouveau Testeur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Testeur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Testeur avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Testeur {{ id }} ?"
+            },
+            "detail": {
+                "title": "Testeur"
+            },
+            "identifiant": "Identifiant",
+            "nom": "Nom",
+            "prenom": "Prenom",
+            "typetest": "Typetest",
+            "campagne": "Campagne"
+        }
+    }
+}

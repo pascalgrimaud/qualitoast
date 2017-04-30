@@ -6,59 +6,45 @@ import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
-import { Campagne } from './campagne.model';
-import { CampagnePopupService } from './campagne-popup.service';
-import { CampagneService } from './campagne.service';
-import { Application, ApplicationService } from '../application';
+import { Testeur } from './testeur.model';
+import { TesteurPopupService } from './testeur-popup.service';
+import { TesteurService } from './testeur.service';
 import { TypeTest, TypeTestService } from '../type-test';
-import { Resultat, ResultatService } from '../resultat';
-import { Testeur, TesteurService } from '../testeur';
+import { Campagne, CampagneService } from '../campagne';
 
 @Component({
-    selector: 'jhi-campagne-dialog',
-    templateUrl: './campagne-dialog.component.html'
+    selector: 'jhi-testeur-dialog',
+    templateUrl: './testeur-dialog.component.html'
 })
-export class CampagneDialogComponent implements OnInit {
+export class TesteurDialogComponent implements OnInit {
 
-    campagne: Campagne;
+    testeur: Testeur;
     authorities: any[];
     isSaving: boolean;
 
-    applications: Application[];
-
     typetests: TypeTest[];
 
-    resultats: Resultat[];
-
-    testeurs: Testeur[];
-    datedebutDp: any;
-    datefinDp: any;
+    campagnes: Campagne[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
-        private campagneService: CampagneService,
-        private applicationService: ApplicationService,
-        private typeTestService: TypeTestService,
-        private resultatService: ResultatService,
         private testeurService: TesteurService,
+        private typeTestService: TypeTestService,
+        private campagneService: CampagneService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['campagne']);
+        this.jhiLanguageService.setLocations(['testeur']);
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.applicationService.query().subscribe(
-            (res: Response) => { this.applications = res.json(); }, (res: Response) => this.onError(res.json()));
         this.typeTestService.query().subscribe(
             (res: Response) => { this.typetests = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.resultatService.query().subscribe(
-            (res: Response) => { this.resultats = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.testeurService.query().subscribe(
-            (res: Response) => { this.testeurs = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.campagneService.query().subscribe(
+            (res: Response) => { this.campagnes = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -66,22 +52,22 @@ export class CampagneDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.campagne.id !== undefined) {
+        if (this.testeur.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.campagneService.update(this.campagne));
+                this.testeurService.update(this.testeur));
         } else {
             this.subscribeToSaveResponse(
-                this.campagneService.create(this.campagne));
+                this.testeurService.create(this.testeur));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Campagne>) {
-        result.subscribe((res: Campagne) =>
+    private subscribeToSaveResponse(result: Observable<Testeur>) {
+        result.subscribe((res: Testeur) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Campagne) {
-        this.eventManager.broadcast({ name: 'campagneListModification', content: 'OK'});
+    private onSaveSuccess(result: Testeur) {
+        this.eventManager.broadcast({ name: 'testeurListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -100,19 +86,11 @@ export class CampagneDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
-    trackApplicationById(index: number, item: Application) {
-        return item.id;
-    }
-
     trackTypeTestById(index: number, item: TypeTest) {
         return item.id;
     }
 
-    trackResultatById(index: number, item: Resultat) {
-        return item.id;
-    }
-
-    trackTesteurById(index: number, item: Testeur) {
+    trackCampagneById(index: number, item: Campagne) {
         return item.id;
     }
 
@@ -129,27 +107,27 @@ export class CampagneDialogComponent implements OnInit {
 }
 
 @Component({
-    selector: 'jhi-campagne-popup',
+    selector: 'jhi-testeur-popup',
     template: ''
 })
-export class CampagnePopupComponent implements OnInit, OnDestroy {
+export class TesteurPopupComponent implements OnInit, OnDestroy {
 
     modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private campagnePopupService: CampagnePopupService
+        private testeurPopupService: TesteurPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.campagnePopupService
-                    .open(CampagneDialogComponent, params['id']);
+                this.modalRef = this.testeurPopupService
+                    .open(TesteurDialogComponent, params['id']);
             } else {
-                this.modalRef = this.campagnePopupService
-                    .open(CampagneDialogComponent);
+                this.modalRef = this.testeurPopupService
+                    .open(TesteurDialogComponent);
             }
         });
     }

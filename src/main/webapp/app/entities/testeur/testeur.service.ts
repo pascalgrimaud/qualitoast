@@ -2,31 +2,31 @@ import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, BaseRequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Resultat } from './resultat.model';
+import { Testeur } from './testeur.model';
 
 @Injectable()
-export class ResultatService {
+export class TesteurService {
 
-    private resourceUrl = 'api/resultats';
-    private resourceSearchUrl = 'api/_search/resultats';
+    private resourceUrl = 'api/testeurs';
+    private resourceSearchUrl = 'api/_search/testeurs';
 
     constructor(private http: Http) { }
 
-    create(resultat: Resultat): Observable<Resultat> {
-        const copy = this.convert(resultat);
+    create(testeur: Testeur): Observable<Testeur> {
+        const copy = this.convert(testeur);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(resultat: Resultat): Observable<Resultat> {
-        const copy = this.convert(resultat);
+    update(testeur: Testeur): Observable<Testeur> {
+        const copy = this.convert(testeur);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Resultat> {
+    find(id: number): Observable<Testeur> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });
@@ -63,8 +63,8 @@ export class ResultatService {
         return options;
     }
 
-    private convert(resultat: Resultat): Resultat {
-        const copy: Resultat = Object.assign({}, resultat);
+    private convert(testeur: Testeur): Testeur {
+        const copy: Testeur = Object.assign({}, testeur);
         return copy;
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
@@ -40,14 +41,17 @@ export class ApplicationDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.application.id !== undefined) {
-            this.applicationService.update(this.application)
-                .subscribe((res: Application) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.applicationService.update(this.application));
         } else {
-            this.applicationService.create(this.application)
-                .subscribe((res: Application) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.applicationService.create(this.application));
         }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Application>) {
+        result.subscribe((res: Application) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
     private onSaveSuccess(result: Application) {

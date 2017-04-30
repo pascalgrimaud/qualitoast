@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
@@ -40,14 +41,17 @@ export class ResultatDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.resultat.id !== undefined) {
-            this.resultatService.update(this.resultat)
-                .subscribe((res: Resultat) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.resultatService.update(this.resultat));
         } else {
-            this.resultatService.create(this.resultat)
-                .subscribe((res: Resultat) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.resultatService.create(this.resultat));
         }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Resultat>) {
+        result.subscribe((res: Resultat) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
     private onSaveSuccess(result: Resultat) {
