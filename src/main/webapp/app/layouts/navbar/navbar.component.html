@@ -112,13 +112,13 @@
                             <span jhiTranslate="global.menu.admin.apidocs">API</span>
                         </a>
                     </li>
-                    <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     <li>
                         <a class="dropdown-item" routerLink="elasticsearch-reindex" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-search" aria-hidden="true"></i>
+                            <i class="fa fa-fw fa-search" aria-hidden="true"></i>&nbsp;
                             <span jhiTranslate="global.menu.admin.elasticsearch-reindex">Reindex Elasticsearch</span>
                         </a>
                     </li>
+                    <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     <li *ngIf="!inProduction">
                         <a class="dropdown-item" href='/h2-console' target="_tab" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-hdd-o" aria-hidden="true"></i>
