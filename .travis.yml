@@ -13,7 +13,6 @@ addons:
       - google-chrome
     packages:
       - google-chrome-stable
-sudo: false
 cache:
   directories:
     - node
@@ -30,6 +29,8 @@ before_install:
   - java -version
   - sudo /etc/init.d/mysql stop
   - sudo /etc/init.d/postgresql stop
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   # Repo for Yarn
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
@@ -44,6 +45,7 @@ script:
   - ./mvnw package -Pprod -DskipTests
   - java -jar target/*.war &
   - sleep 60
+  - yarn e2e
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
