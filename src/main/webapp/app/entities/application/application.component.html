@@ -29,7 +29,6 @@
         <table class="table table-striped">
             <thead class="table thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="code"><span jhiTranslate="qualiToastApp.application.code">Code</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.application.nom">Nom</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="qualiToastApp.application.description">Description</span> <span class="fa fa-sort"></span></th>
@@ -38,7 +37,6 @@
             </thead>
             <tbody>
             <tr *ngFor="let application of applications ;trackBy: trackId">
-                <td><a [routerLink]="['../application', application.id ]">{{application.id}}</a></td>
                 <td><a [routerLink]="['../application', application.id ]">{{application.code}}</a></td>
                 <td><a [routerLink]="['../application', application.id ]">{{application.nom}}</a></td>
                 <td>{{application.description}}</td>
@@ -48,21 +46,18 @@
                                 [routerLink]="['../application', application.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'application/'+ application.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'application/'+ application.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
                     </div>
                 </td>
