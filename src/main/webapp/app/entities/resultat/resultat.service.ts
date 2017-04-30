@@ -13,14 +13,14 @@ export class ResultatService {
     constructor(private http: Http) { }
 
     create(resultat: Resultat): Observable<Resultat> {
-        const copy: Resultat = Object.assign({}, resultat);
+        const copy = this.convert(resultat);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(resultat: Resultat): Observable<Resultat> {
-        const copy: Resultat = Object.assign({}, resultat);
+        const copy = this.convert(resultat);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -61,5 +61,10 @@ export class ResultatService {
             options.search = params;
         }
         return options;
+    }
+
+    private convert(resultat: Resultat): Resultat {
+        const copy: Resultat = Object.assign({}, resultat);
+        return copy;
     }
 }

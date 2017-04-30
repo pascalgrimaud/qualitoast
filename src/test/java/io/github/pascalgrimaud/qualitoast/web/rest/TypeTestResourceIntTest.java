@@ -157,6 +157,24 @@ public class TypeTestResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNomIsRequired() throws Exception {
+        int databaseSizeBeforeTest = typeTestRepository.findAll().size();
+        // set the field null
+        typeTest.setNom(null);
+
+        // Create the TypeTest, which fails.
+
+        restTypeTestMockMvc.perform(post("/api/type-tests")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(typeTest)))
+            .andExpect(status().isBadRequest());
+
+        List<TypeTest> typeTestList = typeTestRepository.findAll();
+        assertThat(typeTestList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTypeTests() throws Exception {
         // Initialize the database
         typeTestRepository.saveAndFlush(typeTest);

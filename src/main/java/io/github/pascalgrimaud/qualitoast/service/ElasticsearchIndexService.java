@@ -35,6 +35,10 @@ public class ElasticsearchIndexService {
 
     private final ResultatSearchRepository resultatSearchRepository;
 
+    private final TesteurRepository testeurRepository;
+
+    private final TesteurSearchRepository testeurSearchRepository;
+
     private final TypeTestRepository typeTestRepository;
 
     private final TypeTestSearchRepository typeTestSearchRepository;
@@ -54,6 +58,8 @@ public class ElasticsearchIndexService {
         CampagneSearchRepository campagneSearchRepository,
         ResultatRepository resultatRepository,
         ResultatSearchRepository resultatSearchRepository,
+        TesteurRepository testeurRepository,
+        TesteurSearchRepository testeurSearchRepository,
         TypeTestRepository typeTestRepository,
         TypeTestSearchRepository typeTestSearchRepository,
         ElasticsearchTemplate elasticsearchTemplate) {
@@ -65,6 +71,8 @@ public class ElasticsearchIndexService {
         this.campagneSearchRepository = campagneSearchRepository;
         this.resultatRepository = resultatRepository;
         this.resultatSearchRepository = resultatSearchRepository;
+        this.testeurRepository = testeurRepository;
+        this.testeurSearchRepository = testeurSearchRepository;
         this.typeTestRepository = typeTestRepository;
         this.typeTestSearchRepository = typeTestSearchRepository;
         this.elasticsearchTemplate = elasticsearchTemplate;
@@ -76,6 +84,7 @@ public class ElasticsearchIndexService {
         reindexForClass(Application.class, applicationRepository, applicationSearchRepository);
         reindexForClass(Campagne.class, campagneRepository, campagneSearchRepository);
         reindexForClass(Resultat.class, resultatRepository, resultatSearchRepository);
+        reindexForClass(Testeur.class, testeurRepository, testeurSearchRepository);
         reindexForClass(TypeTest.class, typeTestRepository, typeTestSearchRepository);
         reindexForClass(User.class, userRepository, userSearchRepository);
 

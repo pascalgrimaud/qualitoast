@@ -28,7 +28,13 @@
             <label class="form-control-label" jhiTranslate="qualiToastApp.typeTest.nom" for="field_nom">Nom</label>
             <input type="text" class="form-control" name="nom" id="field_nom"
                 [(ngModel)]="typeTest.nom"
-             />
+            required />
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
 
     </div>

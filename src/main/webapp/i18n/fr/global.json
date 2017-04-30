@@ -11,6 +11,7 @@
                 "application": "Applications",
                 "typeTest": "Type de tests",
                 "resultat": "Résultats",
+                "testeur": "Testeur",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

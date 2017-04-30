@@ -13,14 +13,14 @@ export class TypeTestService {
     constructor(private http: Http) { }
 
     create(typeTest: TypeTest): Observable<TypeTest> {
-        const copy: TypeTest = Object.assign({}, typeTest);
+        const copy = this.convert(typeTest);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(typeTest: TypeTest): Observable<TypeTest> {
-        const copy: TypeTest = Object.assign({}, typeTest);
+        const copy = this.convert(typeTest);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -61,5 +61,10 @@ export class TypeTestService {
             options.search = params;
         }
         return options;
+    }
+
+    private convert(typeTest: TypeTest): TypeTest {
+        const copy: TypeTest = Object.assign({}, typeTest);
+        return copy;
     }
 }

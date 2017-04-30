@@ -12,4 +12,11 @@
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170422204528_added_entity_constraints_Campagne.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <!--
+    add new entity: testeur
+    change to notnull for application and typetest
+    -->
+    <include file="classpath:config/liquibase/changelog/20170430153402_changelog.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

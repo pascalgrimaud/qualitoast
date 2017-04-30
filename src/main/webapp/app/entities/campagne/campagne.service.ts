@@ -14,22 +14,14 @@ export class CampagneService {
     constructor(private http: Http, private dateUtils: DateUtils) { }
 
     create(campagne: Campagne): Observable<Campagne> {
-        const copy: Campagne = Object.assign({}, campagne);
-        copy.datedebut = this.dateUtils
-            .convertLocalDateToServer(campagne.datedebut);
-        copy.datefin = this.dateUtils
-            .convertLocalDateToServer(campagne.datefin);
+        const copy = this.convert(campagne);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(campagne: Campagne): Observable<Campagne> {
-        const copy: Campagne = Object.assign({}, campagne);
-        copy.datedebut = this.dateUtils
-            .convertLocalDateToServer(campagne.datedebut);
-        copy.datefin = this.dateUtils
-            .convertLocalDateToServer(campagne.datefin);
+        const copy = this.convert(campagne);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -90,5 +82,14 @@ export class CampagneService {
             options.search = params;
         }
         return options;
+    }
+
+    private convert(campagne: Campagne): Campagne {
+        const copy: Campagne = Object.assign({}, campagne);
+        copy.datedebut = this.dateUtils
+            .convertLocalDateToServer(campagne.datedebut);
+        copy.datefin = this.dateUtils
+            .convertLocalDateToServer(campagne.datefin);
+        return copy;
     }
 }

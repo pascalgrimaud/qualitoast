@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+   <changeSet author="pgrimaud (generated)" id="1493566448961-1">
+      <createTable tableName="campagne_testeur">
+         <column name="campagnes_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+         <column name="testeurs_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-2">
+      <createTable tableName="testeur">
+         <column autoIncrement="true" name="id" type="BIGINT">
+            <constraints primaryKey="true" primaryKeyName="testeurPK"/>
+         </column>
+         <column name="identifiant" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="nom" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="prenom" type="VARCHAR(255)">
+            <constraints nullable="false"/>
+         </column>
+         <column name="typetest_id" type="BIGINT">
+            <constraints nullable="false"/>
+         </column>
+      </createTable>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-3">
+      <addPrimaryKey columnNames="campagnes_id, testeurs_id" tableName="campagne_testeur"/>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-4">
+      <addForeignKeyConstraint baseColumnNames="typetest_id"
+                               baseTableName="testeur"
+                               constraintName="FK2e1ve18053vhlea959oj2shdf"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="type_test"/>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-5">
+      <addForeignKeyConstraint baseColumnNames="campagnes_id"
+                               baseTableName="campagne_testeur"
+                               constraintName="FKhgfrcmq23w9gra4bi2kl736ts"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="campagne"/>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-6">
+      <addForeignKeyConstraint baseColumnNames="testeurs_id"
+                               baseTableName="campagne_testeur"
+                               constraintName="FKoqdmkaa5ayhb2yxeb1cbe559b"
+                               deferrable="false"
+                               initiallyDeferred="false"
+                               referencedColumnNames="id"
+                               referencedTableName="testeur"/>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-7">
+      <addNotNullConstraint columnDataType="varchar(255)"
+                            columnName="nom"
+                            tableName="application"/>
+   </changeSet>
+   <changeSet author="pgrimaud (generated)" id="1493566448961-8">
+      <addNotNullConstraint columnDataType="varchar(255)"
+                            columnName="nom"
+                            tableName="type_test"/>
+   </changeSet>
+</databaseChangeLog>

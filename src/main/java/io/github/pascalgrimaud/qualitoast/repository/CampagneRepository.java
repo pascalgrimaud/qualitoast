@@ -3,6 +3,7 @@ package io.github.pascalgrimaud.qualitoast.repository;
 import io.github.pascalgrimaud.qualitoast.domain.Campagne;
 
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -11,5 +12,11 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface CampagneRepository extends JpaRepository<Campagne,Long> {
+
+    @Query("select distinct campagne from Campagne campagne left join fetch campagne.testeurs")
+    List<Campagne> findAllWithEagerRelationships();
+
+    @Query("select campagne from Campagne campagne left join fetch campagne.testeurs where campagne.id =:id")
+    Campagne findOneWithEagerRelationships(@Param("id") Long id);
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
+import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
 
@@ -11,6 +12,7 @@ import { CampagneService } from './campagne.service';
 import { Application, ApplicationService } from '../application';
 import { TypeTest, TypeTestService } from '../type-test';
 import { Resultat, ResultatService } from '../resultat';
+import { Testeur, TesteurService } from '../testeur';
 
 @Component({
     selector: 'jhi-campagne-dialog',
@@ -27,6 +29,8 @@ export class CampagneDialogComponent implements OnInit {
     typetests: TypeTest[];
 
     resultats: Resultat[];
+
+    testeurs: Testeur[];
     datedebutDp: any;
     datefinDp: any;
 
@@ -38,6 +42,7 @@ export class CampagneDialogComponent implements OnInit {
         private applicationService: ApplicationService,
         private typeTestService: TypeTestService,
         private resultatService: ResultatService,
+        private testeurService: TesteurService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['campagne']);
@@ -52,6 +57,8 @@ export class CampagneDialogComponent implements OnInit {
             (res: Response) => { this.typetests = res.json(); }, (res: Response) => this.onError(res.json()));
         this.resultatService.query().subscribe(
             (res: Response) => { this.resultats = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.testeurService.query().subscribe(
+            (res: Response) => { this.testeurs = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     clear() {
         this.activeModal.dismiss('cancel');
@@ -60,14 +67,17 @@ export class CampagneDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.campagne.id !== undefined) {
-            this.campagneService.update(this.campagne)
-                .subscribe((res: Campagne) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.campagneService.update(this.campagne));
         } else {
-            this.campagneService.create(this.campagne)
-                .subscribe((res: Campagne) =>
-                    this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.subscribeToSaveResponse(
+                this.campagneService.create(this.campagne));
         }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Campagne>) {
+        result.subscribe((res: Campagne) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
     private onSaveSuccess(result: Campagne) {
@@ -100,6 +110,21 @@ export class CampagneDialogComponent implements OnInit {
 
     trackResultatById(index: number, item: Resultat) {
         return item.id;
+    }
+
+    trackTesteurById(index: number, item: Testeur) {
+        return item.id;
+    }
+
+    getSelected(selectedVals: Array<any>, option: any) {
+        if (selectedVals) {
+            for (let i = 0; i < selectedVals.length; i++) {
+                if (option.id === selectedVals[i].id) {
+                    return selectedVals[i];
+                }
+            }
+        }
+        return option;
     }
 }
 

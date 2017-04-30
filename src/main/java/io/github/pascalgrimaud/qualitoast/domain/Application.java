@@ -29,7 +29,8 @@ public class Application implements Serializable {
     @Column(name = "code", nullable = false)
     private String code;
 
-    @Column(name = "nom")
+    @NotNull
+    @Column(name = "nom", nullable = false)
     private String nom;
 
     @Column(name = "description")

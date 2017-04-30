@@ -11,7 +11,10 @@
         },
         {
             "fieldName": "nom",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "description",

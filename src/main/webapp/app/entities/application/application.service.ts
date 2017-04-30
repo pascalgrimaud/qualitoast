@@ -13,14 +13,14 @@ export class ApplicationService {
     constructor(private http: Http) { }
 
     create(application: Application): Observable<Application> {
-        const copy: Application = Object.assign({}, application);
+        const copy = this.convert(application);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
     update(application: Application): Observable<Application> {
-        const copy: Application = Object.assign({}, application);
+        const copy = this.convert(application);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
@@ -61,5 +61,10 @@ export class ApplicationService {
             options.search = params;
         }
         return options;
+    }
+
+    private convert(application: Application): Application {
+        const copy: Application = Object.assign({}, application);
+        return copy;
     }
 }

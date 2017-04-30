@@ -162,6 +162,24 @@ public class ApplicationResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNomIsRequired() throws Exception {
+        int databaseSizeBeforeTest = applicationRepository.findAll().size();
+        // set the field null
+        application.setNom(null);
+
+        // Create the Application, which fails.
+
+        restApplicationMockMvc.perform(post("/api/applications")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(application)))
+            .andExpect(status().isBadRequest());
+
+        List<Application> applicationList = applicationRepository.findAll();
+        assertThat(applicationList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllApplications() throws Exception {
         // Initialize the database
         applicationRepository.saveAndFlush(application);
