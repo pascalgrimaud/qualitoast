@@ -92,8 +92,8 @@ public class ElasticsearchIndexService {
     }
 
     @Transactional(readOnly = true)
-    @SuppressWarnings("unchecked")
-    private <T, ID extends Serializable> void reindexForClass(Class<T> entityClass, JpaRepository<T, ID> jpaRepository,
+    @SuppressWarnings("squid:S1166") // Sonar Rule: Either log or rethrow this exception
+    public <T, ID extends Serializable> void reindexForClass(Class<T> entityClass, JpaRepository<T, ID> jpaRepository,
                                                               ElasticsearchRepository<T, ID> elasticsearchRepository) {
         elasticsearchTemplate.deleteIndex(entityClass);
         try {
