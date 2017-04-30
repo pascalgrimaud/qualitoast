@@ -43,7 +43,12 @@ relationship ManyToMany {
 }
 
 paginate Campagne with pagination
+service Campagne with serviceClass
 paginate Application with pagination
+service Application with serviceClass
 paginate TypeTest with pagination
+service TypeTest with serviceClass
 paginate Resultat with pagination
+service Resultat with serviceClass
 paginate Testeur with pagination
+service Testeur with serviceClass

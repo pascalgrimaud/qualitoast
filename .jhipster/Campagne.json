@@ -6,21 +6,21 @@
             "relationshipValidateRules": "required",
             "relationshipName": "application",
             "otherEntityName": "application",
-            "otherEntityField": "id"
+            "otherEntityField": "nom"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "typetest",
             "otherEntityName": "typeTest",
-            "otherEntityField": "id"
+            "otherEntityField": "nom"
         },
         {
             "relationshipType": "many-to-one",
             "relationshipValidateRules": "required",
             "relationshipName": "resultat",
             "otherEntityName": "resultat",
-            "otherEntityField": "id"
+            "otherEntityField": "code"
         },
         {
             "relationshipType": "many-to-many",
@@ -95,5 +95,5 @@
     "entityTableName": "campagne",
     "dto": "no",
     "pagination": "pagination",
-    "service": "no"
+    "service": "serviceClass"
 }

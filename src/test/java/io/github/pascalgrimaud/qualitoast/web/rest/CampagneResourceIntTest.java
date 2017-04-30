@@ -7,6 +7,7 @@ import io.github.pascalgrimaud.qualitoast.domain.Application;
 import io.github.pascalgrimaud.qualitoast.domain.TypeTest;
 import io.github.pascalgrimaud.qualitoast.domain.Resultat;
 import io.github.pascalgrimaud.qualitoast.repository.CampagneRepository;
+import io.github.pascalgrimaud.qualitoast.service.CampagneService;
 import io.github.pascalgrimaud.qualitoast.repository.search.CampagneSearchRepository;
 import io.github.pascalgrimaud.qualitoast.web.rest.errors.ExceptionTranslator;
 
@@ -74,6 +75,9 @@ public class CampagneResourceIntTest {
     private CampagneRepository campagneRepository;
 
     @Autowired
+    private CampagneService campagneService;
+
+    @Autowired
     private CampagneSearchRepository campagneSearchRepository;
 
     @Autowired
@@ -95,7 +99,7 @@ public class CampagneResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CampagneResource campagneResource = new CampagneResource(campagneRepository, campagneSearchRepository);
+        CampagneResource campagneResource = new CampagneResource(campagneService);
         this.restCampagneMockMvc = MockMvcBuilders.standaloneSetup(campagneResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -284,8 +288,8 @@ public class CampagneResourceIntTest {
     @Transactional
     public void updateCampagne() throws Exception {
         // Initialize the database
-        campagneRepository.saveAndFlush(campagne);
-        campagneSearchRepository.save(campagne);
+        campagneService.save(campagne);
+
         int databaseSizeBeforeUpdate = campagneRepository.findAll().size();
 
         // Update the campagne
@@ -347,8 +351,8 @@ public class CampagneResourceIntTest {
     @Transactional
     public void deleteCampagne() throws Exception {
         // Initialize the database
-        campagneRepository.saveAndFlush(campagne);
-        campagneSearchRepository.save(campagne);
+        campagneService.save(campagne);
+
         int databaseSizeBeforeDelete = campagneRepository.findAll().size();
 
         // Get the campagne
@@ -369,8 +373,7 @@ public class CampagneResourceIntTest {
     @Transactional
     public void searchCampagne() throws Exception {
         // Initialize the database
-        campagneRepository.saveAndFlush(campagne);
-        campagneSearchRepository.save(campagne);
+        campagneService.save(campagne);
 
         // Search the campagne
         restCampagneMockMvc.perform(get("/api/_search/campagnes?query=id:" + campagne.getId()))

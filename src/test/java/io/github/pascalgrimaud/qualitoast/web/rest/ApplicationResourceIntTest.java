@@ -4,6 +4,7 @@ import io.github.pascalgrimaud.qualitoast.QualiToastApp;
 
 import io.github.pascalgrimaud.qualitoast.domain.Application;
 import io.github.pascalgrimaud.qualitoast.repository.ApplicationRepository;
+import io.github.pascalgrimaud.qualitoast.service.ApplicationService;
 import io.github.pascalgrimaud.qualitoast.repository.search.ApplicationSearchRepository;
 import io.github.pascalgrimaud.qualitoast.web.rest.errors.ExceptionTranslator;
 
@@ -51,6 +52,9 @@ public class ApplicationResourceIntTest {
     private ApplicationRepository applicationRepository;
 
     @Autowired
+    private ApplicationService applicationService;
+
+    @Autowired
     private ApplicationSearchRepository applicationSearchRepository;
 
     @Autowired
@@ -72,7 +76,7 @@ public class ApplicationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ApplicationResource applicationResource = new ApplicationResource(applicationRepository, applicationSearchRepository);
+        ApplicationResource applicationResource = new ApplicationResource(applicationService);
         this.restApplicationMockMvc = MockMvcBuilders.standaloneSetup(applicationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -222,8 +226,8 @@ public class ApplicationResourceIntTest {
     @Transactional
     public void updateApplication() throws Exception {
         // Initialize the database
-        applicationRepository.saveAndFlush(application);
-        applicationSearchRepository.save(application);
+        applicationService.save(application);
+
         int databaseSizeBeforeUpdate = applicationRepository.findAll().size();
 
         // Update the application
@@ -273,8 +277,8 @@ public class ApplicationResourceIntTest {
     @Transactional
     public void deleteApplication() throws Exception {
         // Initialize the database
-        applicationRepository.saveAndFlush(application);
-        applicationSearchRepository.save(application);
+        applicationService.save(application);
+
         int databaseSizeBeforeDelete = applicationRepository.findAll().size();
 
         // Get the application
@@ -295,8 +299,7 @@ public class ApplicationResourceIntTest {
     @Transactional
     public void searchApplication() throws Exception {
         // Initialize the database
-        applicationRepository.saveAndFlush(application);
-        applicationSearchRepository.save(application);
+        applicationService.save(application);
 
         // Search the application
         restApplicationMockMvc.perform(get("/api/_search/applications?query=id:" + application.getId()))

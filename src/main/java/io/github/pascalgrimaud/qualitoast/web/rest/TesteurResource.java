@@ -2,9 +2,7 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.Testeur;
-
-import io.github.pascalgrimaud.qualitoast.repository.TesteurRepository;
-import io.github.pascalgrimaud.qualitoast.repository.search.TesteurSearchRepository;
+import io.github.pascalgrimaud.qualitoast.service.TesteurService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -39,13 +37,10 @@ public class TesteurResource {
 
     private static final String ENTITY_NAME = "testeur";
         
-    private final TesteurRepository testeurRepository;
+    private final TesteurService testeurService;
 
-    private final TesteurSearchRepository testeurSearchRepository;
-
-    public TesteurResource(TesteurRepository testeurRepository, TesteurSearchRepository testeurSearchRepository) {
-        this.testeurRepository = testeurRepository;
-        this.testeurSearchRepository = testeurSearchRepository;
+    public TesteurResource(TesteurService testeurService) {
+        this.testeurService = testeurService;
     }
 
     /**
@@ -62,8 +57,7 @@ public class TesteurResource {
         if (testeur.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new testeur cannot already have an ID")).body(null);
         }
-        Testeur result = testeurRepository.save(testeur);
-        testeurSearchRepository.save(result);
+        Testeur result = testeurService.save(testeur);
         return ResponseEntity.created(new URI("/api/testeurs/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,8 +79,7 @@ public class TesteurResource {
         if (testeur.getId() == null) {
             return createTesteur(testeur);
         }
-        Testeur result = testeurRepository.save(testeur);
-        testeurSearchRepository.save(result);
+        Testeur result = testeurService.save(testeur);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, testeur.getId().toString()))
             .body(result);
@@ -102,7 +95,7 @@ public class TesteurResource {
     @Timed
     public ResponseEntity<List<Testeur>> getAllTesteurs(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Testeurs");
-        Page<Testeur> page = testeurRepository.findAll(pageable);
+        Page<Testeur> page = testeurService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/testeurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,7 +110,7 @@ public class TesteurResource {
     @Timed
     public ResponseEntity<Testeur> getTesteur(@PathVariable Long id) {
         log.debug("REST request to get Testeur : {}", id);
-        Testeur testeur = testeurRepository.findOne(id);
+        Testeur testeur = testeurService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(testeur));
     }
 
@@ -131,8 +124,7 @@ public class TesteurResource {
     @Timed
     public ResponseEntity<Void> deleteTesteur(@PathVariable Long id) {
         log.debug("REST request to delete Testeur : {}", id);
-        testeurRepository.delete(id);
-        testeurSearchRepository.delete(id);
+        testeurService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,7 +140,7 @@ public class TesteurResource {
     @Timed
     public ResponseEntity<List<Testeur>> searchTesteurs(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Testeurs for query {}", query);
-        Page<Testeur> page = testeurSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Testeur> page = testeurService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/testeurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

@@ -5,6 +5,7 @@ import io.github.pascalgrimaud.qualitoast.QualiToastApp;
 import io.github.pascalgrimaud.qualitoast.domain.Testeur;
 import io.github.pascalgrimaud.qualitoast.domain.TypeTest;
 import io.github.pascalgrimaud.qualitoast.repository.TesteurRepository;
+import io.github.pascalgrimaud.qualitoast.service.TesteurService;
 import io.github.pascalgrimaud.qualitoast.repository.search.TesteurSearchRepository;
 import io.github.pascalgrimaud.qualitoast.web.rest.errors.ExceptionTranslator;
 
@@ -52,6 +53,9 @@ public class TesteurResourceIntTest {
     private TesteurRepository testeurRepository;
 
     @Autowired
+    private TesteurService testeurService;
+
+    @Autowired
     private TesteurSearchRepository testeurSearchRepository;
 
     @Autowired
@@ -73,7 +77,7 @@ public class TesteurResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        TesteurResource testeurResource = new TesteurResource(testeurRepository, testeurSearchRepository);
+        TesteurResource testeurResource = new TesteurResource(testeurService);
         this.restTesteurMockMvc = MockMvcBuilders.standaloneSetup(testeurResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -246,8 +250,8 @@ public class TesteurResourceIntTest {
     @Transactional
     public void updateTesteur() throws Exception {
         // Initialize the database
-        testeurRepository.saveAndFlush(testeur);
-        testeurSearchRepository.save(testeur);
+        testeurService.save(testeur);
+
         int databaseSizeBeforeUpdate = testeurRepository.findAll().size();
 
         // Update the testeur
@@ -297,8 +301,8 @@ public class TesteurResourceIntTest {
     @Transactional
     public void deleteTesteur() throws Exception {
         // Initialize the database
-        testeurRepository.saveAndFlush(testeur);
-        testeurSearchRepository.save(testeur);
+        testeurService.save(testeur);
+
         int databaseSizeBeforeDelete = testeurRepository.findAll().size();
 
         // Get the testeur
@@ -319,8 +323,7 @@ public class TesteurResourceIntTest {
     @Transactional
     public void searchTesteur() throws Exception {
         // Initialize the database
-        testeurRepository.saveAndFlush(testeur);
-        testeurSearchRepository.save(testeur);
+        testeurService.save(testeur);
 
         // Search the testeur
         restTesteurMockMvc.perform(get("/api/_search/testeurs?query=id:" + testeur.getId()))

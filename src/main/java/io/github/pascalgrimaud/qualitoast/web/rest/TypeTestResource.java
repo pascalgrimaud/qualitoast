@@ -2,9 +2,7 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.TypeTest;
-
-import io.github.pascalgrimaud.qualitoast.repository.TypeTestRepository;
-import io.github.pascalgrimaud.qualitoast.repository.search.TypeTestSearchRepository;
+import io.github.pascalgrimaud.qualitoast.service.TypeTestService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -39,13 +37,10 @@ public class TypeTestResource {
 
     private static final String ENTITY_NAME = "typeTest";
         
-    private final TypeTestRepository typeTestRepository;
+    private final TypeTestService typeTestService;
 
-    private final TypeTestSearchRepository typeTestSearchRepository;
-
-    public TypeTestResource(TypeTestRepository typeTestRepository, TypeTestSearchRepository typeTestSearchRepository) {
-        this.typeTestRepository = typeTestRepository;
-        this.typeTestSearchRepository = typeTestSearchRepository;
+    public TypeTestResource(TypeTestService typeTestService) {
+        this.typeTestService = typeTestService;
     }
 
     /**
@@ -62,8 +57,7 @@ public class TypeTestResource {
         if (typeTest.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new typeTest cannot already have an ID")).body(null);
         }
-        TypeTest result = typeTestRepository.save(typeTest);
-        typeTestSearchRepository.save(result);
+        TypeTest result = typeTestService.save(typeTest);
         return ResponseEntity.created(new URI("/api/type-tests/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,8 +79,7 @@ public class TypeTestResource {
         if (typeTest.getId() == null) {
             return createTypeTest(typeTest);
         }
-        TypeTest result = typeTestRepository.save(typeTest);
-        typeTestSearchRepository.save(result);
+        TypeTest result = typeTestService.save(typeTest);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, typeTest.getId().toString()))
             .body(result);
@@ -102,7 +95,7 @@ public class TypeTestResource {
     @Timed
     public ResponseEntity<List<TypeTest>> getAllTypeTests(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of TypeTests");
-        Page<TypeTest> page = typeTestRepository.findAll(pageable);
+        Page<TypeTest> page = typeTestService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/type-tests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,7 +110,7 @@ public class TypeTestResource {
     @Timed
     public ResponseEntity<TypeTest> getTypeTest(@PathVariable Long id) {
         log.debug("REST request to get TypeTest : {}", id);
-        TypeTest typeTest = typeTestRepository.findOne(id);
+        TypeTest typeTest = typeTestService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(typeTest));
     }
 
@@ -131,8 +124,7 @@ public class TypeTestResource {
     @Timed
     public ResponseEntity<Void> deleteTypeTest(@PathVariable Long id) {
         log.debug("REST request to delete TypeTest : {}", id);
-        typeTestRepository.delete(id);
-        typeTestSearchRepository.delete(id);
+        typeTestService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,7 +140,7 @@ public class TypeTestResource {
     @Timed
     public ResponseEntity<List<TypeTest>> searchTypeTests(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of TypeTests for query {}", query);
-        Page<TypeTest> page = typeTestSearchRepository.search(queryStringQuery(query), pageable);
+        Page<TypeTest> page = typeTestService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/type-tests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

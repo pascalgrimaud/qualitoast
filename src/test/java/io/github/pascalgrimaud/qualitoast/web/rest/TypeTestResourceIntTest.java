@@ -4,6 +4,7 @@ import io.github.pascalgrimaud.qualitoast.QualiToastApp;
 
 import io.github.pascalgrimaud.qualitoast.domain.TypeTest;
 import io.github.pascalgrimaud.qualitoast.repository.TypeTestRepository;
+import io.github.pascalgrimaud.qualitoast.service.TypeTestService;
 import io.github.pascalgrimaud.qualitoast.repository.search.TypeTestSearchRepository;
 import io.github.pascalgrimaud.qualitoast.web.rest.errors.ExceptionTranslator;
 
@@ -48,6 +49,9 @@ public class TypeTestResourceIntTest {
     private TypeTestRepository typeTestRepository;
 
     @Autowired
+    private TypeTestService typeTestService;
+
+    @Autowired
     private TypeTestSearchRepository typeTestSearchRepository;
 
     @Autowired
@@ -69,7 +73,7 @@ public class TypeTestResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        TypeTestResource typeTestResource = new TypeTestResource(typeTestRepository, typeTestSearchRepository);
+        TypeTestResource typeTestResource = new TypeTestResource(typeTestService);
         this.restTypeTestMockMvc = MockMvcBuilders.standaloneSetup(typeTestResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -215,8 +219,8 @@ public class TypeTestResourceIntTest {
     @Transactional
     public void updateTypeTest() throws Exception {
         // Initialize the database
-        typeTestRepository.saveAndFlush(typeTest);
-        typeTestSearchRepository.save(typeTest);
+        typeTestService.save(typeTest);
+
         int databaseSizeBeforeUpdate = typeTestRepository.findAll().size();
 
         // Update the typeTest
@@ -264,8 +268,8 @@ public class TypeTestResourceIntTest {
     @Transactional
     public void deleteTypeTest() throws Exception {
         // Initialize the database
-        typeTestRepository.saveAndFlush(typeTest);
-        typeTestSearchRepository.save(typeTest);
+        typeTestService.save(typeTest);
+
         int databaseSizeBeforeDelete = typeTestRepository.findAll().size();
 
         // Get the typeTest
@@ -286,8 +290,7 @@ public class TypeTestResourceIntTest {
     @Transactional
     public void searchTypeTest() throws Exception {
         // Initialize the database
-        typeTestRepository.saveAndFlush(typeTest);
-        typeTestSearchRepository.save(typeTest);
+        typeTestService.save(typeTest);
 
         // Search the typeTest
         restTypeTestMockMvc.perform(get("/api/_search/type-tests?query=id:" + typeTest.getId()))

@@ -4,6 +4,7 @@ import io.github.pascalgrimaud.qualitoast.QualiToastApp;
 
 import io.github.pascalgrimaud.qualitoast.domain.Resultat;
 import io.github.pascalgrimaud.qualitoast.repository.ResultatRepository;
+import io.github.pascalgrimaud.qualitoast.service.ResultatService;
 import io.github.pascalgrimaud.qualitoast.repository.search.ResultatSearchRepository;
 import io.github.pascalgrimaud.qualitoast.web.rest.errors.ExceptionTranslator;
 
@@ -45,6 +46,9 @@ public class ResultatResourceIntTest {
     private ResultatRepository resultatRepository;
 
     @Autowired
+    private ResultatService resultatService;
+
+    @Autowired
     private ResultatSearchRepository resultatSearchRepository;
 
     @Autowired
@@ -66,7 +70,7 @@ public class ResultatResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ResultatResource resultatResource = new ResultatResource(resultatRepository, resultatSearchRepository);
+        ResultatResource resultatResource = new ResultatResource(resultatService);
         this.restResultatMockMvc = MockMvcBuilders.standaloneSetup(resultatResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -190,8 +194,8 @@ public class ResultatResourceIntTest {
     @Transactional
     public void updateResultat() throws Exception {
         // Initialize the database
-        resultatRepository.saveAndFlush(resultat);
-        resultatSearchRepository.save(resultat);
+        resultatService.save(resultat);
+
         int databaseSizeBeforeUpdate = resultatRepository.findAll().size();
 
         // Update the resultat
@@ -237,8 +241,8 @@ public class ResultatResourceIntTest {
     @Transactional
     public void deleteResultat() throws Exception {
         // Initialize the database
-        resultatRepository.saveAndFlush(resultat);
-        resultatSearchRepository.save(resultat);
+        resultatService.save(resultat);
+
         int databaseSizeBeforeDelete = resultatRepository.findAll().size();
 
         // Get the resultat
@@ -259,8 +263,7 @@ public class ResultatResourceIntTest {
     @Transactional
     public void searchResultat() throws Exception {
         // Initialize the database
-        resultatRepository.saveAndFlush(resultat);
-        resultatSearchRepository.save(resultat);
+        resultatService.save(resultat);
 
         // Search the resultat
         restResultatMockMvc.perform(get("/api/_search/resultats?query=id:" + resultat.getId()))

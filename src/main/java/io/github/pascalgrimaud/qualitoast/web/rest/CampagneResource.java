@@ -2,9 +2,7 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.Campagne;
-
-import io.github.pascalgrimaud.qualitoast.repository.CampagneRepository;
-import io.github.pascalgrimaud.qualitoast.repository.search.CampagneSearchRepository;
+import io.github.pascalgrimaud.qualitoast.service.CampagneService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -39,13 +37,10 @@ public class CampagneResource {
 
     private static final String ENTITY_NAME = "campagne";
         
-    private final CampagneRepository campagneRepository;
+    private final CampagneService campagneService;
 
-    private final CampagneSearchRepository campagneSearchRepository;
-
-    public CampagneResource(CampagneRepository campagneRepository, CampagneSearchRepository campagneSearchRepository) {
-        this.campagneRepository = campagneRepository;
-        this.campagneSearchRepository = campagneSearchRepository;
+    public CampagneResource(CampagneService campagneService) {
+        this.campagneService = campagneService;
     }
 
     /**
@@ -62,8 +57,7 @@ public class CampagneResource {
         if (campagne.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new campagne cannot already have an ID")).body(null);
         }
-        Campagne result = campagneRepository.save(campagne);
-        campagneSearchRepository.save(result);
+        Campagne result = campagneService.save(campagne);
         return ResponseEntity.created(new URI("/api/campagnes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,8 +79,7 @@ public class CampagneResource {
         if (campagne.getId() == null) {
             return createCampagne(campagne);
         }
-        Campagne result = campagneRepository.save(campagne);
-        campagneSearchRepository.save(result);
+        Campagne result = campagneService.save(campagne);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, campagne.getId().toString()))
             .body(result);
@@ -102,7 +95,7 @@ public class CampagneResource {
     @Timed
     public ResponseEntity<List<Campagne>> getAllCampagnes(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Campagnes");
-        Page<Campagne> page = campagneRepository.findAll(pageable);
+        Page<Campagne> page = campagneService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/campagnes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,7 +110,7 @@ public class CampagneResource {
     @Timed
     public ResponseEntity<Campagne> getCampagne(@PathVariable Long id) {
         log.debug("REST request to get Campagne : {}", id);
-        Campagne campagne = campagneRepository.findOneWithEagerRelationships(id);
+        Campagne campagne = campagneService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(campagne));
     }
 
@@ -131,8 +124,7 @@ public class CampagneResource {
     @Timed
     public ResponseEntity<Void> deleteCampagne(@PathVariable Long id) {
         log.debug("REST request to delete Campagne : {}", id);
-        campagneRepository.delete(id);
-        campagneSearchRepository.delete(id);
+        campagneService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,7 +140,7 @@ public class CampagneResource {
     @Timed
     public ResponseEntity<List<Campagne>> searchCampagnes(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Campagnes for query {}", query);
-        Page<Campagne> page = campagneSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Campagne> page = campagneService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/campagnes");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

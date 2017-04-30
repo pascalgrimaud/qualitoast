@@ -2,9 +2,7 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.Application;
-
-import io.github.pascalgrimaud.qualitoast.repository.ApplicationRepository;
-import io.github.pascalgrimaud.qualitoast.repository.search.ApplicationSearchRepository;
+import io.github.pascalgrimaud.qualitoast.service.ApplicationService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -39,13 +37,10 @@ public class ApplicationResource {
 
     private static final String ENTITY_NAME = "application";
         
-    private final ApplicationRepository applicationRepository;
+    private final ApplicationService applicationService;
 
-    private final ApplicationSearchRepository applicationSearchRepository;
-
-    public ApplicationResource(ApplicationRepository applicationRepository, ApplicationSearchRepository applicationSearchRepository) {
-        this.applicationRepository = applicationRepository;
-        this.applicationSearchRepository = applicationSearchRepository;
+    public ApplicationResource(ApplicationService applicationService) {
+        this.applicationService = applicationService;
     }
 
     /**
@@ -62,8 +57,7 @@ public class ApplicationResource {
         if (application.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new application cannot already have an ID")).body(null);
         }
-        Application result = applicationRepository.save(application);
-        applicationSearchRepository.save(result);
+        Application result = applicationService.save(application);
         return ResponseEntity.created(new URI("/api/applications/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,8 +79,7 @@ public class ApplicationResource {
         if (application.getId() == null) {
             return createApplication(application);
         }
-        Application result = applicationRepository.save(application);
-        applicationSearchRepository.save(result);
+        Application result = applicationService.save(application);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, application.getId().toString()))
             .body(result);
@@ -102,7 +95,7 @@ public class ApplicationResource {
     @Timed
     public ResponseEntity<List<Application>> getAllApplications(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Applications");
-        Page<Application> page = applicationRepository.findAll(pageable);
+        Page<Application> page = applicationService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/applications");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -117,7 +110,7 @@ public class ApplicationResource {
     @Timed
     public ResponseEntity<Application> getApplication(@PathVariable Long id) {
         log.debug("REST request to get Application : {}", id);
-        Application application = applicationRepository.findOne(id);
+        Application application = applicationService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(application));
     }
 
@@ -131,8 +124,7 @@ public class ApplicationResource {
     @Timed
     public ResponseEntity<Void> deleteApplication(@PathVariable Long id) {
         log.debug("REST request to delete Application : {}", id);
-        applicationRepository.delete(id);
-        applicationSearchRepository.delete(id);
+        applicationService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,7 +140,7 @@ public class ApplicationResource {
     @Timed
     public ResponseEntity<List<Application>> searchApplications(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Applications for query {}", query);
-        Page<Application> page = applicationSearchRepository.search(queryStringQuery(query), pageable);
+        Page<Application> page = applicationService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/applications");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
