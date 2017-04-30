@@ -32,10 +32,10 @@ entity Testeur (testeur) {
 }
 
 relationship ManyToOne {
-  Campagne{application required} to Application,
-  Campagne{typetest required} to TypeTest,
-  Campagne{resultat required} to Resultat,
-  Testeur{typetest(code) required} to TypeTest
+  Campagne{application(nom) required} to Application,
+  Campagne{typetest(nom) required} to TypeTest,
+  Campagne{resultat(code) required} to Resultat,
+  Testeur{typetest(nom) required} to TypeTest
 }
 
 relationship ManyToMany {
