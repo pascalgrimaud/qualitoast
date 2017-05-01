@@ -24,7 +24,6 @@ spring:
                 path:
                   logs: target/elasticsearch/log
                   data: target/elasticsearch/data
-spring:
     mail:
         host: smtp.gmail.com
         port: 587
