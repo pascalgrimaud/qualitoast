@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { QualiToastSharedModule } from '../shared';
 import { QualiToastElasticsearchReindexModule } from './elasticsearch-reindex/elasticsearch-reindex.module';
+/* jhipster-needle-add-admin-module-import - JHipster will add admin modules imports here */
 
 import {
     adminState,
@@ -34,7 +35,8 @@ import {
     imports: [
         QualiToastSharedModule,
         RouterModule.forRoot(adminState, { useHash: true }),
-        QualiToastElasticsearchReindexModule
+        QualiToastElasticsearchReindexModule,
+        /* jhipster-needle-add-admin-module - JHipster will add admin modules here */
     ],
     declarations: [
         AuditsComponent,
