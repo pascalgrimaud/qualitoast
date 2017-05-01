@@ -9,16 +9,6 @@
 # Full reference is available at:
 # http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 # ===================================================================
-
-eureka:
-    instance:
-        hostname: qualitoast.herokuapp.com
-        non-secure-port: 80
-        prefer-ip-address: false
-    client:
-        service-url:
-            defaultZone: ${JHIPSTER_REGISTRY_URL}/eureka/
-
 spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
@@ -34,3 +24,20 @@ spring:
                 path:
                   logs: target/elasticsearch/log
                   data: target/elasticsearch/data
+spring:
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: qualitoast@gmail.com
+        password: ${SPRING_MAIL_PASSWORD}
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
+
+jhipster:
+    mail: # specific JHipster mail property, for standard properties see MailProperties
+        from: QualiToast@localhost
+        base-url: https://qualitoast.herokuapp.com
