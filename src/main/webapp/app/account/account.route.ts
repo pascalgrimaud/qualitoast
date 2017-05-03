@@ -5,7 +5,6 @@ import {
     passwordRoute,
     passwordResetFinishRoute,
     passwordResetInitRoute,
-    registerRoute,
     sessionsRoute,
     settingsRoute
 } from './';
@@ -15,7 +14,6 @@ const ACCOUNT_ROUTES = [
    passwordRoute,
    passwordResetFinishRoute,
    passwordResetInitRoute,
-   registerRoute,
    sessionsRoute,
    settingsRoute
 ];

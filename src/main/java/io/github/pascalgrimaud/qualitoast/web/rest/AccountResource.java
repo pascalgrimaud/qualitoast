@@ -6,6 +6,7 @@ import io.github.pascalgrimaud.qualitoast.domain.PersistentToken;
 import io.github.pascalgrimaud.qualitoast.domain.User;
 import io.github.pascalgrimaud.qualitoast.repository.PersistentTokenRepository;
 import io.github.pascalgrimaud.qualitoast.repository.UserRepository;
+import io.github.pascalgrimaud.qualitoast.security.AuthoritiesConstants;
 import io.github.pascalgrimaud.qualitoast.security.SecurityUtils;
 import io.github.pascalgrimaud.qualitoast.service.MailService;
 import io.github.pascalgrimaud.qualitoast.service.UserService;
@@ -21,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,6 +66,7 @@ public class AccountResource {
     @PostMapping(path = "/register",
                     produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
 
         HttpHeaders textPlainHeaders = new HttpHeaders();
