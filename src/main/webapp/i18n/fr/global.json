@@ -20,8 +20,7 @@
                 "password": "Mot de passe",
                 "sessions": "Sessions",
                 "login": "S'authentifier",
-                "logout": "Déconnexion",
-                "register": "Créer un compte"
+                "logout": "Déconnexion"
             },
             "admin": {
                 "main": "Administration",
@@ -54,11 +53,7 @@
                 "authenticated": {
                     "prefix": "Si vous voulez vous ",
                     "link": "connecter",
-                    "suffix": ", vous pouvez utiliser les comptes par défaut : <br/> - Administrateur (nom d'utilisateur=\"admin\" et mot de passe =\"admin\") <br/> - Utilisateur (nom d'utilisateur=\"user\" et mot de passe =\"user\")."
-                },
-                "register": {
-                    "noaccount": "Vous n'avez pas encore de compte ?",
-                    "link": "Créer un compte"
+                    "suffix": ", vous devez disposer d'un compte."
                 }
             },
             "error": {
