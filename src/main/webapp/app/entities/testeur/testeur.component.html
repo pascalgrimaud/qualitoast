@@ -10,7 +10,7 @@
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
-        <div class="col-sm-12 no-padding-right">
+        <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
                     <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'qualiToastApp.testeur.home.search' | translate }}">
@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="testeurs">
         <table class="table table-striped">
-            <thead>
+            <thead class="table thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="identifiant"><span jhiTranslate="qualiToastApp.testeur.identifiant">Identifiant</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.testeur.nom">Nom</span> <span class="fa fa-sort"></span></th>
