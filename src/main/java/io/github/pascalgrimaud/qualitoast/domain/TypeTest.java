@@ -76,23 +76,23 @@ public class TypeTest implements Serializable {
             return false;
         }
         TypeTest typeTest = (TypeTest) o;
-        if (typeTest.id == null || id == null) {
+        if (typeTest.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, typeTest.id);
+        return Objects.equals(getId(), typeTest.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "TypeTest{" +
-            "id=" + id +
-            ", code='" + code + "'" +
-            ", nom='" + nom + "'" +
-            '}';
+            "id=" + getId() +
+            ", code='" + getCode() + "'" +
+            ", nom='" + getNom() + "'" +
+            "}";
     }
 }

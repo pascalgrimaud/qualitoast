@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Testeur } from './testeur.model';
 import { TesteurService } from './testeur.service';
@@ -13,16 +13,14 @@ import { TesteurService } from './testeur.service';
 export class TesteurDetailComponent implements OnInit, OnDestroy {
 
     testeur: Testeur;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
         private testeurService: TesteurService,
         private route: ActivatedRoute
     ) {
-        this.jhiLanguageService.setLocations(['testeur']);
     }
 
     ngOnInit() {

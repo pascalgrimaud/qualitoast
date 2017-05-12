@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Application } from './application.model';
 import { ApplicationService } from './application.service';
@@ -13,16 +13,14 @@ import { ApplicationService } from './application.service';
 export class ApplicationDetailComponent implements OnInit, OnDestroy {
 
     application: Application;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
         private applicationService: ApplicationService,
         private route: ActivatedRoute
     ) {
-        this.jhiLanguageService.setLocations(['application']);
     }
 
     ngOnInit() {

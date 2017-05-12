@@ -143,24 +143,24 @@ public class Testeur implements Serializable {
             return false;
         }
         Testeur testeur = (Testeur) o;
-        if (testeur.id == null || id == null) {
+        if (testeur.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, testeur.id);
+        return Objects.equals(getId(), testeur.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Testeur{" +
-            "id=" + id +
-            ", identifiant='" + identifiant + "'" +
-            ", nom='" + nom + "'" +
-            ", prenom='" + prenom + "'" +
-            '}';
+            "id=" + getId() +
+            ", identifiant='" + getIdentifiant() + "'" +
+            ", nom='" + getNom() + "'" +
+            ", prenom='" + getPrenom() + "'" +
+            "}";
     }
 }

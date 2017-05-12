@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager } from 'ng-jhipster';
 
 import { TypeTest } from './type-test.model';
 import { TypeTestPopupService } from './type-test-popup.service';
@@ -17,12 +17,10 @@ export class TypeTestDeleteDialogComponent {
     typeTest: TypeTest;
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private typeTestService: TypeTestService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['typeTest']);
     }
 
     clear() {

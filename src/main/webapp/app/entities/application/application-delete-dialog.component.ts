@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager } from 'ng-jhipster';
 
 import { Application } from './application.model';
 import { ApplicationPopupService } from './application-popup.service';
@@ -17,12 +17,10 @@ export class ApplicationDeleteDialogComponent {
     application: Application;
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private applicationService: ApplicationService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['application']);
     }
 
     clear() {

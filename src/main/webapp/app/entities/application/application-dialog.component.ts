@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService } from 'ng-jhipster';
 
 import { Application } from './application.model';
 import { ApplicationPopupService } from './application-popup.service';
@@ -22,12 +22,10 @@ export class ApplicationDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private applicationService: ApplicationService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['application']);
     }
 
     ngOnInit() {

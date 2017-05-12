@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService } from 'ng-jhipster';
 
 import { Resultat } from './resultat.model';
 import { ResultatPopupService } from './resultat-popup.service';
@@ -22,12 +22,10 @@ export class ResultatDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private resultatService: ResultatService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['resultat']);
     }
 
     ngOnInit() {

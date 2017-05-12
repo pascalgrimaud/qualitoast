@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Resultat } from './resultat.model';
 import { ResultatService } from './resultat.service';
@@ -13,16 +13,14 @@ import { ResultatService } from './resultat.service';
 export class ResultatDetailComponent implements OnInit, OnDestroy {
 
     resultat: Resultat;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
         private resultatService: ResultatService,
         private route: ActivatedRoute
     ) {
-        this.jhiLanguageService.setLocations(['resultat']);
     }
 
     ngOnInit() {
