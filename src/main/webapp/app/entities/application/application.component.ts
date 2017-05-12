@@ -32,7 +32,6 @@ currentAccount: any;
     reverse: any;
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private applicationService: ApplicationService,
         private parseLinks: ParseLinks,
         private alertService: AlertService,
@@ -51,7 +50,6 @@ currentAccount: any;
             this.predicate = data['pagingParams'].predicate;
         });
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
-        this.jhiLanguageService.setLocations(['application']);
     }
 
     loadAll() {

@@ -278,30 +278,30 @@ public class Campagne implements Serializable {
             return false;
         }
         Campagne campagne = (Campagne) o;
-        if (campagne.id == null || id == null) {
+        if (campagne.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, campagne.id);
+        return Objects.equals(getId(), campagne.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Campagne{" +
-            "id=" + id +
-            ", version='" + version + "'" +
-            ", datedebut='" + datedebut + "'" +
-            ", datefin='" + datefin + "'" +
-            ", commentaire='" + commentaire + "'" +
-            ", bloquant='" + bloquant + "'" +
-            ", majeur='" + majeur + "'" +
-            ", mineur='" + mineur + "'" +
-            ", evolution='" + evolution + "'" +
-            ", termine='" + termine + "'" +
-            '}';
+            "id=" + getId() +
+            ", version='" + getVersion() + "'" +
+            ", datedebut='" + getDatedebut() + "'" +
+            ", datefin='" + getDatefin() + "'" +
+            ", commentaire='" + getCommentaire() + "'" +
+            ", bloquant='" + getBloquant() + "'" +
+            ", majeur='" + getMajeur() + "'" +
+            ", mineur='" + getMineur() + "'" +
+            ", evolution='" + getEvolution() + "'" +
+            ", termine='" + isTermine() + "'" +
+            "}";
     }
 }

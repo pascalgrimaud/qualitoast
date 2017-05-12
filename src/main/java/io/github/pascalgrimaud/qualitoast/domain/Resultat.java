@@ -59,22 +59,22 @@ public class Resultat implements Serializable {
             return false;
         }
         Resultat resultat = (Resultat) o;
-        if (resultat.id == null || id == null) {
+        if (resultat.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, resultat.id);
+        return Objects.equals(getId(), resultat.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Resultat{" +
-            "id=" + id +
-            ", code='" + code + "'" +
-            '}';
+            "id=" + getId() +
+            ", code='" + getCode() + "'" +
+            "}";
     }
 }

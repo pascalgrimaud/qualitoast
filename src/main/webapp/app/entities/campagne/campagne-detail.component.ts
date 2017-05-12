@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+import { EventManager  } from 'ng-jhipster';
 
 import { Campagne } from './campagne.model';
 import { CampagneService } from './campagne.service';
@@ -13,16 +13,14 @@ import { CampagneService } from './campagne.service';
 export class CampagneDetailComponent implements OnInit, OnDestroy {
 
     campagne: Campagne;
-    private subscription: any;
+    private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: EventManager,
-        private jhiLanguageService: JhiLanguageService,
         private campagneService: CampagneService,
         private route: ActivatedRoute
     ) {
-        this.jhiLanguageService.setLocations(['campagne']);
     }
 
     ngOnInit() {

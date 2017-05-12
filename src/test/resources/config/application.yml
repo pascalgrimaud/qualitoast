@@ -83,6 +83,9 @@ jhipster:
         core-pool-size: 1
         max-pool-size: 50
         queue-capacity: 10000
+    mail:
+        from: test@localhost
+        base-url: http://127.0.0.1:8080
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)

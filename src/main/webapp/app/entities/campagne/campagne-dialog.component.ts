@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService } from 'ng-jhipster';
 
 import { Campagne } from './campagne.model';
 import { CampagnePopupService } from './campagne-popup.service';
@@ -36,7 +36,6 @@ export class CampagneDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiLanguageService: JhiLanguageService,
         private alertService: AlertService,
         private campagneService: CampagneService,
         private applicationService: ApplicationService,
@@ -45,7 +44,6 @@ export class CampagneDialogComponent implements OnInit {
         private testeurService: TesteurService,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['campagne']);
     }
 
     ngOnInit() {

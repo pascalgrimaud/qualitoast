@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
-import { AuthService } from '../';
 import { Principal } from '../';
 import { LoginModalService } from '../login/login-modal.service';
 import { StateStorageService } from './state-storage.service';

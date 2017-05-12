@@ -92,24 +92,24 @@ public class Application implements Serializable {
             return false;
         }
         Application application = (Application) o;
-        if (application.id == null || id == null) {
+        if (application.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, application.id);
+        return Objects.equals(getId(), application.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Application{" +
-            "id=" + id +
-            ", code='" + code + "'" +
-            ", nom='" + nom + "'" +
-            ", description='" + description + "'" +
-            '}';
+            "id=" + getId() +
+            ", code='" + getCode() + "'" +
+            ", nom='" + getNom() + "'" +
+            ", description='" + getDescription() + "'" +
+            "}";
     }
 }

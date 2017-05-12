@@ -11,6 +11,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         NgbModule.forRoot(),
         NgJhipsterModule.forRoot({
             i18nEnabled: true,
+            defaultI18nLocation: 'all',
             defaultI18nLang: 'fr'
         }),
         InfiniteScrollModule

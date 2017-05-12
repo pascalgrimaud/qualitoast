@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, JhiLanguageService } from 'ng-jhipster';
+import { EventManager } from 'ng-jhipster';
 
 import { Resultat } from './resultat.model';
 import { ResultatPopupService } from './resultat-popup.service';
@@ -17,12 +17,10 @@ export class ResultatDeleteDialogComponent {
     resultat: Resultat;
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private resultatService: ResultatService,
         public activeModal: NgbActiveModal,
         private eventManager: EventManager
     ) {
-        this.jhiLanguageService.setLocations(['resultat']);
     }
 
     clear() {
