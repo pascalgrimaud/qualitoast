@@ -1,6 +1,7 @@
 # QualiToast
 
 [![Build Status][travis-image-master]][travis-url]
+[![codecov][codecov-image]][codecov-url]
 
 This application was generated using JHipster 4.3.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.3.0](https://jhipster.github.io/documentation-archive/v4.3.0).
 
@@ -160,3 +161,6 @@ To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-c
 [travis-image-master]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=master
 [travis-image-dev]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=dev
 [travis-url]: https://travis-ci.org/pascalgrimaud/qualitoast/branches
+
+[codecov-image]: https://codecov.io/gh/pascalgrimaud/qualitoast/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/pascalgrimaud/qualitoast
