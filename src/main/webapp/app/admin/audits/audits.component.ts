@@ -30,7 +30,7 @@ export class AuditsComponent implements OnInit {
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 1;
-        this.reverse = false;
+        this.reverse = true;
         this.orderProp = 'timestamp';
     }
 

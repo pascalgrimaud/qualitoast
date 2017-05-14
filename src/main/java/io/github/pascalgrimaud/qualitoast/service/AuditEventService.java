@@ -43,6 +43,11 @@ public class AuditEventService {
             .map(auditEventConverter::convertToAuditEvent);
     }
 
+    public Page<AuditEvent> findByDatesDesc(Instant fromDate, Instant toDate, Pageable pageable) {
+        return persistenceAuditEventRepository.findAllByAuditEventDateBetweenOrderByAuditEventDateDesc(fromDate, toDate, pageable)
+            .map(auditEventConverter::convertToAuditEvent);
+    }
+
     public Optional<AuditEvent> find(Long id) {
         return Optional.ofNullable(persistenceAuditEventRepository.findOne(id)).map
             (auditEventConverter::convertToAuditEvent);

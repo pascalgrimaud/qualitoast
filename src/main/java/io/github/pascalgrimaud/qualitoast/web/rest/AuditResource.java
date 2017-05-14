@@ -58,7 +58,7 @@ public class AuditResource {
         @RequestParam(value = "toDate") LocalDate toDate,
         @ApiParam Pageable pageable) {
 
-        Page<AuditEvent> page = auditEventService.findByDates(
+        Page<AuditEvent> page = auditEventService.findByDatesDesc(
             fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant(),
             toDate.atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant(),
             pageable);
