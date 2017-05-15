@@ -80,7 +80,7 @@ describe('Component Tests', () => {
                expect(comp.fromDate).toBe(getDate(false));
                expect(comp.itemsPerPage).toBe(ITEMS_PER_PAGE);
                expect(comp.page).toBe(1);
-               expect(comp.reverse).toBeFalsy();
+               expect(comp.reverse).toBeTruthy();
                expect(comp.orderProp).toBe('timestamp');
             });
         });

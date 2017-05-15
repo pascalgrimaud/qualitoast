@@ -123,6 +123,22 @@ public class AuditResourceIntTest {
     }
 
     @Test
+    public void getAuditsByDateDesc() throws Exception {
+        // Initialize the database
+        auditEventRepository.save(auditEvent);
+
+        // Generate dates for selecting audits by date, making sure the period will contain the audit
+        String fromDate  = SAMPLE_TIMESTAMP.minusSeconds(SECONDS_PER_DAY).toString().substring(0,10);
+        String toDate = SAMPLE_TIMESTAMP.plusSeconds(SECONDS_PER_DAY).toString().substring(0,10);
+
+        // Get the audit
+        restAuditMockMvc.perform(get("/management/audits?fromDate="+fromDate+"&toDate="+toDate+"&desc=true"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].principal").value(hasItem(SAMPLE_PRINCIPAL)));
+    }
+
+    @Test
     public void getNonExistingAuditsByDate() throws Exception {
         // Initialize the database
         auditEventRepository.save(auditEvent);
