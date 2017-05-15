@@ -40,7 +40,7 @@ public class ElasticsearchIndexResource {
         log.info("REST request to reindex Elasticsearch by user : {}", SecurityUtils.getCurrentUserLogin());
         elasticsearchIndexService.reindexAll();
         return ResponseEntity.accepted()
-            .headers(HeaderUtil.createAlert("elasticsearch.reindex.accepted", null))
+            .headers(HeaderUtil.createAlert("elasticsearch.reindex.accepted", ""))
             .build();
     }
 }
