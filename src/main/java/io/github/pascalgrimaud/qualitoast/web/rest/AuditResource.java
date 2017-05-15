@@ -1,9 +1,8 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
+import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.service.AuditEventService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
-
-import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
@@ -51,11 +50,34 @@ public class AuditResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of AuditEvents in body
      */
-
     @GetMapping(params = {"fromDate", "toDate"})
     public ResponseEntity<List<AuditEvent>> getByDates(
         @RequestParam(value = "fromDate") LocalDate fromDate,
         @RequestParam(value = "toDate") LocalDate toDate,
+        @ApiParam Pageable pageable) {
+
+        Page<AuditEvent> page = auditEventService.findByDates(
+            fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant(),
+            toDate.atStartOfDay(ZoneId.systemDefault()).plusDays(1).toInstant(),
+            pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /audits : get a page of AuditEvents between the fromDate and toDate.
+     *
+     * @param fromDate the start of the time period of AuditEvents to get
+     * @param toDate the end of the time period of AuditEvents to get
+     * @param desc force the sort desc by auditEventDate
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of AuditEvents in body
+     */
+    @GetMapping(params = {"fromDate", "toDate", "desc"})
+    public ResponseEntity<List<AuditEvent>> getByDatesDesc(
+        @RequestParam(value = "fromDate") LocalDate fromDate,
+        @RequestParam(value = "toDate") LocalDate toDate,
+        @RequestParam(value = "desc") String desc,
         @ApiParam Pageable pageable) {
 
         Page<AuditEvent> page = auditEventService.findByDatesDesc(
