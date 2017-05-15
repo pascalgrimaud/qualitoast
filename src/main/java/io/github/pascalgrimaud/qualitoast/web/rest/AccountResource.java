@@ -1,31 +1,35 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+
 import io.github.pascalgrimaud.qualitoast.domain.PersistentToken;
 import io.github.pascalgrimaud.qualitoast.domain.User;
 import io.github.pascalgrimaud.qualitoast.repository.PersistentTokenRepository;
 import io.github.pascalgrimaud.qualitoast.repository.UserRepository;
+import io.github.pascalgrimaud.qualitoast.security.AuthoritiesConstants;
 import io.github.pascalgrimaud.qualitoast.security.SecurityUtils;
 import io.github.pascalgrimaud.qualitoast.service.MailService;
 import io.github.pascalgrimaud.qualitoast.service.UserService;
 import io.github.pascalgrimaud.qualitoast.service.dto.UserDTO;
-import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.vm.KeyAndPasswordVM;
 import io.github.pascalgrimaud.qualitoast.web.rest.vm.ManagedUserVM;
+import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * REST controller for managing the current user's account.
@@ -51,6 +55,37 @@ public class AccountResource {
         this.userService = userService;
         this.mailService = mailService;
         this.persistentTokenRepository = persistentTokenRepository;
+    }
+
+    /**
+     * POST  /register : register the user.
+     *
+     * @param managedUserVM the managed user View Model
+     * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or email is already in use
+     */
+    @PostMapping(path = "/register", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
+    @Timed
+    @Secured(AuthoritiesConstants.ADMIN)
+    public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+
+        HttpHeaders textPlainHeaders = new HttpHeaders();
+        textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
+
+        return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
+            .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
+            .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
+                .map(user -> new ResponseEntity<>("email address already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
+                .orElseGet(() -> {
+                    User user = userService
+                        .createUser(managedUserVM.getLogin(), managedUserVM.getPassword(),
+                            managedUserVM.getFirstName(), managedUserVM.getLastName(),
+                            managedUserVM.getEmail().toLowerCase(), managedUserVM.getImageUrl(),
+                            managedUserVM.getLangKey());
+
+                    mailService.sendActivationEmail(user);
+                    return new ResponseEntity<>(HttpStatus.CREATED);
+                })
+        );
     }
 
     /**
@@ -123,8 +158,7 @@ public class AccountResource {
      * @param password the new password
      * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
      */
-    @PostMapping(path = "/account/change_password",
-        produces = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(path = "/account/change_password", produces = MediaType.TEXT_PLAIN_VALUE)
     @Timed
     public ResponseEntity changePassword(@RequestBody String password) {
         if (!checkPasswordLength(password)) {

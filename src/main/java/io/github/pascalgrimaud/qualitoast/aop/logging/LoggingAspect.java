@@ -33,7 +33,9 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all repositories, services and Web REST endpoints.
      */
-    @Pointcut("within(io.github.pascalgrimaud.qualitoast.repository..*) || within(io.github.pascalgrimaud.qualitoast.service..*) || within(io.github.pascalgrimaud.qualitoast.web.rest..*)")
+    @Pointcut("(within(io.github.pascalgrimaud.qualitoast.repository..*) && @annotation(org.springframework.stereotype.Repository))"+
+        " || (within(io.github.pascalgrimaud.qualitoast.service..*) && @annotation(org.springframework.stereotype.Service))"+
+        " || (within(io.github.pascalgrimaud.qualitoast.web.rest..*) && @annotation(org.springframework.web.bind.annotation.RestController))")
     public void loggingPointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
