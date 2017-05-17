@@ -70,7 +70,7 @@
     </p>
     <div class="table-responsive" *ngIf="!updatingMetrics">
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-inverse">
             <tr>
                 <th jhiTranslate="metrics.jvm.http.table.code">Code</th>
                 <th jhiTranslate="metrics.jvm.http.table.count">Count</th>
@@ -148,7 +148,7 @@
     <h3 jhiTranslate="metrics.servicesstats.title">Services statistics (time in millisecond)</h3>
     <div class="table-responsive" *ngIf="!updatingMetrics">
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-inverse">
             <tr>
                 <th jhiTranslate="metrics.servicesstats.table.name">Service name</th>
                 <th class="text-right" jhiTranslate="metrics.servicesstats.table.count">Count</th>
@@ -176,11 +176,11 @@
             </tbody>
         </table>
     </div>
-    
+
     <h3 jhiTranslate="metrics.cache.title">Cache statistics</h3>
     <div class="table-responsive" *ngIf="!updatingMetrics">
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-inverse">
             <tr>
                 <th jhiTranslate="metrics.cache.cachename">Cache name</th>
                 <th class="text-right" data-translate="metrics.cache.hits">Cache Hits</th>
@@ -214,11 +214,11 @@
             </tbody>
         </table>
     </div>
-    
+
     <h3 jhiTranslate="metrics.datasource.title" *ngIf="metrics.gauges && metrics.gauges['HikariPool-1.pool.TotalConnections'] && metrics.gauges['HikariPool-1.pool.TotalConnections'].value > 0">DataSource statistics (time in millisecond)</h3>
     <div class="table-responsive" *ngIf="!updatingMetrics && metrics.gauges && metrics.gauges['HikariPool-1.pool.TotalConnections'] && metrics.gauges['HikariPool-1.pool.TotalConnections'].value > 0">
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-inverse">
                 <tr>
                     <th><span jhiTranslate="metrics.datasource.usage">Usage</span> ({{metrics.gauges['HikariPool-1.pool.ActiveConnections'].value}} / {{metrics.gauges['HikariPool-1.pool.TotalConnections'].value}})</th>
                     <th class="text-right" jhiTranslate="metrics.datasource.count">Count</th>

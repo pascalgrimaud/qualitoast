@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="testeurs">
         <table class="table table-striped">
-            <thead class="table thead-inverse">
+            <thead class="thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="identifiant"><span jhiTranslate="qualiToastApp.testeur.identifiant">Identifiant</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.testeur.nom">Nom</span> <span class="fa fa-sort"></span></th>
