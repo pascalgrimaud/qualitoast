@@ -41,5 +41,10 @@ public class ElasticsearchIndexResourceIntTest {
     public void launchReindex() throws Exception {
         restElasticsearchMockMvc.perform(post("/api/elasticsearch/index"))
             .andExpect(status().isAccepted());
+        // As the ElasticsearchIndexService.reindexAll method is async
+        // this test need to be achieved before going on other tests.
+        // Otherwise, there can be some random failures like this:
+        // SearchPhaseExecutionException: all shards failed
+        Thread.sleep(5000);
     }
 }
