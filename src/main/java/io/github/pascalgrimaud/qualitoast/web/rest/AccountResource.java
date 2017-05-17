@@ -63,7 +63,8 @@ public class AccountResource {
      * @param managedUserVM the managed user View Model
      * @return the ResponseEntity with status 201 (Created) if the user is registered or 400 (Bad Request) if the login or email is already in use
      */
-    @PostMapping(path = "/register", produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
+    @PostMapping(path = "/register",
+        produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     @Secured(AuthoritiesConstants.ADMIN)
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
@@ -158,7 +159,8 @@ public class AccountResource {
      * @param password the new password
      * @return the ResponseEntity with status 200 (OK), or status 400 (Bad Request) if the new password is not strong enough
      */
-    @PostMapping(path = "/account/change_password", produces = MediaType.TEXT_PLAIN_VALUE)
+    @PostMapping(path = "/account/change_password",
+        produces = MediaType.TEXT_PLAIN_VALUE)
     @Timed
     public ResponseEntity changePassword(@RequestBody String password) {
         if (!checkPasswordLength(password)) {
