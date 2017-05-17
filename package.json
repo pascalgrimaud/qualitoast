@@ -1,6 +1,6 @@
 {
   "name": "quali-toast",
-  "version": "0.0.4-SNAPSHOT",
+  "version": "0.0.4",
   "description": "Description for QualiToast",
   "private": true,
   "cacheDirectories": [
