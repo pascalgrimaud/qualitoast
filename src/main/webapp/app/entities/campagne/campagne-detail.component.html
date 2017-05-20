@@ -45,8 +45,24 @@
                 <div *ngIf="campagne.resultat">
                     <span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span>&nbsp;:&nbsp;&nbsp;
                     <b>
-                        <span><a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a></span>
+                        <span *ngIf="campagne.resultat.code == 'Ok';else ko">
+                            <a class="text-success" [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a>
+                        </span>
                     </b>
+                    <ng-template #ko>
+                        <b>
+                            <span *ngIf="campagne.resultat.code == 'Ko';else warning">
+                                    <a class="text-danger" [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
+                            </span>
+                        </b>
+                    </ng-template>
+                    <ng-template #warning>
+                        <b>
+                            <span>
+                                <a class="text-warning" [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
+                            </span>
+                        </b>
+                    </ng-template>
                 </div>
             </dd>
             <dd class="text-danger">

@@ -199,7 +199,7 @@
         <div class="form-group">
             <label jhiTranslate="qualiToastApp.campagne.testeur" for="field_testeur">Testeur</label>
             <select class="form-control" id="field_testeur" multiple name="testeur" [(ngModel)]="campagne.testeurs">
-                <option [ngValue]="getSelected(campagne.testeurs, testeurOption)" *ngFor="let testeurOption of testeurs; trackBy: trackTesteurById">{{testeurOption.identifiant}}</option>
+                <option [ngValue]="getSelected(campagne.testeurs, testeurOption)" *ngFor="let testeurOption of testeurs; trackBy: trackTesteurById">{{testeurOption.nom}} {{testeurOption.prenom}}</option>
             </select>
         </div>
         <div class="form-group row">
