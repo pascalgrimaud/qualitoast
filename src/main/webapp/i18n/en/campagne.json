@@ -18,17 +18,17 @@
             },
             "application": "Application",
             "version": "Version",
-            "typetest": "Typetest",
-            "resultat": "Resultat",
-            "datedebut": "Datedebut",
-            "datefin": "Datefin",
-            "commentaire": "Commentaire",
-            "bloquant": "Bloquant",
-            "majeur": "Majeur",
-            "mineur": "Mineur",
+            "typetest": "Type of test",
+            "resultat": "Result",
+            "datedebut": "Beginning",
+            "datefin": "End",
+            "commentaire": "Comment",
+            "bloquant": "Blocking",
+            "majeur": "Major",
+            "mineur": "Minor",
             "evolution": "Evolution",
-            "termine": "Termine",
-            "testeur": "Testeur"
+            "termine": "Finished",
+            "testeur": "Tester"
         }
     }
 }

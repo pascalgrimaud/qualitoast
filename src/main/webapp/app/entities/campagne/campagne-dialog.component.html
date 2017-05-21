@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-2 col-form-label" jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Typetest</label>
+            <label class="col-2 col-form-label" jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Type of test</label>
             <div class="col-10">
                 <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="campagne.typetest"  required>
                     <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.nom}}</option>
@@ -211,10 +211,10 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+        <button type="button" id="campagne-dialog-component-cancel" class="btn btn-default" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" id="campagne-dialog-component-save" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>

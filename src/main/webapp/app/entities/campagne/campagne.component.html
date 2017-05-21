@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="qualiToastApp.campagne.home.title">Campagnes</span>
-        <button class="btn btn-primary float-right create-campagne" [routerLink]="['/', { outlets: { popup: ['campagne-new'] } }]">
+        <button class="btn btn-primary float-right create-campagne" id="campagne-component-create" [routerLink]="['/', { outlets: { popup: ['campagne-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="qualiToastApp.campagne.home.createLabel">
             Create new Campagne
@@ -96,23 +96,23 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <button type="submit" id="campagne-component-view"
                                 [routerLink]="['../campagne', campagne.id ]"
                                 class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
+                            <span class="fa fa-eye" title="Voir"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="campagne-component-edit"
                                 [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
+                            <span class="fa fa-pencil" title="Modifier"></span>
                             <!--<span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>-->
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="campagne-component-delete"
                                 [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
+                            <span class="fa fa-remove" title="Supprimer"></span>
                         </button>
                     </div>
                 </td>

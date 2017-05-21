@@ -38,17 +38,16 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.application.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="application.description"
-             />
+                <textarea type="text" class="form-control" rows="3" name="description" id="field_description"
+                [(ngModel)]="application.description"></textarea>
         </div>
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+        <button type="button" id="application-dialog-component-cancel" class="btn btn-default" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+        <button type="submit" id="application-dialog-component-save" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
             <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
     </div>
