@@ -41,30 +41,24 @@
             </dd>
         </dl>
         <dl class="row-md-6">
-            <dd>
+            <dt>
                 <div *ngIf="campagne.resultat">
                     <span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span>&nbsp;:&nbsp;&nbsp;
-                    <b>
                         <span *ngIf="campagne.resultat.code == 'Ok';else ko">
                             <a class="text-success" [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a>
                         </span>
-                    </b>
                     <ng-template #ko>
-                        <b>
                             <span *ngIf="campagne.resultat.code == 'Ko';else warning">
                                     <a class="text-danger" [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
                             </span>
-                        </b>
                     </ng-template>
                     <ng-template #warning>
-                        <b>
                             <span>
                                 <a class="text-warning" [routerLink]="['../resultat', campagne.resultat?.id ]" >{{campagne.resultat?.code}}</a>
                             </span>
-                        </b>
                     </ng-template>
                 </div>
-            </dd>
+            </dt>
             <dd class="text-danger">
                 <span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span>&nbsp;:&nbsp;&nbsp;
                 <b>
@@ -102,10 +96,10 @@
             </dd>
         </dl>
     </div>
-    <button type="submit"    (click)="previousState()"    class="btn btn-info">
+    <button type="submit"  id="campagne-detail-component-back"  (click)="previousState()"    class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
-    <button type="button"
+    <button type="button" id="campagne-detail-component-edit"
             [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">

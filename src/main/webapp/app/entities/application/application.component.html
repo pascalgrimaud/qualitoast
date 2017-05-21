@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="qualiToastApp.application.home.title">Applications</span>
-        <button class="btn btn-primary float-right create-application" [routerLink]="['/', { outlets: { popup: ['application-new'] } }]">
+        <button class="btn btn-primary float-right create-application" id="application-component-create" [routerLink]="['/', { outlets: { popup: ['application-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="qualiToastApp.application.home.createLabel">
             Create new Application
@@ -42,22 +42,22 @@
                 <td>{{application.description}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <button type="submit" id="application-component-view"
                                 [routerLink]="['../application', application.id ]"
                                 class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
+                            <span class="fa fa-eye" title="Voir"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="application-component-edit"
                                 [routerLink]="['/', { outlets: { popup: 'application/'+ application.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
+                            <span class="fa fa-pencil" title="Modifier"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="application-component-delete"
                                 [routerLink]="['/', { outlets: { popup: 'application/'+ application.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
+                            <span class="fa fa-remove" title="Supprimer"></span>
                         </button>
                     </div>
                 </td>

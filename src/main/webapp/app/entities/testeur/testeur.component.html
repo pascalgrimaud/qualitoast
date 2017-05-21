@@ -48,22 +48,22 @@
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <button type="submit" id="testeur-component-view"
                                 [routerLink]="['../testeur', testeur.id ]"
                                 class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
+                            <span class="fa fa-eye" title="Voir"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="testeur-component-edit"
                                 [routerLink]="['/', { outlets: { popup: 'testeur/'+ testeur.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
+                            <span class="fa fa-pencil" title="Modifier"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="testeur-component-delete"
                                 [routerLink]="['/', { outlets: { popup: 'testeur/'+ testeur.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
+                            <span class="fa fa-remove" title="Supprimer"></span>
                         </button>
                     </div>
                 </td>

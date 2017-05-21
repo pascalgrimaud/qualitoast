@@ -43,19 +43,19 @@
                         <button type="submit"
                                 [routerLink]="['../type-test', typeTest.id ]"
                                 class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
+                            <span class="fa fa-eye" title="Voir"></span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
+                            <span class="fa fa-pencil" title="Modifier"></span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
+                            <span class="fa fa-remove" title="Supprimer"></span>
                         </button>
                     </div>
                 </td>
