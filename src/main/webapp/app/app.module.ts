@@ -2,7 +2,6 @@ import './vendor.ts';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
 import { QualiToastSharedModule, UserRouteAccessService } from './shared';
@@ -36,8 +35,7 @@ import {
         QualiToastAdminModule,
         QualiToastAccountModule,
         QualiToastEntityModule,
-        QualiToastDashboardModule,
-        BrowserAnimationsModule
+        QualiToastDashboardModule
     ],
     declarations: [
         JhiMainComponent,
