@@ -1,12 +1,12 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.domain.Application;
 import io.github.pascalgrimaud.qualitoast.service.ApplicationService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,10 +21,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Application.
@@ -36,7 +32,7 @@ public class ApplicationResource {
     private final Logger log = LoggerFactory.getLogger(ApplicationResource.class);
 
     private static final String ENTITY_NAME = "application";
-        
+
     private final ApplicationService applicationService;
 
     public ApplicationResource(ApplicationService applicationService) {
@@ -132,7 +128,7 @@ public class ApplicationResource {
      * SEARCH  /_search/applications?query=:query : search for the application corresponding
      * to the query.
      *
-     * @param query the query of the application search 
+     * @param query the query of the application search
      * @param pageable the pagination information
      * @return the result of the search
      */

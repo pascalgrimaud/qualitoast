@@ -13,6 +13,7 @@ import { Application, ApplicationService } from '../application';
 import { TypeTest, TypeTestService } from '../type-test';
 import { Resultat, ResultatService } from '../resultat';
 import { Testeur, TesteurService } from '../testeur';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-campagne-dialog',
@@ -49,14 +50,14 @@ export class CampagneDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.applicationService.query().subscribe(
-            (res: Response) => { this.applications = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.typeTestService.query().subscribe(
-            (res: Response) => { this.typetests = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.resultatService.query().subscribe(
-            (res: Response) => { this.resultats = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.testeurService.query().subscribe(
-            (res: Response) => { this.testeurs = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.applicationService.query()
+            .subscribe((res: ResponseWrapper) => { this.applications = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.typeTestService.query()
+            .subscribe((res: ResponseWrapper) => { this.typetests = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.resultatService.query()
+            .subscribe((res: ResponseWrapper) => { this.resultats = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.testeurService.query()
+            .subscribe((res: ResponseWrapper) => { this.testeurs = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
     clear() {
         this.activeModal.dismiss('cancel');

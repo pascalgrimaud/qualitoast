@@ -11,6 +11,7 @@ import { TesteurPopupService } from './testeur-popup.service';
 import { TesteurService } from './testeur.service';
 import { TypeTest, TypeTestService } from '../type-test';
 import { Campagne, CampagneService } from '../campagne';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-testeur-dialog',
@@ -39,10 +40,10 @@ export class TesteurDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.typeTestService.query().subscribe(
-            (res: Response) => { this.typetests = res.json(); }, (res: Response) => this.onError(res.json()));
-        this.campagneService.query().subscribe(
-            (res: Response) => { this.campagnes = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.typeTestService.query()
+            .subscribe((res: ResponseWrapper) => { this.typetests = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.campagneService.query()
+            .subscribe((res: ResponseWrapper) => { this.campagnes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
     clear() {
         this.activeModal.dismiss('cancel');

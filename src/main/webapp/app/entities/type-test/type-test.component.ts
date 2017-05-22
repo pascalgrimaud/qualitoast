@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
 
 import { TypeTest } from './type-test.model';
 import { TypeTestService } from './type-test.service';
-import { ITEMS_PER_PAGE, Principal } from '../../shared';
+import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
@@ -58,8 +57,8 @@ currentAccount: any;
                 query: this.currentSearch,
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
-                    (res: Response) => this.onSuccess(res.json(), res.headers),
-                    (res: Response) => this.onError(res.json())
+                    (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+                    (res: ResponseWrapper) => this.onError(res.json)
                 );
             return;
         }
@@ -67,8 +66,8 @@ currentAccount: any;
             page: this.page - 1,
             size: this.itemsPerPage,
             sort: this.sort()}).subscribe(
-            (res: Response) => this.onSuccess(res.json(), res.headers),
-            (res: Response) => this.onError(res.json())
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
         );
     }
     loadPage(page: number) {

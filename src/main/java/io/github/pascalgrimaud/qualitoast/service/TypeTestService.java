@@ -7,14 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing TypeTest.
@@ -24,7 +20,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class TypeTestService {
 
     private final Logger log = LoggerFactory.getLogger(TypeTestService.class);
-    
+
     private final TypeTestRepository typeTestRepository;
 
     private final TypeTestSearchRepository typeTestSearchRepository;
@@ -49,7 +45,7 @@ public class TypeTestService {
 
     /**
      *  Get all the typeTests.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
