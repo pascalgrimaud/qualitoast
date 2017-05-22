@@ -26,7 +26,7 @@
     </div>
     <br/>
     <div class="table-responsive" *ngIf="typeTests">
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered">
             <thead class="thead-inverse">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="code"><span jhiTranslate="qualiToastApp.typeTest.code">Code</span> <span class="fa fa-sort"></span></th>
@@ -40,18 +40,18 @@
                 <td><a [routerLink]="['../type-test', typeTest.id ]">{{typeTest.nom}}</a></td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
+                        <button type="submit" id="type-test-component-view"
                                 [routerLink]="['../type-test', typeTest.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye" title="Voir"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="type-test-component-edit"
                                 [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil" title="Modifier"></span>
                         </button>
-                        <button type="submit"
+                        <button type="submit" id="type-test-component-delete"
                                 [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">

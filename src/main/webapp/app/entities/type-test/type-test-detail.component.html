@@ -15,13 +15,13 @@
         </dd>
     </dl>
 
-    <button type="submit"
+    <button type="submit" id="type-test-detail-component-back"
             (click)="previousState()"
             class="btn btn-info">
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button type="button" id="type-test-detail-component-edit"
             [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">

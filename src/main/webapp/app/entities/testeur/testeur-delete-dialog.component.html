@@ -9,10 +9,10 @@
         <p jhiTranslate="qualiToastApp.testeur.delete.question" translateValues="{id: '{{testeur.id}}'}">Are you sure you want to delete this Testeur?</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+        <button type="button" id="testeur-delete-dialog-component-cancel" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
             <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" class="btn btn-danger">
+        <button type="submit" id="testeur-delete-dialog-component-delete" class="btn btn-danger">
             <span class="fa fa-remove"></span>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
         </button>
     </div>
