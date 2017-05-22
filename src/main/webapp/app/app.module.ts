@@ -9,6 +9,7 @@ import { QualiToastHomeModule } from './home/home.module';
 import { QualiToastAdminModule } from './admin/admin.module';
 import { QualiToastAccountModule } from './account/account.module';
 import { QualiToastEntityModule } from './entities/entity.module';
+import { QualiToastDashboardModule } from './dashboard/dashboard.module';
 
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
@@ -33,7 +34,8 @@ import {
         QualiToastHomeModule,
         QualiToastAdminModule,
         QualiToastAccountModule,
-        QualiToastEntityModule
+        QualiToastEntityModule,
+        QualiToastDashboardModule
     ],
     declarations: [
         JhiMainComponent,
