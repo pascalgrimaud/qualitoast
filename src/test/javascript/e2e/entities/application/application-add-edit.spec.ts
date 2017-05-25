@@ -72,26 +72,12 @@ describe('Application e2e test', () => {
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
                 expect(value).toMatch(expectVal);
             });
+            code.clear();
             code.sendKeys('appe');
+            nom.clear();
             nom.sendKeys('application');
             description.sendKeys('description application edit');
             element(by.id('application-dialog-component-save')).click();
-        });
-    });
-
-    // Delete an application
-    it('should search an application', function () {
-        element(by.id('currentSearch')).sendKeys('application');
-        element(by.id('buttonSearch')).click();
-    });
-
-    it('should load delete Application dialog', function () {
-        element(by.id('application-component-delete')).click().then(() => {
-            const expectVal = /entity.delete.title/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-            element(by.id('application-delete-dialog-component-delete')).click();
         });
     });
 

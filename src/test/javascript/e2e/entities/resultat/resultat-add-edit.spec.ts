@@ -67,27 +67,11 @@ describe('Resultat e2e test', () => {
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
                 expect(value).toMatch(expectVal);
             });
+            code.clear();
             code.sendKeys('resultat');
             element(by.id('resultat-dialog-component-save')).click();
         });
     });
-
-    // Delete a resultat
-    it('should search a resultat', function () {
-        element(by.id('currentSearch')).sendKeys('resultat');
-        element(by.id('buttonSearch')).click();
-    });
-
-    it('should load delete Resultat dialog', function () {
-        element(by.id('resultat-component-delete')).click().then(() => {
-            const expectVal = /entity.delete.title/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-            element(by.id('resultat-delete-dialog-component-delete')).click();
-        });
-    });
-
 
     afterAll(function () {
         accountMenu.click();
