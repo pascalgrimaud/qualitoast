@@ -7,12 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Testeur.
@@ -22,7 +20,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class TesteurService {
 
     private final Logger log = LoggerFactory.getLogger(TesteurService.class);
-    
+
     private final TesteurRepository testeurRepository;
 
     private final TesteurSearchRepository testeurSearchRepository;
@@ -47,15 +45,14 @@ public class TesteurService {
 
     /**
      *  Get all the testeurs.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Testeur> findAll(Pageable pageable) {
         log.debug("Request to get all Testeurs");
-        Page<Testeur> result = testeurRepository.findAll(pageable);
-        return result;
+        return testeurRepository.findAll(pageable);
     }
 
     /**
@@ -67,8 +64,7 @@ public class TesteurService {
     @Transactional(readOnly = true)
     public Testeur findOne(Long id) {
         log.debug("Request to get Testeur : {}", id);
-        Testeur testeur = testeurRepository.findOne(id);
-        return testeur;
+        return testeurRepository.findOne(id);
     }
 
     /**

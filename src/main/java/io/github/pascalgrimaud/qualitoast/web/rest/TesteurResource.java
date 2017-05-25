@@ -1,12 +1,12 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.domain.Testeur;
 import io.github.pascalgrimaud.qualitoast.service.TesteurService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
-import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,12 +19,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Testeur.
@@ -36,7 +32,7 @@ public class TesteurResource {
     private final Logger log = LoggerFactory.getLogger(TesteurResource.class);
 
     private static final String ENTITY_NAME = "testeur";
-        
+
     private final TesteurService testeurService;
 
     public TesteurResource(TesteurService testeurService) {
@@ -132,7 +128,7 @@ public class TesteurResource {
      * SEARCH  /_search/testeurs?query=:query : search for the testeur corresponding
      * to the query.
      *
-     * @param query the query of the testeur search 
+     * @param query the query of the testeur search
      * @param pageable the pagination information
      * @return the result of the search
      */
@@ -144,6 +140,4 @@ public class TesteurResource {
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/testeurs");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
-
 }

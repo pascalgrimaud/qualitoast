@@ -69,8 +69,7 @@ public class CampagneService {
     @Transactional(readOnly = true)
     public Campagne findOne(Long id) {
         log.debug("Request to get Campagne : {}", id);
-        Campagne campagne = campagneRepository.findOneWithEagerRelationships(id);
-        return campagne;
+        return campagneRepository.findOneWithEagerRelationships(id);
     }
 
     /**

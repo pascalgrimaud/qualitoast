@@ -140,6 +140,4 @@ public class TypeTestResource {
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/type-tests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
-
-
 }

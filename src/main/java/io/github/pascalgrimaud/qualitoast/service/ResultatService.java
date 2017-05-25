@@ -7,12 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 /**
  * Service Implementation for managing Resultat.
@@ -22,7 +20,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ResultatService {
 
     private final Logger log = LoggerFactory.getLogger(ResultatService.class);
-    
+
     private final ResultatRepository resultatRepository;
 
     private final ResultatSearchRepository resultatSearchRepository;
@@ -47,15 +45,14 @@ public class ResultatService {
 
     /**
      *  Get all the resultats.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Resultat> findAll(Pageable pageable) {
         log.debug("Request to get all Resultats");
-        Page<Resultat> result = resultatRepository.findAll(pageable);
-        return result;
+        return resultatRepository.findAll(pageable);
     }
 
     /**
@@ -67,8 +64,7 @@ public class ResultatService {
     @Transactional(readOnly = true)
     public Resultat findOne(Long id) {
         log.debug("Request to get Resultat : {}", id);
-        Resultat resultat = resultatRepository.findOne(id);
-        return resultat;
+        return resultatRepository.findOne(id);
     }
 
     /**

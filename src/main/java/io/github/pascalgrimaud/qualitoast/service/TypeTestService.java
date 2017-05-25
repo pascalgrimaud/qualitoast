@@ -52,8 +52,7 @@ public class TypeTestService {
     @Transactional(readOnly = true)
     public Page<TypeTest> findAll(Pageable pageable) {
         log.debug("Request to get all TypeTests");
-        Page<TypeTest> result = typeTestRepository.findAll(pageable);
-        return result;
+        return typeTestRepository.findAll(pageable);
     }
 
     /**
@@ -65,8 +64,7 @@ public class TypeTestService {
     @Transactional(readOnly = true)
     public TypeTest findOne(Long id) {
         log.debug("Request to get TypeTest : {}", id);
-        TypeTest typeTest = typeTestRepository.findOne(id);
-        return typeTest;
+        return typeTestRepository.findOne(id);
     }
 
     /**
