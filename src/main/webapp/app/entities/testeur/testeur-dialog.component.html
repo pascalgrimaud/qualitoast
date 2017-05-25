@@ -7,11 +7,6 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!testeur.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="testeur.id" readonly />
-        </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.testeur.identifiant" for="field_identifiant">Identifiant</label>
             <input type="text" class="form-control" name="identifiant" id="field_identifiant"

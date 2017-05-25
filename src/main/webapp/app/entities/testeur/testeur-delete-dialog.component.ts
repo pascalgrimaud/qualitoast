@@ -28,7 +28,7 @@ export class TesteurDeleteDialogComponent {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number) {
+    confirmDelete(id: number, nom: string) {
         this.testeurService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'testeurListModification',
@@ -36,7 +36,7 @@ export class TesteurDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('qualiToastApp.testeur.deleted', { param : id }, null);
+        this.alertService.success('qualiToastApp.testeur.deleted', { param : nom }, null);
     }
 }
 

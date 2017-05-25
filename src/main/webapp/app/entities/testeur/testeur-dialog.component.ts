@@ -69,7 +69,7 @@ export class TesteurDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'qualiToastApp.testeur.created'
             : 'qualiToastApp.testeur.updated',
-            { param : result.id }, null);
+            { param : result.nom }, null);
 
         this.eventManager.broadcast({ name: 'testeurListModification', content: 'OK'});
         this.isSaving = false;
