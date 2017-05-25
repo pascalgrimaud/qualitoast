@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager } from 'ng-jhipster';
+import { AlertService, EventManager } from 'ng-jhipster';
 
 import { Testeur } from './testeur.model';
 import { TesteurPopupService } from './testeur-popup.service';
@@ -19,6 +19,7 @@ export class TesteurDeleteDialogComponent {
     constructor(
         private testeurService: TesteurService,
         public activeModal: NgbActiveModal,
+        private alertService: AlertService,
         private eventManager: EventManager
     ) {
     }
@@ -35,6 +36,7 @@ export class TesteurDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('qualiToastApp.testeur.deleted', { param : id }, null);
     }
 }
 

@@ -67,19 +67,24 @@ export class CampagneDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.campagne.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.campagneService.update(this.campagne));
+                this.campagneService.update(this.campagne), false);
         } else {
             this.subscribeToSaveResponse(
-                this.campagneService.create(this.campagne));
+                this.campagneService.create(this.campagne), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Campagne>) {
+    private subscribeToSaveResponse(result: Observable<Campagne>, isCreated: boolean) {
         result.subscribe((res: Campagne) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Campagne) {
+    private onSaveSuccess(result: Campagne, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'qualiToastApp.campagne.created'
+            : 'qualiToastApp.campagne.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'campagneListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

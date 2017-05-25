@@ -40,19 +40,24 @@ export class TypeTestDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.typeTest.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.typeTestService.update(this.typeTest));
+                this.typeTestService.update(this.typeTest), false);
         } else {
             this.subscribeToSaveResponse(
-                this.typeTestService.create(this.typeTest));
+                this.typeTestService.create(this.typeTest), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<TypeTest>) {
+    private subscribeToSaveResponse(result: Observable<TypeTest>, isCreated: boolean) {
         result.subscribe((res: TypeTest) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: TypeTest) {
+    private onSaveSuccess(result: TypeTest, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'qualiToastApp.typeTest.created'
+            : 'qualiToastApp.typeTest.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'typeTestListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
