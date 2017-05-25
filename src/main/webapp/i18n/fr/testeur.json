@@ -11,7 +11,7 @@
             "updated": "Le Testeur avec l'identifiant {{ param }} a été mis à jour",
             "deleted": "Le Testeur avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Testeur {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le testeur {{ id }} ?"
             },
             "detail": {
                 "title": "Testeur"

@@ -11,7 +11,7 @@
             "updated": "A Testeur is updated with identifier {{ param }}",
             "deleted": "A Testeur is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Testeur {{ id }}?"
+                "question": "Are you sure you want to delete tester {{ id }}?"
             },
             "detail": {
                 "title": "Testeur"
