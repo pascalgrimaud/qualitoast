@@ -5,9 +5,10 @@ exports.config = {
     allScriptsTimeout: 20000,
 
     specs: [
-        './e2e/account/*.spec.ts',
-        './e2e/admin/*.spec.ts',
-        './e2e/entities/*.spec.ts'
+       './e2e/account/*.spec.ts',
+       './e2e/admin/*.spec.ts',
+       './e2e/entities/application.spec.ts',
+       './e2e/entities/resultat.spec.ts'
     ],
 
     capabilities: {

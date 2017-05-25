@@ -8,6 +8,7 @@ describe('Resultat e2e test', () => {
     const accountMenu = element(by.id('account-menu'));
     const login = element(by.id('login'));
     const logout = element(by.id('logout'));
+    const code = element(by.id('field_code'));
 
     beforeAll(() => {
         browser.get('/');
@@ -30,7 +31,7 @@ describe('Resultat e2e test', () => {
             });
         });
     });
-
+    // Cancel creation resultat
     it('should load create Resultat dialog', function () {
         element(by.css('button.create-resultat')).click().then(() => {
             const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
@@ -41,6 +42,52 @@ describe('Resultat e2e test', () => {
             element(by.css('button.close')).click();
         });
     });
+
+    // Create a new resultat
+    it('should load create Resultat dialog', function () {
+        element(by.css('button.create-resultat')).click().then(() => {
+            const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            code.sendKeys('resultat');
+            element(by.id('resultat-dialog-component-save')).click();
+        });
+    });
+
+    // Edit a resultat
+    it('should search a resultat', function () {
+        element(by.id('currentSearch')).sendKeys('resultat');
+        element(by.id('buttonSearch')).click();
+    });
+
+    it('should edit a resultat', function () {
+        element(by.id('resultat-component-edit')).click().then(() => {
+            const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            code.sendKeys('resultat');
+            element(by.id('resultat-dialog-component-save')).click();
+        });
+    });
+
+    // Delete a resultat
+    it('should search a resultat', function () {
+        element(by.id('currentSearch')).sendKeys('resultat');
+        element(by.id('buttonSearch')).click();
+    });
+
+    it('should load delete Resultat dialog', function () {
+        element(by.id('resultat-component-delete')).click().then(() => {
+            const expectVal = /entity.delete.title/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            element(by.id('resultat-delete-dialog-component-delete')).click();
+        });
+    });
+
 
     afterAll(function () {
         accountMenu.click();

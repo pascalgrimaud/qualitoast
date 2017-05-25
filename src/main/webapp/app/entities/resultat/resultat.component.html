@@ -14,7 +14,7 @@
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
                     <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'qualiToastApp.resultat.home.search' | translate }}">
-                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                    <button class="input-group-addon btn btn-info" id="buttonSearch" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
                     <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">

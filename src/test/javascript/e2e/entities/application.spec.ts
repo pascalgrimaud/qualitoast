@@ -8,6 +8,9 @@ describe('Application e2e test', () => {
     const accountMenu = element(by.id('account-menu'));
     const login = element(by.id('login'));
     const logout = element(by.id('logout'));
+    const code = element(by.id('field_code'));
+    const nom = element(by.id('field_nom'));
+    const description = element(by.id('field_description'));
 
     beforeAll(() => {
         browser.get('/');
@@ -31,6 +34,7 @@ describe('Application e2e test', () => {
         });
     });
 
+    // Cancel creation application
     it('should load create Application dialog', function () {
         element(by.css('button.create-application')).click().then(() => {
             const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
@@ -39,6 +43,55 @@ describe('Application e2e test', () => {
             });
 
             element(by.css('button.close')).click();
+        });
+    });
+
+    // create a new application
+    it('should load create Application dialog', function () {
+        element(by.css('button.create-application')).click().then(() => {
+            const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            code.sendKeys('app');
+            nom.sendKeys('application');
+            description.sendKeys('description application');
+            element(by.id('application-dialog-component-save')).click();
+        });
+    });
+
+    // Edit an application
+    it('should search an application', function () {
+        element(by.id('currentSearch')).sendKeys('application');
+        element(by.id('buttonSearch')).click();
+    });
+
+    it('should load Application dialog', function () {
+        element(by.id('application-component-edit')).click().then(() => {
+            const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            code.sendKeys('appe');
+            nom.sendKeys('application');
+            description.sendKeys('description application edit');
+            element(by.id('application-dialog-component-save')).click();
+        });
+    });
+
+    // Delete an application
+    it('should search an application', function () {
+        element(by.id('currentSearch')).sendKeys('application');
+        element(by.id('buttonSearch')).click();
+    });
+
+    it('should load delete Application dialog', function () {
+        element(by.id('application-component-delete')).click().then(() => {
+            const expectVal = /entity.delete.title/;
+            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+                expect(value).toMatch(expectVal);
+            });
+            element(by.id('application-delete-dialog-component-delete')).click();
         });
     });
 
