@@ -2,8 +2,8 @@ version: '2'
 services:
     qualitoast-elasticsearch:
         image: elasticsearch:2.4.1
-        # volumes:
-        #     - ~/volumes/jhipster/QualiToast/elasticsearch/:/usr/share/elasticsearch/data/
+        volumes:
+            - ~/volumes/jhipster/QualiToast/elasticsearch/:/usr/share/elasticsearch/data/
         ports:
             - 9200:9200
             - 9300:9300
