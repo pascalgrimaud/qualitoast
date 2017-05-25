@@ -92,7 +92,7 @@ describe('Testeur e2e test', () => {
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load delete Resultat dialog', function () {
+    it('should load delete Testeur dialog', function () {
         element(by.id('testeur-component-delete')).click().then(() => {
             const expectVal = /entity.delete.title/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
