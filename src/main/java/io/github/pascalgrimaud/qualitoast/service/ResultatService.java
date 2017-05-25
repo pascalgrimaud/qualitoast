@@ -52,7 +52,8 @@ public class ResultatService {
     @Transactional(readOnly = true)
     public Page<Resultat> findAll(Pageable pageable) {
         log.debug("Request to get all Resultats");
-        return resultatRepository.findAll(pageable);    }
+        return resultatRepository.findAll(pageable);
+    }
 
     /**
      *  Get one resultat by id.

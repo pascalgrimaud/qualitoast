@@ -52,7 +52,8 @@ public class TesteurService {
     @Transactional(readOnly = true)
     public Page<Testeur> findAll(Pageable pageable) {
         log.debug("Request to get all Testeurs");
-        return testeurRepository.findAll(pageable);    }
+        return testeurRepository.findAll(pageable);
+    }
 
     /**
      *  Get one testeur by id.

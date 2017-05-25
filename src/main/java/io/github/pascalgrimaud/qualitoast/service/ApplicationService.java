@@ -52,7 +52,8 @@ public class ApplicationService {
     @Transactional(readOnly = true)
     public Page<Application> findAll(Pageable pageable) {
         log.debug("Request to get all Applications");
-        return applicationRepository.findAll(pageable);    }
+        return applicationRepository.findAll(pageable);
+    }
 
     /**
      *  Get one application by id.
