@@ -40,7 +40,7 @@ script:
   - chmod +x mvnw
   - docker-compose -f src/main/docker/postgresql.yml up -d
   - docker-compose -f src/main/docker/elasticsearch.yml up -d
-  - ./mvnw clean cobertura:cobertura
+  - ./mvnw clean test
   - yarn test
   - ./mvnw package -Pprod -DskipTests
   - java -jar target/*.war &
