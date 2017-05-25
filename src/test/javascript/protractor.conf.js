@@ -11,10 +11,11 @@ exports.config = {
         './e2e/entities/resultat/resultat-add-edit.spec.ts',
         './e2e/entities/testeur/testeur-add-edit.spec.ts',
         './e2e/entities/application/application-add-edit.spec.ts',
-        './e2e/entities/type-test/typetest-delete.spec.ts',
-        './e2e/entities/resultat/resultat-delete.spec.ts',
+
+        './e2e/entities/application/application-delete.spec.ts',
         './e2e/entities/testeur/testeur-delete.spec.ts',
-        './e2e/entities/application/application-delete.spec.ts'
+        './e2e/entities/type-test/typetest-delete.spec.ts',
+        './e2e/entities/resultat/resultat-delete.spec.ts'
     ],
 
     capabilities: {

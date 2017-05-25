@@ -47,7 +47,7 @@ describe('TypeTest e2e test', () => {
     // Create a new type test
     it('should load create Type-test dialog', function () {
         element(by.css('button.create-type-test')).click().then(() => {
-            const expectVal = /qualiToastApp.type-test.home.createOrEditLabel/;
+            const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
                 expect(value).toMatch(expectVal);
             });
@@ -66,7 +66,7 @@ describe('TypeTest e2e test', () => {
 
     it('should edit a type-test', function () {
         element(by.id('type-test-component-edit')).click().then(() => {
-            const expectVal = /qualiToastApp.type-test.home.createOrEditLabel/;
+            const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
                 expect(value).toMatch(expectVal);
             });
