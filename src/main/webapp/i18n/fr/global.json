@@ -24,7 +24,8 @@
                 "password": "Mot de passe",
                 "sessions": "Sessions",
                 "login": "S'authentifier",
-                "logout": "Déconnexion"
+                "logout": "Déconnexion",
+                "register": "Créer un compte"
             },
             "admin": {
                 "main": "Administration",
@@ -58,6 +59,10 @@
                     "prefix": "Si vous voulez vous ",
                     "link": "connecter",
                     "suffix": ", vous devez disposer d'un compte."
+                },
+                "register": {
+                    "noaccount": "Vous n'avez pas encore de compte ?",
+                    "link": "Créer un compte"
                 }
             },
             "error": {
@@ -88,7 +93,8 @@
         },
         "ribbon": {
             "dev":"Développement"
-        }
+        },
+        "item-count": "Affichage {{first}} - {{second}} de {{total}} items."
     },
     "entity": {
         "action": {

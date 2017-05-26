@@ -32,11 +32,8 @@ describe('Component Tests', () => {
                     CampagneService,
                     EventManager
                 ]
-            }).overrideComponent(CampagneDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
+            }).overrideTemplate(CampagneDetailComponent, '')
+            .compileComponents();
         }));
 
         beforeEach(() => {
