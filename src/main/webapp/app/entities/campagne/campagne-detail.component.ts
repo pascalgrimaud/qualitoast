@@ -13,6 +13,7 @@ import { CampagneService } from './campagne.service';
 export class CampagneDetailComponent implements OnInit, OnDestroy {
 
     data: any;
+    options: any;
     campagne: Campagne;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
@@ -35,27 +36,42 @@ export class CampagneDetailComponent implements OnInit, OnDestroy {
         this.campagneService.find(id).subscribe((campagne) => {
             this.campagne = campagne;
             this.data = {
-                labels: ['Bloquant', 'Majeur', 'Mineur', 'Evolution'],
-                datasets: [{
-                    data: [
-                        this.campagne.bloquant,
-                        this.campagne.majeur,
-                        this.campagne.mineur,
-                        this.campagne.evolution
-                    ],
-                    backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        '#36A2EB'
-                    ],
-                    hoverBackgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        '#36A2EB'
-                    ]
-                }]
+                labels: ['Statistiques'],
+                datasets: [
+                    {
+                        label: 'Bloquant',
+                        backgroundColor: '#FF6384',
+                        borderColor: '#1E88E5',
+                        data: [this.campagne.bloquant]
+                    },
+                    {
+                        label: 'Majeur',
+                        backgroundColor: '#36A2EB',
+                        borderColor: '#7CB342',
+                        data: [this.campagne.majeur]
+                    },
+                    {
+                        label: 'Mineur',
+                        backgroundColor: '#FFCE56',
+                        borderColor: '#7CB342',
+                        data: [this.campagne.mineur]
+                    },
+                    {
+                        label: 'Evolution',
+                        backgroundColor: '#9CCC65',
+                        borderColor: '#7CB342',
+                        data: [this.campagne.evolution]
+                    }
+                ]
+            };
+            this.options = {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             };
         });
     }

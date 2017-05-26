@@ -95,8 +95,8 @@
                 </span>
             </dd>
         </dl>
-        <dl class="col-md-2">
-            <p-chart type="pie" [data]="data"></p-chart>
+        <dl class="col-md-6">
+            <p-chart type="bar" [data]="data" [options]="options"></p-chart>
         </dl>
     </div>
     <button type="submit"  id="campagne-detail-component-back"  (click)="previousState()"    class="btn btn-info">
