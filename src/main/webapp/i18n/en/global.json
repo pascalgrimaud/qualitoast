@@ -24,7 +24,8 @@
                 "password": "Password",
                 "sessions": "Sessions",
                 "login": "Sign in",
-                "logout": "Sign out"
+                "logout": "Sign out",
+                "register": "Register"
             },
             "admin": {
                 "main": "Administration",
@@ -58,6 +59,10 @@
                     "prefix": "If you want to ",
                     "link": "sign in",
                     "suffix": ", you must have an account."
+                },
+                "register": {
+                    "noaccount": "You don't have an account yet?",
+                    "link": "Register a new account"
                 }
             },
             "error": {
@@ -88,7 +93,8 @@
         },
         "ribbon": {
             "dev":"Development"
-        }
+        },
+        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
     },
     "entity": {
         "action": {
