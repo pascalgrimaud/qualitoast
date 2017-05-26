@@ -3,7 +3,6 @@ package io.github.pascalgrimaud.qualitoast.service;
 import io.github.pascalgrimaud.qualitoast.domain.Campagne;
 import io.github.pascalgrimaud.qualitoast.repository.CampagneRepository;
 import io.github.pascalgrimaud.qualitoast.repository.search.CampagneSearchRepository;
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -53,10 +52,7 @@ public class CampagneService {
     @Transactional(readOnly = true)
     public Page<Campagne> findAll(Pageable pageable) {
         log.debug("Request to get all Campagnes");
-        Page<Campagne> result = campagneRepository.findAll(pageable);
-        for(Campagne campagne: result.getContent()) {
-            Hibernate.initialize(campagne.getTesteurs());
-        }
+        Page<Campagne> result = campagneRepository.findAllWithTesteursBy(pageable);
         return result;
     }
 

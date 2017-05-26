@@ -1,6 +1,8 @@
 package io.github.pascalgrimaud.qualitoast.repository;
 
 import io.github.pascalgrimaud.qualitoast.domain.Campagne;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -20,4 +22,6 @@ public interface CampagneRepository extends JpaRepository<Campagne,Long> {
     @Query("select campagne from Campagne campagne left join fetch campagne.testeurs where campagne.id =:id")
     Campagne findOneWithEagerRelationships(@Param("id") Long id);
 
+    @EntityGraph(attributePaths = "testeurs")
+    Page<Campagne> findAllWithTesteursBy(Pageable pageable);
 }
