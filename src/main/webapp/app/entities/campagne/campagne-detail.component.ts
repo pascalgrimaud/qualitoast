@@ -12,6 +12,7 @@ import { CampagneService } from './campagne.service';
 })
 export class CampagneDetailComponent implements OnInit, OnDestroy {
 
+    data: any;
     campagne: Campagne;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
@@ -33,6 +34,29 @@ export class CampagneDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.campagneService.find(id).subscribe((campagne) => {
             this.campagne = campagne;
+            this.data = {
+                labels: ['Bloquant', 'Majeur', 'Mineur', 'Evolution'],
+                datasets: [{
+                    data: [
+                        this.campagne.bloquant,
+                        this.campagne.majeur,
+                        this.campagne.mineur,
+                        this.campagne.evolution
+                    ],
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#36A2EB'
+                    ],
+                    hoverBackgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#36A2EB'
+                    ]
+                }]
+            };
         });
     }
     previousState() {

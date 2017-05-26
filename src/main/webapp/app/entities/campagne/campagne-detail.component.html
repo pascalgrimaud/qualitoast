@@ -4,7 +4,7 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <div class="row">
-        <dl class="col-md-6">
+        <dl class="col-md-4">
             <dt><div *ngIf="campagne.application"><span jhiTranslate="qualiToastApp.campagne.application">Application : </span>&nbsp;:&nbsp;&nbsp;
                 <span>
                     <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.nom}}</a>
@@ -40,7 +40,7 @@
                 <b><span>{{campagne.commentaire}}</span></b>
             </dd>
         </dl>
-        <dl class="row-md-6">
+        <dl class="col-md-2">
             <dt>
                 <div *ngIf="campagne.resultat">
                     <span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span>&nbsp;:&nbsp;&nbsp;
@@ -94,6 +94,9 @@
                     <a [routerLink]="['/testeur', testeur?.id ]">{{testeur.nom}}&nbsp;{{testeur.prenom}}</a>{{last ? '' : ', '}}
                 </span>
             </dd>
+        </dl>
+        <dl class="col-md-2">
+            <p-chart type="pie" [data]="data"></p-chart>
         </dl>
     </div>
     <button type="submit"  id="campagne-detail-component-back"  (click)="previousState()"    class="btn btn-info">
