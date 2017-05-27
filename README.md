@@ -3,7 +3,16 @@
 [![Build Status][travis-image-master]][travis-url]
 [![codecov][codecov-image]][codecov-url]
 
-This application was generated using JHipster 4.3.0, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.3.0](https://jhipster.github.io/documentation-archive/v4.3.0).
+
+## Description
+
+This application was generated using JHipster 4.3.0.
+
+It added:
+
+- bootswatch theme: [pulse](https://bootswatch.com/4-alpha/pulse/)
+- [PrimeNG](https://www.primefaces.org/primeng/#/) for chart
+
 
 ## Development
 
@@ -34,46 +43,6 @@ Add the `help` flag on any command to see how you can use it. For example, `yarn
 
 The `yarn run` command will list all of the scripts available to run for this project.
 
-### Managing dependencies
-
-For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
-
-    yarn add --exact leaflet
-
-To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
-
-    yarn add --dev --exact @types/leaflet
-
-Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
-
-Edit [src/main/webapp/app/vendor.ts](src/main/webapp/app/vendor.ts) file:
-~~~
-import 'leaflet/dist/leaflet.js';
-~~~
-
-Edit [src/main/webapp/content/css/vendor.css](src/main/webapp/content/css/vendor.css) file:
-~~~
-@import '~leaflet/dist/leaflet.css';
-~~~
-
-Note: there are still few other things remaining to do for Leaflet that we won't detail here.
-
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-### Using angular-cli
-
-You can also use [Angular CLI][] to generate some custom client code.
-
-For example, the following command:
-
-    ng generate component my-component
-
-will generate few files:
-
-    create src/main/webapp/app/my-component/my-component.component.html
-    create src/main/webapp/app/my-component/my-component.component.ts
-    update src/main/webapp/app/app.module.ts
-
 ## Building for production
 
 To optimize the QualiToast application for production, run:
@@ -91,18 +60,23 @@ Refer to [Using JHipster in production][] for more details.
 
 ## Testing
 
+### Backend tests
+
 To launch your application's tests, run:
 
     ./mvnw clean test
 
-### Client tests
+### Frontend tests
 
 Unit tests are run by [Karma][] and written with [Jasmine][]. They're located in [src/test/javascript/](src/test/javascript/) and can be run with:
 
     yarn test
 
+### End-to-End tests
+
 UI end-to-end tests are powered by [Protractor][], which is built on top of WebDriverJS. They're located in [src/test/javascript/e2e](src/test/javascript/e2e)
 and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`) and running the tests (`yarn run e2e`) in a second one.
+
 ### Other tests
 
 Performance tests are run by [Gatling][] and written in Scala. They're located in [src/test/gatling](src/test/gatling) and can be run with:
@@ -114,13 +88,21 @@ For more information, refer to the [Running tests page][].
 ## Using Docker to simplify development (optional)
 
 You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
-For example, to start a postgresql database in a docker container, run:
+For example, to start a PostgreSQL database in a docker container, run:
 
     docker-compose -f src/main/docker/postgresql.yml up -d
 
 To stop it and remove the container, run:
 
     docker-compose -f src/main/docker/postgresql.yml down
+
+To start a ElasticSearch in a docker container, run:
+
+    docker-compose -f src/main/docker/elasticsearch.yml up -d
+
+To stop it and remove the container, run:
+
+    docker-compose -f src/main/docker/elasticsearch.yml down
 
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
@@ -133,9 +115,45 @@ Then run:
 
 For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`yo jhipster:docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
-## Continuous Integration (optional)
+## Docker Hub
 
-To configure CI for your project, run the ci-cd sub-generator (`yo jhipster:ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+This project build this Docker image at Docker Hub: [pascalgrimaud/qualitoast](https://hub.docker.com/r/pascalgrimaud/qualitoast/)
+
+Try this image with dev profile:
+
+    docker run -d -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev,swagger pascalgrimaud/qualitoast
+
+
+Or, you can use the following docker-compose file to run:
+
+- the application: QualiToast
+- the database: PostgreSQL
+- the search engine: ElasticSearch
+
+```
+version: '2'
+services:
+    qualitoast-app:
+        image: pascalgrimaud/qualitoast
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://qualitoast-postgresql:5432/QualiToast
+            - JHIPSTER_SLEEP=10
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=qualitoast-elasticsearch:9300
+        ports:
+            - 8080:8080
+    qualitoast-postgresql:
+        image: postgres:9.6.2
+        #volumes:
+        #    - ~/volumes/jhipster/QualiToast/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=QualiToast
+            - POSTGRES_PASSWORD=
+    qualitoast-elasticsearch:
+        image: elasticsearch:2.4.1
+        #volumes:
+        #    - ~/volumes/jhipster/QualiToast/elasticsearch/:/usr/share/elasticsearch/data/
+``` 
 
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
 [JHipster 4.3.0 archive]: https://jhipster.github.io/documentation-archive/v4.3.0
