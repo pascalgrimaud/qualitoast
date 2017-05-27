@@ -6,7 +6,11 @@
 
 ## Description
 
-This application was generated using JHipster 4.3.0.
+This application was generated using JHipster 4.3.0, with the following options:
+- Angular
+- Maven
+- PostgreSQL
+- ElasticSearch
 
 It added:
 
@@ -57,6 +61,7 @@ To ensure everything worked, run:
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
 Refer to [Using JHipster in production][] for more details.
+
 
 ## Testing
 
@@ -115,9 +120,10 @@ Then run:
 
 For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the docker-compose sub-generator (`yo jhipster:docker-compose`), which is able to generate docker configurations for one or several JHipster applications.
 
+
 ## Docker Hub
 
-This project build this Docker image at Docker Hub: [pascalgrimaud/qualitoast](https://hub.docker.com/r/pascalgrimaud/qualitoast/)
+This project build this automated Docker image at: [![qualitoast-docker-hub][qualitoast-docker-image]][qualitoast-docker-url]
 
 Try this image with dev profile:
 
@@ -182,3 +188,6 @@ services:
 
 [codecov-image]: https://codecov.io/gh/pascalgrimaud/qualitoast/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/pascalgrimaud/qualitoast
+
+[qualitoast-docker-image]: https://img.shields.io/badge/Docker%20Hub-pascalgrimaud%2Fqualitoast-blue.svg?style=flat 
+[qualitoast-docker-url]: https://hub.docker.com/r/pascalgrimaud/qualitoast/
