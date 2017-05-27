@@ -131,13 +131,13 @@ Try this image with dev profile:
     docker run -d -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev,swagger pascalgrimaud/qualitoast
 
 
-Or, you can use the following docker-compose file to run:
+Or, you can use the following docker-compose file to run the:
 
-- the application: QualiToast
-- the database: PostgreSQL
-- the search engine: ElasticSearch
+- application: QualiToast
+- database: PostgreSQL
+- search engine: ElasticSearch
 
-```
+```yaml
 version: '2'
 services:
     qualitoast-app:
