@@ -123,7 +123,9 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 ## Docker Hub
 
-This project build this automated Docker image at: [![qualitoast-docker-hub][qualitoast-docker-image]][qualitoast-docker-url]
+This project build this automated Docker image at:
+
+[![qualitoast-docker-hub][qualitoast-docker-image]][qualitoast-docker-url]
 
 Try this image with dev profile:
 
