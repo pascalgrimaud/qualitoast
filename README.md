@@ -1,7 +1,6 @@
 # QualiToast
 
-[![Build Status][travis-image-master]][travis-url]
-[![codecov][codecov-image]][codecov-url]
+[![qualitoast-project][qualitoast-project-image]][qualitoast-project-url] [![Build Status][travis-image-master]][travis-url] [![codecov][codecov-image]][codecov-url]
 
 
 ## Description
@@ -188,8 +187,12 @@ services:
 [travis-image-dev]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=dev
 [travis-url]: https://travis-ci.org/pascalgrimaud/qualitoast/branches
 
+[codecov]: https://codecov.io
 [codecov-image]: https://codecov.io/gh/pascalgrimaud/qualitoast/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/pascalgrimaud/qualitoast
 
-[qualitoast-docker-image]: https://img.shields.io/badge/Docker%20Hub-pascalgrimaud%2Fqualitoast-blue.svg?style=flat 
+[qualitoast-docker-image]: https://img.shields.io/badge/docker%20hub-pascalgrimaud%2Fqualitoast-blue.svg?style=flat 
 [qualitoast-docker-url]: https://hub.docker.com/r/pascalgrimaud/qualitoast/
+
+[qualitoast-project-image]: https://img.shields.io/badge/project-qualitoast-593196.svg
+[qualitoast-project-url]: https://github.com/pascalgrimaud/qualitoast
