@@ -13,6 +13,8 @@ This application was generated using JHipster 4.3.0, with the following options:
 
 It added:
 
+- A page for reindexing Elasticsearch, using this module [generator-jhipster-elasticsearch-reindexer](https://github.com/geraldhumphries/generator-jhipster-elasticsearch-reindexer)
+- Docker image at Docker Hub, using this module [generator-jhipster-docker](https://github.com/pascalgrimaud/generator-jhipster-docker) 
 - bootswatch theme: [pulse](https://bootswatch.com/4-alpha/pulse/)
 - [PrimeNG](https://www.primefaces.org/primeng/#/) for chart
 
