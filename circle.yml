@@ -3,6 +3,7 @@ machine:
     - docker
 dependencies:
   override:
+    - wget -qO- https://get.docker.com/ | sh
     - docker version
     - docker image build -t pascalgrimaud/qualitoast:circleci .
     - docker image ls
