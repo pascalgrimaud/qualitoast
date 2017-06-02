@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+dependencies:
+  override:
+    - docker version
+    - docker image build -t pascalgrimaud/qualitoast:circleci .
+    - docker image ls
+test:
+  override:
+    - docker container run -d -p 8080:8080 -e SPRING_PROFILES_ACTIVE=dev --name=qualitoast pascalgrimaud/qualitoast:circleci ; sleep 30
+    - docker container logs qualitoast
+    - curl -I http://localhost:8080 | grep "HTTP/1.1 200 OK"
