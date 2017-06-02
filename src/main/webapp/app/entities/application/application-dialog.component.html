@@ -41,6 +41,12 @@
                 <textarea type="text" class="form-control" rows="3" name="description" id="field_description"
                 [(ngModel)]="application.description"></textarea>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.application.priority" for="field_priority">Priority</label>
+            <input type="checkbox" class="form-control" name="priority" id="field_priority"
+                   [(ngModel)]="application.priority"
+            />
+        </div>
 
     </div>
     <div class="modal-footer">

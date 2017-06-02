@@ -19,11 +19,15 @@
         {
             "fieldName": "description",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "priority",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20170422204529",
-    "entityTableName": "application",
     "dto": "no",
-    "pagination": "pagination",
-    "service": "serviceClass"
+    "service": "serviceClass",
+    "entityTableName": "application",
+    "pagination": "pagination"
 }
