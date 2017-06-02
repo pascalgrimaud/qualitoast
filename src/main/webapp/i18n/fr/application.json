@@ -18,7 +18,8 @@
             },
             "code": "Code",
             "nom": "Nom",
-            "description": "Description"
+            "description": "Description",
+            "priority": "Priorité"
         }
     }
 }

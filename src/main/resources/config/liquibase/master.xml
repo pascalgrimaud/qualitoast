@@ -18,5 +18,8 @@
     change to notnull for application and typetest
     -->
     <include file="classpath:config/liquibase/changelog/20170430153402_changelog.xml" relativeToChangelogFile="false"/>
-
+    <!--
+    add new field 'priority' to application table
+    -->
+    <include file="classpath:config/liquibase/changelog/20170602165731_changelog.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

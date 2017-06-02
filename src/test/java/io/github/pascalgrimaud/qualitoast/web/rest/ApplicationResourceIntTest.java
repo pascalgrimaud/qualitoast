@@ -48,6 +48,9 @@ public class ApplicationResourceIntTest {
     private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
     private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_PRIORITY = false;
+    private static final Boolean UPDATED_PRIORITY = true;
+
     @Autowired
     private ApplicationRepository applicationRepository;
 
@@ -93,7 +96,8 @@ public class ApplicationResourceIntTest {
         Application application = new Application()
             .code(DEFAULT_CODE)
             .nom(DEFAULT_NOM)
-            .description(DEFAULT_DESCRIPTION);
+            .description(DEFAULT_DESCRIPTION)
+            .priority(DEFAULT_PRIORITY);
         return application;
     }
 
@@ -121,6 +125,7 @@ public class ApplicationResourceIntTest {
         assertThat(testApplication.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testApplication.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testApplication.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testApplication.isPriority()).isEqualTo(DEFAULT_PRIORITY);
 
         // Validate the Application in Elasticsearch
         Application applicationEs = applicationSearchRepository.findOne(testApplication.getId());
@@ -195,7 +200,8 @@ public class ApplicationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(application.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.booleanValue())));
     }
 
     @Test
@@ -211,7 +217,8 @@ public class ApplicationResourceIntTest {
             .andExpect(jsonPath("$.id").value(application.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.priority").value(DEFAULT_PRIORITY.booleanValue()));
     }
 
     @Test
@@ -235,7 +242,8 @@ public class ApplicationResourceIntTest {
         updatedApplication
             .code(UPDATED_CODE)
             .nom(UPDATED_NOM)
-            .description(UPDATED_DESCRIPTION);
+            .description(UPDATED_DESCRIPTION)
+            .priority(UPDATED_PRIORITY);
 
         restApplicationMockMvc.perform(put("/api/applications")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -249,6 +257,7 @@ public class ApplicationResourceIntTest {
         assertThat(testApplication.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testApplication.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testApplication.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testApplication.isPriority()).isEqualTo(UPDATED_PRIORITY);
 
         // Validate the Application in Elasticsearch
         Application applicationEs = applicationSearchRepository.findOne(testApplication.getId());
@@ -308,7 +317,8 @@ public class ApplicationResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(application.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].priority").value(hasItem(DEFAULT_PRIORITY.booleanValue())));
     }
 
     @Test

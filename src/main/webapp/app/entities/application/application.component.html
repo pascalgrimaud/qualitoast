@@ -32,6 +32,7 @@
             <th jhiSortBy="code"><span jhiTranslate="qualiToastApp.application.code">Code</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.application.nom">Nom</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="qualiToastApp.application.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="priority"><span jhiTranslate="qualiToastApp.application.priority">Priority</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -40,6 +41,7 @@
                 <td><a [routerLink]="['../application', application.id ]">{{application.code}}</a></td>
                 <td><a [routerLink]="['../application', application.id ]">{{application.nom}}</a></td>
                 <td>{{application.description}}</td>
+                <td>{{application.priority}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit" id="application-component-view"

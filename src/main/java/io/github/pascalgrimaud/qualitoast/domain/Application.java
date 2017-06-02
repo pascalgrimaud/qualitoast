@@ -36,6 +36,9 @@ public class Application implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "priority")
+    private Boolean priority;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +86,19 @@ public class Application implements Serializable {
         this.description = description;
     }
 
+    public Boolean isPriority() {
+        return priority;
+    }
+
+    public Application priority(Boolean priority) {
+        this.priority = priority;
+        return this;
+    }
+
+    public void setPriority(Boolean priority) {
+        this.priority = priority;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -110,6 +126,7 @@ public class Application implements Serializable {
             ", code='" + getCode() + "'" +
             ", nom='" + getNom() + "'" +
             ", description='" + getDescription() + "'" +
+            ", priority='" + isPriority() + "'" +
             "}";
     }
 }
