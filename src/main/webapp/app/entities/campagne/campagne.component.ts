@@ -137,6 +137,26 @@ currentAccount: any;
         return result;
     }
 
+    getColorResultat(resultatState) {
+        if (resultatState.toLowerCase() === 'ok') {
+            return 'text-success btn-sm';
+        } else if (resultatState.toLowerCase() === 'ko') {
+            return 'text-danger btn-sm';
+        } else {
+            return 'text-warning btn-sm';
+        }
+    }
+
+    getIconResultat(resultatState) {
+        if (resultatState.toLowerCase() === 'ok') {
+            return 'fa fa-check';
+        } else if (resultatState.toLowerCase() === 'ko') {
+            return 'fa fa-close';
+        } else {
+            return 'fa fa-warning';
+        }
+    }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');

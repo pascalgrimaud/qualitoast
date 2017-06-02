@@ -37,11 +37,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let application of applications ;trackBy: trackId">
+            <tr *ngFor="let application of applications ;trackBy: trackId" [ngClass]="isPriority(application.priority)">
                 <td><a [routerLink]="['../application', application.id ]">{{application.code}}</a></td>
                 <td><a [routerLink]="['../application', application.id ]">{{application.nom}}</a></td>
                 <td>{{application.description}}</td>
-                <td>{{application.priority}}</td>
+                <td align="center">
+                    <div *ngIf="application.priority">
+                        <i class="fa fa-exclamation-circle" style="color:red"></i>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit" id="application-component-view"

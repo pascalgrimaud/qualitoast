@@ -137,6 +137,10 @@ currentAccount: any;
         return result;
     }
 
+    isPriority(priority) {
+        return priority ? 'table-danger' : '';
+    }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
