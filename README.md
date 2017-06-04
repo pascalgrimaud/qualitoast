@@ -17,6 +17,7 @@ It added:
 - Docker image at Docker Hub, using this module [generator-jhipster-docker](https://github.com/pascalgrimaud/generator-jhipster-docker) 
 - bootswatch theme: [pulse](https://bootswatch.com/4-alpha/pulse/)
 - [PrimeNG](https://www.primefaces.org/primeng/#/) for chart
+- Custom 3D Banner, using this module [generator-jhipster-banner](https://github.com/PierreBesson/generator-jhipster-banner)
 
 
 ## Development
