@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 import { QualiToastSharedModule } from '../shared';
 
 import {
-    Activate,
-    Password,
-    PasswordResetInit,
-    PasswordResetFinish,
+    ActivateService,
+    PasswordService,
+    PasswordResetInitService,
+    PasswordResetFinishService,
     SessionsService,
     SessionsComponent,
     PasswordStrengthBarComponent,
@@ -35,10 +35,10 @@ import {
     ],
     providers: [
         SessionsService,
-        Activate,
-        Password,
-        PasswordResetInit,
-        PasswordResetFinish
+        ActivateService,
+        PasswordService,
+        PasswordResetInitService,
+        PasswordResetFinishService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
