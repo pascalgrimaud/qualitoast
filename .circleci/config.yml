@@ -32,7 +32,11 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker build -t pascalgrimaud/qualitoast:circleci .
+            docker image build -t pascalgrimaud/qualitoast:circleci .
+      - run:
+          name: Check the image
+          command: |
+            docker image ls
 #      - run:
 #          name: Save Docker image layer cache
 #          command: |

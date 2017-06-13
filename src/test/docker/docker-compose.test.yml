@@ -10,10 +10,9 @@ services:
         ports:
             - 8080:8080
     qualitoast-postgresql:
-        extends:
-            file: postgresql.yml
-            service: qualitoast-postgresql
+        image: postgres:9.6.2
+        environment:
+            - POSTGRES_USER=QualiToast
+            - POSTGRES_PASSWORD=
     qualitoast-elasticsearch:
-        extends:
-            file: elasticsearch.yml
-            service: qualitoast-elasticsearch
+        image: elasticsearch:2.4.1
