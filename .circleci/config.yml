@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install docker-compose==1.12.0 awscli==1.11.76
+      - run:
+          name: Build application Docker image
+          command: |
+            docker image build -t pascalgrimaud/qualitoast:circleci .
+      - run:
+          name: Run docker-compose tests
+          command: |
+            docker-compose -f ./src/test/docker/docker-compose.test.yml up -d
+            sleep 40
+            docker-compose -f ./src/test/docker/docker-compose.test.yml logs
+            docker container ps -a
+            docker image ls

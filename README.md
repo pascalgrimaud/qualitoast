@@ -1,6 +1,8 @@
 # QualiToast
 
-[![qualitoast-project][qualitoast-project-image]][qualitoast-project-url] [![Build Status][travis-image-master]][travis-url] [![codecov][codecov-image]][codecov-url]
+[![QualiToast Project][project-image]][project-url] [![codecov][codecov-image]][codecov-url]
+
+[![Build Status][travis-image]][travis-url] [![Docker Status][circleci-image]][circleci-url]
 
 
 ## Description
@@ -127,7 +129,7 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 This project build this automated Docker image at:
 
-[![qualitoast-docker-hub][qualitoast-docker-image]][qualitoast-docker-url]
+[![Docker Hub][docker-image]][docker-url]
 
 Try this image with dev profile:
 
@@ -186,16 +188,18 @@ services:
 [Leaflet]: http://leafletjs.com/
 [DefinitelyTyped]: http://definitelytyped.org/
 
-[travis-image-master]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=master
-[travis-image-dev]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=dev
+[travis-image]: https://travis-ci.org/pascalgrimaud/qualitoast.svg?branch=master
 [travis-url]: https://travis-ci.org/pascalgrimaud/qualitoast/branches
+
+[circleci-image]: https://circleci.com/gh/pascalgrimaud/qualitoast/tree/master.png
+[circleci-url]: https://circleci.com/gh/pascalgrimaud/qualitoast
 
 [codecov]: https://codecov.io
 [codecov-image]: https://codecov.io/gh/pascalgrimaud/qualitoast/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/pascalgrimaud/qualitoast
 
-[qualitoast-docker-image]: https://img.shields.io/badge/docker%20hub-pascalgrimaud%2Fqualitoast-blue.svg?style=flat 
-[qualitoast-docker-url]: https://hub.docker.com/r/pascalgrimaud/qualitoast/
+[docker-image]: https://img.shields.io/badge/docker%20hub-pascalgrimaud%2Fqualitoast-blue.svg?style=flat 
+[docker-url]: https://hub.docker.com/r/pascalgrimaud/qualitoast/
 
-[qualitoast-project-image]: https://img.shields.io/badge/project-qualitoast-593196.svg
-[qualitoast-project-url]: https://github.com/pascalgrimaud/qualitoast
+[project-image]: https://img.shields.io/badge/project-qualitoast-593196.svg
+[project-url]: https://github.com/pascalgrimaud/qualitoast
