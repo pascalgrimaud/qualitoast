@@ -8,6 +8,9 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: Check version
+          command: docker version
+      - run:
           name: Install dependencies
           command: |
             apk add --no-cache py-pip=9.0.0-r1
