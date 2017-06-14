@@ -1,6 +1,8 @@
 # QualiToast
 
-[![QualiToast Project][project-image]][project-url] [![Build Status][travis-image]][travis-url] [![Docker Status][circleci-image]][circleci-url] [![codecov][codecov-image]][codecov-url]
+[![QualiToast Project][project-image]][project-url] [![codecov][codecov-image]][codecov-url]
+
+[![Build Status][travis-image]][travis-url] [![Docker Status][circleci-image]][circleci-url]
 
 
 ## Description
