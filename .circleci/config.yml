@@ -2,11 +2,9 @@ version: 2
 jobs:
   build:
     working_directory: /app
-    docker:
-      - image: docker:17.05.0-ce-git
+    machine: true
     steps:
       - checkout
-      - setup_remote_docker
       - run: sudo service docker stop
       - run:
           name: Install last version of Docker
