@@ -11,14 +11,14 @@ jobs:
           command: curl -fsSL https://get.docker.com/ | sudo sh
       - run: docker version
       - run:
-          name: Install dependencies
+          name: Install Docker Compose
           command: |
-            apk add --no-cache py-pip=9.0.0-r1
-            pip install docker-compose==1.12.0
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
       - run:
           name: Build application Docker image
-          command: |
-            docker image build -t pascalgrimaud/qualitoast:circleci .
+          command: docker image build -t pascalgrimaud/qualitoast:circleci .
       - run:
           name: Run docker-compose tests
           command: |
