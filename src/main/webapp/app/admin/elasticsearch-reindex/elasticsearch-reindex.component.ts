@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService } from 'ng-jhipster';
 
 import { ElasticsearchReindexService } from './elasticsearch-reindex.service';
 import { ElasticsearchReindexModalComponent } from './elasticsearch-reindex-modal.component';
@@ -12,12 +11,9 @@ import { ElasticsearchReindexModalComponent } from './elasticsearch-reindex-moda
 export class ElasticsearchReindexComponent {
 
     constructor(
-        private jhiLanguageService: JhiLanguageService,
         private modalService: NgbModal,
         private elasticsearchReindexService: ElasticsearchReindexService
-    ) {
-        this.jhiLanguageService.setLocations(['elasticsearch-reindex']);
-    }
+    ) { }
 
     showConfirm() {
         const modalRef = this.modalService.open(ElasticsearchReindexModalComponent);

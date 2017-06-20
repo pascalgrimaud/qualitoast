@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService } from 'ng-jhipster';
+import { JhiAlertService } from 'ng-jhipster';
 
 import { ElasticsearchReindexService } from './elasticsearch-reindex.service';
 
@@ -13,7 +13,7 @@ export class ElasticsearchReindexModalComponent {
     constructor(
         private elasticsearchReindexService: ElasticsearchReindexService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService
+        private alertService: JhiAlertService
     ) { }
 
     reindex() {

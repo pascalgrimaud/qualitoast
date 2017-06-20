@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Testeur } from './testeur.model';
 import { TesteurPopupService } from './testeur-popup.service';
@@ -29,11 +29,11 @@ export class TesteurDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private testeurService: TesteurService,
         private typeTestService: TypeTestService,
         private campagneService: CampagneService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -45,6 +45,7 @@ export class TesteurDialogComponent implements OnInit {
         this.campagneService.query()
             .subscribe((res: ResponseWrapper) => { this.campagnes = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
+
     clear() {
         this.activeModal.dismiss('cancel');
     }

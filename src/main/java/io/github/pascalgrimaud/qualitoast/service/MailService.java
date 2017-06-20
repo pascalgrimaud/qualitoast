@@ -1,7 +1,9 @@
 package io.github.pascalgrimaud.qualitoast.service;
 
-import io.github.jhipster.config.JHipsterProperties;
 import io.github.pascalgrimaud.qualitoast.domain.User;
+
+import io.github.jhipster.config.JHipsterProperties;
+
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +42,7 @@ public class MailService {
     private final SpringTemplateEngine templateEngine;
 
     public MailService(JHipsterProperties jHipsterProperties, JavaMailSender javaMailSender,
-                       MessageSource messageSource, SpringTemplateEngine templateEngine) {
+            MessageSource messageSource, SpringTemplateEngine templateEngine) {
 
         this.jHipsterProperties = jHipsterProperties;
         this.javaMailSender = javaMailSender;

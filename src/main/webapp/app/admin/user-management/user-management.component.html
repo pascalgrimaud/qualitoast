@@ -60,7 +60,7 @@
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'user-management/'+ user.login + '/delete'} }]"
                                 replaceUrl="true"
-                                class="btn btn-danger btn-sm" [disabled]="currentAccount.login==user.login">
+                                class="btn btn-danger btn-sm" [disabled]="currentAccount.login === user.login">
                             <span class="fa fa-remove"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
