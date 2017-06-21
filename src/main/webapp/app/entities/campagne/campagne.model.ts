@@ -1,8 +1,6 @@
-import { Application } from '../application';
-import { TypeTest } from '../type-test';
-import { Resultat } from '../resultat';
-import { Testeur } from '../testeur';
-export class Campagne {
+import { BaseEntity } from './../../shared';
+
+export class Campagne implements BaseEntity {
     constructor(
         public id?: number,
         public version?: string,
@@ -14,10 +12,10 @@ export class Campagne {
         public mineur?: number,
         public evolution?: number,
         public termine?: boolean,
-        public application?: Application,
-        public typetest?: TypeTest,
-        public resultat?: Resultat,
-        public testeur?: Testeur,
+        public application?: BaseEntity,
+        public typetest?: BaseEntity,
+        public resultat?: BaseEntity,
+        public testeurs?: BaseEntity[],
     ) {
         this.termine = false;
     }

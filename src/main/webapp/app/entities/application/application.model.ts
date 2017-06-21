@@ -1,4 +1,6 @@
-export class Application {
+import { BaseEntity } from './../../shared';
+
+export class Application implements BaseEntity {
     constructor(
         public id?: number,
         public code?: string,
