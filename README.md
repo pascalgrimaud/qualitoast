@@ -18,7 +18,7 @@ It added:
 - A page for reindexing Elasticsearch, using this module [generator-jhipster-elasticsearch-reindexer](https://github.com/geraldhumphries/generator-jhipster-elasticsearch-reindexer)
 - Docker image at Docker Hub, using this module [generator-jhipster-docker](https://github.com/pascalgrimaud/generator-jhipster-docker) 
 - bootswatch theme: [pulse](https://bootswatch.com/4-alpha/pulse/)
-- [PrimeNG](https://www.primefaces.org/primeng/#/) for chart
+- [PrimeNG](https://www.primefaces.org/primeng/#/) for charts, using this module [generator-jhipster-primeng-charts](https://github.com/pascalgrimaud/generator-jhipster-primeng-charts)
 - Custom 3D Banner, using this module [generator-jhipster-banner](https://github.com/PierreBesson/generator-jhipster-banner)
 
 
