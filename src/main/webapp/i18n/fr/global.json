@@ -4,11 +4,16 @@
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
-            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "dashboard": {
                 "main": "Dashboard",
-                "piechart": "Pie Chart"
+                "barchart": "BarChart",
+                "doughnutchart": "DoughnutChart",
+                "linechart": "LineChart",
+                "piechart": "PieChart",
+                "polarareachart": "PolarAreaChart",
+                "radarchart": "RadarChart"
             },
+            "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
                 "campagne": "Campagnes",

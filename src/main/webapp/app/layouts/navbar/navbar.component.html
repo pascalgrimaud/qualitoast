@@ -20,17 +20,45 @@
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="dashboard-menu">
                     <span>
                         <i class="fa fa-area-chart" aria-hidden="true"></i>
-                        <span jhiTranslate="global.menu.dashboard.main">
-                            Dashboard
-                        </span>
+                        <span jhiTranslate="global.menu.dashboard.main">Dashboard</span>
                         <b class="caret"></b>
                     </span>
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="barchart" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.barchart">BarChart</span>
+                        </a>
+                    </li>
+                    <li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="doughnutchart" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-circle-o-notch" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.doughnutchart">BarChart</span>
+                        </a>
+                    </li>
+                    <li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="linechart" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-line-chart" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.linechart">LineChart</span>
+                        </a>
+                    </li>
+                    <li uiSrefActive="active">
                         <a class="dropdown-item" routerLink="piechart" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span jhiTranslate="global.menu.dashboard.piechart">Pie Chart</span>
+                            <i class="fa fa-fw fa-pie-chart" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.piechart">PieChart</span>
+                        </a>
+                    </li>
+                    <li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="polarareachart" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-bullseye" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.polarareachart">PolarAreaChart</span>
+                        </a>
+                    </li>
+                    <li uiSrefActive="active">
+                        <a class="dropdown-item" routerLink="radarchart" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-star-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.dashboard.radarchart">RadarChart</span>
                         </a>
                     </li>
                 </ul>
