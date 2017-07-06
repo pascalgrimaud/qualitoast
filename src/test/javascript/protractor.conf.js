@@ -18,6 +18,7 @@ exports.config = {
         './e2e/entities/testeur/testeur-delete.spec.ts',
         './e2e/entities/type-test/typetest-delete.spec.ts',
         './e2e/entities/resultat/resultat-delete.spec.ts',
+        /* jhipster-needle-add-protractor-tests - JHipster will add protractors tests here */
     ],
 
     capabilities: {

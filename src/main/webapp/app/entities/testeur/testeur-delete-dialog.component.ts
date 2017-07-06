@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Testeur } from './testeur.model';
 import { TesteurPopupService } from './testeur-popup.service';
@@ -19,7 +19,6 @@ export class TesteurDeleteDialogComponent {
     constructor(
         private testeurService: TesteurService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -28,7 +27,7 @@ export class TesteurDeleteDialogComponent {
         this.activeModal.dismiss('cancel');
     }
 
-    confirmDelete(id: number, nom: string) {
+    confirmDelete(id: number) {
         this.testeurService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
                 name: 'testeurListModification',
@@ -36,7 +35,6 @@ export class TesteurDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('qualiToastApp.testeur.deleted', { param : nom }, null);
     }
 }
 

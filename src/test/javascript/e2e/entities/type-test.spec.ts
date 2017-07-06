@@ -31,7 +31,7 @@ describe('TypeTest e2e test', () => {
         });
     });
 
-    it('should load create TypeTest dialog', function () {
+    it('should load create TypeTest dialog', () => {
         element(by.css('button.create-type-test')).click().then(() => {
             const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -42,7 +42,7 @@ describe('TypeTest e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

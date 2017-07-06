@@ -31,7 +31,7 @@ describe('Application e2e test', () => {
         });
     });
 
-    it('should load create Application dialog', function () {
+    it('should load create Application dialog', () => {
         element(by.css('button.create-application')).click().then(() => {
             const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -42,7 +42,7 @@ describe('Application e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });
