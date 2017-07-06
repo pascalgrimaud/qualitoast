@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Resultat } from './resultat.model';
 import { ResultatService } from './resultat.service';
+
 @Injectable()
 export class ResultatPopupService {
     private isOpen = false;

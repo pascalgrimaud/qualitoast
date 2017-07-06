@@ -7,7 +7,7 @@
 
 ## Description
 
-This application was generated using JHipster 4.3.0, with the following options:
+This application was generated using JHipster 4.6.0, with the following options:
 - Angular
 - Maven
 - PostgreSQL
@@ -168,13 +168,13 @@ services:
 ``` 
 
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
-[JHipster 4.3.0 archive]: https://jhipster.github.io/documentation-archive/v4.3.0
+[JHipster 4.6.0 archive]: https://jhipster.github.io/documentation-archive/v4.6.0
 
-[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.3.0/development/
-[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.3.0/docker-compose
-[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.3.0/production/
-[Running tests page]: https://jhipster.github.io/documentation-archive/v4.3.0/running-tests/
-[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.3.0/setting-up-ci/
+[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.6.0/development/
+[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.6.0/docker-compose
+[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.6.0/production/
+[Running tests page]: https://jhipster.github.io/documentation-archive/v4.6.0/running-tests/
+[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.6.0/setting-up-ci/
 
 [Gatling]: http://gatling.io/
 [Node.js]: https://nodejs.org/
