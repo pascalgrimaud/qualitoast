@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Campagne } from './campagne.model';
 import { CampagnePopupService } from './campagne-popup.service';
@@ -19,7 +19,6 @@ export class CampagneDeleteDialogComponent {
     constructor(
         private campagneService: CampagneService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class CampagneDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('qualiToastApp.campagne.deleted', { param : id }, null);
     }
 }
 

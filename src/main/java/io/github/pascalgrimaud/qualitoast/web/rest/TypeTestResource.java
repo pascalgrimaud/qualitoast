@@ -65,7 +65,7 @@ public class TypeTestResource {
      * @param typeTest the typeTest to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated typeTest,
      * or with status 400 (Bad Request) if the typeTest is not valid,
-     * or with status 500 (Internal Server Error) if the typeTest couldnt be updated
+     * or with status 500 (Internal Server Error) if the typeTest couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/type-tests")

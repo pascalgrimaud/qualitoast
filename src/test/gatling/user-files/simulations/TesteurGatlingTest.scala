@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Resultat entity.
+ * Performance test for the Testeur entity.
  */
-class ResultatGatlingTest extends Simulation {
+class TesteurGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -37,7 +37,7 @@ class ResultatGatlingTest extends Simulation {
         "X-XSRF-TOKEN" -> "${xsrf_token}"
     )
 
-    val scn = scenario("Test the Resultat entity")
+    val scn = scenario("Test the Testeur entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -59,26 +59,26 @@ class ResultatGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all resultats")
-            .get("/api/resultats")
+            exec(http("Get all testeurs")
+            .get("/api/testeurs")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new resultat")
-            .post("/api/resultats")
+            .exec(http("Create new testeur")
+            .post("/api/testeurs")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "code":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "identifiant":"SAMPLE_TEXT", "nom":"SAMPLE_TEXT", "prenom":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_resultat_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_testeur_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created resultat")
-                .get("${new_resultat_url}")
+                exec(http("Get created testeur")
+                .get("${new_testeur_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created resultat")
-            .delete("${new_resultat_url}")
+            .exec(http("Delete created testeur")
+            .delete("${new_testeur_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }
@@ -86,6 +86,6 @@ class ResultatGatlingTest extends Simulation {
     val users = scenario("Users").exec(scn)
 
     setUp(
-        users.inject(rampUsers(100) over (1 minutes))
+        users.inject(rampUsers(Integer.getInteger("users", 100)) over (Integer.getInteger("ramp", 1) minutes))
     ).protocols(httpConf)
 }

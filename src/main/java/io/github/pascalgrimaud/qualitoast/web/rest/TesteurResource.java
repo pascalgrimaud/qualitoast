@@ -65,7 +65,7 @@ public class TesteurResource {
      * @param testeur the testeur to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated testeur,
      * or with status 400 (Bad Request) if the testeur is not valid,
-     * or with status 500 (Internal Server Error) if the testeur couldnt be updated
+     * or with status 500 (Internal Server Error) if the testeur couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/testeurs")

@@ -1,7 +1,6 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-
 import io.github.pascalgrimaud.qualitoast.domain.PersistentToken;
 import io.github.pascalgrimaud.qualitoast.domain.User;
 import io.github.pascalgrimaud.qualitoast.repository.PersistentTokenRepository;
@@ -11,10 +10,9 @@ import io.github.pascalgrimaud.qualitoast.security.SecurityUtils;
 import io.github.pascalgrimaud.qualitoast.service.MailService;
 import io.github.pascalgrimaud.qualitoast.service.UserService;
 import io.github.pascalgrimaud.qualitoast.service.dto.UserDTO;
+import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.vm.KeyAndPasswordVM;
 import io.github.pascalgrimaud.qualitoast.web.rest.vm.ManagedUserVM;
-import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +46,8 @@ public class AccountResource {
 
     private final PersistentTokenRepository persistentTokenRepository;
 
+    private static final String CHECK_ERROR_MESSAGE = "Incorrect password";
+
     public AccountResource(UserRepository userRepository, UserService userService,
             MailService mailService, PersistentTokenRepository persistentTokenRepository) {
 
@@ -71,11 +71,9 @@ public class AccountResource {
 
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
-
         if (!checkPasswordLength(managedUserVM.getPassword())) {
-            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(CHECK_ERROR_MESSAGE, HttpStatus.BAD_REQUEST);
         }
-
         return userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase())
             .map(user -> new ResponseEntity<>("login already in use", textPlainHeaders, HttpStatus.BAD_REQUEST))
             .orElseGet(() -> userRepository.findOneByEmail(managedUserVM.getEmail())
@@ -168,7 +166,7 @@ public class AccountResource {
     @Timed
     public ResponseEntity changePassword(@RequestBody String password) {
         if (!checkPasswordLength(password)) {
-            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(CHECK_ERROR_MESSAGE, HttpStatus.BAD_REQUEST);
         }
         userService.changePassword(password);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -245,7 +243,7 @@ public class AccountResource {
     @Timed
     public ResponseEntity<String> finishPasswordReset(@RequestBody KeyAndPasswordVM keyAndPassword) {
         if (!checkPasswordLength(keyAndPassword.getNewPassword())) {
-            return new ResponseEntity<>("Incorrect password", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(CHECK_ERROR_MESSAGE, HttpStatus.BAD_REQUEST);
         }
         return userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey())
               .map(user -> new ResponseEntity<String>(HttpStatus.OK))

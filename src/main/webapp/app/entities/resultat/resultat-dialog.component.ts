@@ -41,24 +41,19 @@ export class ResultatDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.resultat.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.resultatService.update(this.resultat), false);
+                this.resultatService.update(this.resultat));
         } else {
             this.subscribeToSaveResponse(
-                this.resultatService.create(this.resultat), true);
+                this.resultatService.create(this.resultat));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Resultat>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Resultat>) {
         result.subscribe((res: Resultat) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Resultat, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'qualiToastApp.resultat.created'
-            : 'qualiToastApp.resultat.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess(result: Resultat) {
         this.eventManager.broadcast({ name: 'resultatListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

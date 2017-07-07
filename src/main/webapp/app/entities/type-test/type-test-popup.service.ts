@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { TypeTest } from './type-test.model';
 import { TypeTestService } from './type-test.service';
+
 @Injectable()
 export class TypeTestPopupService {
     private isOpen = false;

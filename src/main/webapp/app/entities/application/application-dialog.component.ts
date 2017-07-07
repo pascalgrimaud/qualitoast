@@ -41,24 +41,19 @@ export class ApplicationDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.application.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.applicationService.update(this.application), false);
+                this.applicationService.update(this.application));
         } else {
             this.subscribeToSaveResponse(
-                this.applicationService.create(this.application), true);
+                this.applicationService.create(this.application));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Application>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Application>) {
         result.subscribe((res: Application) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Application, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'qualiToastApp.application.created'
-            : 'qualiToastApp.application.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess(result: Application) {
         this.eventManager.broadcast({ name: 'applicationListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

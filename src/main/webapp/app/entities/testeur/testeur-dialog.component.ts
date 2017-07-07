@@ -54,24 +54,19 @@ export class TesteurDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.testeur.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.testeurService.update(this.testeur), false);
+                this.testeurService.update(this.testeur));
         } else {
             this.subscribeToSaveResponse(
-                this.testeurService.create(this.testeur), true);
+                this.testeurService.create(this.testeur));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Testeur>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Testeur>) {
         result.subscribe((res: Testeur) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Testeur, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'qualiToastApp.testeur.created'
-            : 'qualiToastApp.testeur.updated',
-            { param : result.nom }, null);
-
+    private onSaveSuccess(result: Testeur) {
         this.eventManager.broadcast({ name: 'testeurListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

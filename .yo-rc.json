@@ -4,7 +4,7 @@
       "packageName": "io.github.pascalgrimaud.qualitoast",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.5.5",
+    "jhipsterVersion": "4.6.0",
     "baseName": "QualiToast",
     "packageName": "io.github.pascalgrimaud.qualitoast",
     "packageFolder": "io/github/pascalgrimaud/qualitoast",
@@ -22,7 +22,7 @@
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "rememberMeKey": "a296d792af1d7312f28e561576703c62ce8b54b8",
-    "clientFramework": "angular2",
+    "clientFramework": "angularX",
     "useSass": false,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",

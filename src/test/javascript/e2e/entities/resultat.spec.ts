@@ -31,7 +31,7 @@ describe('Resultat e2e test', () => {
         });
     });
 
-    it('should load create Resultat dialog', function () {
+    it('should load create Resultat dialog', () => {
         element(by.css('button.create-resultat')).click().then(() => {
             const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -42,7 +42,7 @@ describe('Resultat e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

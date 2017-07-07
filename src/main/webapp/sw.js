@@ -1,5 +1,5 @@
-var dataCacheName = '"QualiToast-v1';
-var cacheName = '"QualiToast-1';
+var dataCacheName = 'QualiToast-v1';
+var cacheName = 'QualiToast-1';
 var filesToCache = [
     '/',
     '/index.html'
