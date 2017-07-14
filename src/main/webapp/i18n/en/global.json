@@ -39,6 +39,7 @@
                 "metrics": "Metrics",
                 "health": "Health",
                 "configuration": "Configuration",
+                "logfile": "LogFile",
                 "logs": "Logs",
                 "audits": "Audits",
                 "apidocs": "API",

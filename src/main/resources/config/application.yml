@@ -59,6 +59,8 @@ info:
     project:
         version: #project.version#
 
+logging.path: target/
+
 # ===================================================================
 # JHipster specific properties
 #
@@ -81,7 +83,7 @@ jhipster:
     mail:
         from: QualiToast@localhost
     swagger:
-        default-include-pattern: /api/.*
+        default-include-pattern: /(api|management)/.*
         title: QualiToast API
         description: QualiToast API documentation
         version: 0.0.1
