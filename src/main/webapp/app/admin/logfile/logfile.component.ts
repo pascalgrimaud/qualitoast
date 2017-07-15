@@ -18,6 +18,5 @@ export class LogFileComponent implements OnInit {
 
     ngOnInit() {
         this.logFileService.getLogFile().subscribe((logtxt) => this.logtxt = logtxt);
-        console.log(this.logtxt);
     }
 }
