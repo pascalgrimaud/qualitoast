@@ -59,7 +59,8 @@ info:
     project:
         version: #project.version#
 
-logging.path: target/
+logging:
+    path: target/
 
 # ===================================================================
 # JHipster specific properties

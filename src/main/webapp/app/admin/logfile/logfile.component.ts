@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { LogFileService } from './logfile.service';
 
 @Component({
@@ -12,7 +10,6 @@ export class LogFileComponent implements OnInit {
     logtxt: string;
 
     constructor(
-        private modalService: NgbModal,
         private logFileService: LogFileService
     ) { }
 
