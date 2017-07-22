@@ -1,3 +1,5 @@
+// JDL definition for application 'QualiToast' generated with command 'jhipster export-jdl'
+
 entity Campagne (campagne) {
   version String required,
   datedebut LocalDate required,
@@ -9,22 +11,19 @@ entity Campagne (campagne) {
   evolution Integer min(0),
   termine Boolean
 }
-
 entity Application (application) {
   code String required,
   nom String required,
-  description String
+  description String,
+  priority Boolean
 }
-
 entity TypeTest (type_test) {
   code String required,
   nom String required
 }
-
 entity Resultat (resultat) {
   code String required
 }
-
 entity Testeur (testeur) {
   identifiant String required,
   nom String required,
@@ -37,7 +36,6 @@ relationship ManyToOne {
   Campagne{resultat(code) required} to Resultat,
   Testeur{typetest(nom) required} to TypeTest
 }
-
 relationship ManyToMany {
   Campagne{testeur(identifiant)} to Testeur{campagne}
 }
