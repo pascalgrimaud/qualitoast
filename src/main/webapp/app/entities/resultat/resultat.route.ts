@@ -9,8 +9,6 @@ import { ResultatDetailComponent } from './resultat-detail.component';
 import { ResultatPopupComponent } from './resultat-dialog.component';
 import { ResultatDeletePopupComponent } from './resultat-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class ResultatResolvePagingParams implements Resolve<any> {
 

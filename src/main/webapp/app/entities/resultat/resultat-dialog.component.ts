@@ -17,7 +17,6 @@ import { ResultatService } from './resultat.service';
 export class ResultatDialogComponent implements OnInit {
 
     resultat: Resultat;
-    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -30,7 +29,6 @@ export class ResultatDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -80,7 +78,6 @@ export class ResultatDialogComponent implements OnInit {
 })
 export class ResultatPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -91,11 +88,11 @@ export class ResultatPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.resultatPopupService
-                    .open(ResultatDialogComponent, params['id']);
+                this.resultatPopupService
+                    .open(ResultatDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.resultatPopupService
-                    .open(ResultatDialogComponent);
+                this.resultatPopupService
+                    .open(ResultatDialogComponent as Component);
             }
         });
     }

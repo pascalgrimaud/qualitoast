@@ -22,7 +22,6 @@ import { ResponseWrapper } from '../../shared';
 export class CampagneDialogComponent implements OnInit {
 
     campagne: Campagne;
-    authorities: any[];
     isSaving: boolean;
 
     applications: Application[];
@@ -49,7 +48,6 @@ export class CampagneDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.applicationService.query()
             .subscribe((res: ResponseWrapper) => { this.applications = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.typeTestService.query()
@@ -134,7 +132,6 @@ export class CampagneDialogComponent implements OnInit {
 })
 export class CampagnePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -145,11 +142,11 @@ export class CampagnePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.campagnePopupService
-                    .open(CampagneDialogComponent, params['id']);
+                this.campagnePopupService
+                    .open(CampagneDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.campagnePopupService
-                    .open(CampagneDialogComponent);
+                this.campagnePopupService
+                    .open(CampagneDialogComponent as Component);
             }
         });
     }

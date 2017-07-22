@@ -17,7 +17,6 @@ import { ApplicationService } from './application.service';
 export class ApplicationDialogComponent implements OnInit {
 
     application: Application;
-    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -30,7 +29,6 @@ export class ApplicationDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -80,7 +78,6 @@ export class ApplicationDialogComponent implements OnInit {
 })
 export class ApplicationPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -91,11 +88,11 @@ export class ApplicationPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.applicationPopupService
-                    .open(ApplicationDialogComponent, params['id']);
+                this.applicationPopupService
+                    .open(ApplicationDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.applicationPopupService
-                    .open(ApplicationDialogComponent);
+                this.applicationPopupService
+                    .open(ApplicationDialogComponent as Component);
             }
         });
     }

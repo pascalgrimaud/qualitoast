@@ -9,8 +9,6 @@ import { TypeTestDetailComponent } from './type-test-detail.component';
 import { TypeTestPopupComponent } from './type-test-dialog.component';
 import { TypeTestDeletePopupComponent } from './type-test-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class TypeTestResolvePagingParams implements Resolve<any> {
 

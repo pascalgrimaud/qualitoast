@@ -17,7 +17,6 @@ import { TypeTestService } from './type-test.service';
 export class TypeTestDialogComponent implements OnInit {
 
     typeTest: TypeTest;
-    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -30,7 +29,6 @@ export class TypeTestDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -80,7 +78,6 @@ export class TypeTestDialogComponent implements OnInit {
 })
 export class TypeTestPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -91,11 +88,11 @@ export class TypeTestPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.typeTestPopupService
-                    .open(TypeTestDialogComponent, params['id']);
+                this.typeTestPopupService
+                    .open(TypeTestDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.typeTestPopupService
-                    .open(TypeTestDialogComponent);
+                this.typeTestPopupService
+                    .open(TypeTestDialogComponent as Component);
             }
         });
     }
