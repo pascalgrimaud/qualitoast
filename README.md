@@ -1,6 +1,6 @@
 # QualiToast
 
-[![QualiToast Project][project-image]][project-url] [![codecov][codecov-image]][codecov-url]
+[![QualiToast Project][project-image]][project-url] [![codecov][codecov-image]][codecov-url] [![Docker Hub][docker-image]][docker-url]
 
 [![Build Status][travis-image]][travis-url] [![Docker Status][circleci-image]][circleci-url]
 
