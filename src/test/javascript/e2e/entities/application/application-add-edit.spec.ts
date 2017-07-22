@@ -35,7 +35,7 @@ describe('Application e2e test', () => {
     });
 
     // Cancel creation application
-    it('should load create Application dialog', function () {
+    it('should load create Application dialog', function() {
         element(by.css('button.create-application')).click().then(() => {
             const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -47,7 +47,7 @@ describe('Application e2e test', () => {
     });
 
     // create a new application
-    it('should load create Application dialog', function () {
+    it('should load create Application dialog', function() {
         element(by.css('button.create-application')).click().then(() => {
             const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -61,12 +61,12 @@ describe('Application e2e test', () => {
     });
 
     // Edit an application
-    it('should search an application', function () {
+    it('should search an application', function() {
         element(by.id('currentSearch')).sendKeys('application');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load Application dialog', function () {
+    it('should load Application dialog', function() {
         element(by.id('application-component-edit')).click().then(() => {
             const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -81,7 +81,7 @@ describe('Application e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

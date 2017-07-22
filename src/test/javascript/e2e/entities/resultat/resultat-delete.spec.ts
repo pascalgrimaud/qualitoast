@@ -33,13 +33,13 @@ describe('Resultat e2e test (delete)', () => {
     });
 
     // Delete a resultat
-    it('should search a resultat', function () {
+    it('should search a resultat', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('resultat');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load delete Resultat dialog', function () {
+    it('should load delete Resultat dialog', function() {
         element(by.id('resultat-component-delete')).click().then(() => {
             const expectVal = /entity.delete.title/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -49,8 +49,7 @@ describe('Resultat e2e test (delete)', () => {
         });
     });
 
-
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

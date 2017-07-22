@@ -33,7 +33,7 @@ describe('TypeTest e2e test', () => {
         });
     });
 
-    it('should load create TypeTest dialog', function () {
+    it('should load create TypeTest dialog', function() {
         element(by.css('button.create-type-test')).click().then(() => {
             const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -45,7 +45,7 @@ describe('TypeTest e2e test', () => {
     });
 
     // Create a new type test
-    it('should load create Type-test dialog', function () {
+    it('should load create Type-test dialog', function() {
         element(by.css('button.create-type-test')).click().then(() => {
             const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -58,13 +58,13 @@ describe('TypeTest e2e test', () => {
     });
 
     // Edit a type-test
-    it('should search a type-test', function () {
+    it('should search a type-test', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('type-test');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should edit a type-test', function () {
+    it('should edit a type-test', function() {
         element(by.id('type-test-component-edit')).click().then(() => {
             const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -78,7 +78,7 @@ describe('TypeTest e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

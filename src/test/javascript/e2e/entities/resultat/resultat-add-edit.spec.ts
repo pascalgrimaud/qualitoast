@@ -32,7 +32,7 @@ describe('Resultat e2e test (add edit)', () => {
         });
     });
     // Cancel creation resultat
-    it('should load create Resultat dialog', function () {
+    it('should load create Resultat dialog', function() {
         element(by.css('button.create-resultat')).click().then(() => {
             const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -44,7 +44,7 @@ describe('Resultat e2e test (add edit)', () => {
     });
 
     // Create a new resultat
-    it('should load create Resultat dialog', function () {
+    it('should load create Resultat dialog', function() {
         element(by.css('button.create-resultat')).click().then(() => {
             const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -56,12 +56,12 @@ describe('Resultat e2e test (add edit)', () => {
     });
 
     // Edit a resultat
-    it('should search a resultat', function () {
+    it('should search a resultat', function() {
         element(by.id('currentSearch')).sendKeys('resultat');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should edit a resultat', function () {
+    it('should edit a resultat', function() {
         element(by.id('resultat-component-edit')).click().then(() => {
             const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -73,7 +73,7 @@ describe('Resultat e2e test (add edit)', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

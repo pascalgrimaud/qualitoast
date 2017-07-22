@@ -35,13 +35,13 @@ describe('Application e2e test', () => {
     });
 
     // Delete an application
-    it('should search an application', function () {
+    it('should search an application', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('application');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load delete Application dialog', function () {
+    it('should load delete Application dialog', function() {
         element(by.id('application-component-delete')).click().then(() => {
             const expectVal = /entity.delete.title/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -51,7 +51,7 @@ describe('Application e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

@@ -34,8 +34,8 @@ describe('Testeur e2e test', () => {
             });
         });
     });
-    //Cancel creation
-    it('should load create Testeur dialog', function () {
+    // Cancel creation
+    it('should load create Testeur dialog', function() {
         element(by.css('button.create-testeur')).click().then(() => {
             const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -47,7 +47,7 @@ describe('Testeur e2e test', () => {
     });
 
     // Create a new testeur
-    it('should load create Testeur dialog', function () {
+    it('should load create Testeur dialog', function() {
         element(by.css('button.create-testeur')).click().then(() => {
             const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -62,13 +62,13 @@ describe('Testeur e2e test', () => {
     });
 
     // Edit a testeur
-    it('should search a testeur', function () {
+    it('should search a testeur', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('testeur');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should edit a testeur', function () {
+    it('should edit a testeur', function() {
         element(by.id('testeur-component-edit')).click().then(() => {
             const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -86,13 +86,13 @@ describe('Testeur e2e test', () => {
     });
 
     // Delete a testeur
-    it('should search a testeur', function () {
+    it('should search a testeur', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('testeur');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load delete Testeur dialog', function () {
+    it('should load delete Testeur dialog', function() {
         element(by.id('testeur-component-delete')).click().then(() => {
             const expectVal = /entity.delete.title/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -102,7 +102,7 @@ describe('Testeur e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });

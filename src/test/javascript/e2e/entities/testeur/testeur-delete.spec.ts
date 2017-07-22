@@ -36,13 +36,13 @@ describe('Testeur e2e test', () => {
     });
 
     // Delete a testeur
-    it('should search a testeur', function () {
+    it('should search a testeur', function() {
         element(by.id('currentSearch')).clear();
         element(by.id('currentSearch')).sendKeys('testeur');
         element(by.id('buttonSearch')).click();
     });
 
-    it('should load delete Testeur dialog', function () {
+    it('should load delete Testeur dialog', function() {
         element(by.id('testeur-component-delete')).click().then(() => {
             const expectVal = /entity.delete.title/;
             element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
@@ -52,7 +52,7 @@ describe('Testeur e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(function() {
         accountMenu.click();
         logout.click();
     });
