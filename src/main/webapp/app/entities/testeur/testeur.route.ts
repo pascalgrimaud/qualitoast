@@ -9,8 +9,6 @@ import { TesteurDetailComponent } from './testeur-detail.component';
 import { TesteurPopupComponent } from './testeur-dialog.component';
 import { TesteurDeletePopupComponent } from './testeur-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class TesteurResolvePagingParams implements Resolve<any> {
 

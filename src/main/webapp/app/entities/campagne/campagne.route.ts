@@ -9,8 +9,6 @@ import { CampagneDetailComponent } from './campagne-detail.component';
 import { CampagnePopupComponent } from './campagne-dialog.component';
 import { CampagneDeletePopupComponent } from './campagne-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class CampagneResolvePagingParams implements Resolve<any> {
 

@@ -9,8 +9,6 @@ import { ApplicationDetailComponent } from './application-detail.component';
 import { ApplicationPopupComponent } from './application-dialog.component';
 import { ApplicationDeletePopupComponent } from './application-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class ApplicationResolvePagingParams implements Resolve<any> {
 

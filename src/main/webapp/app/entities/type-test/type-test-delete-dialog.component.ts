@@ -44,7 +44,6 @@ export class TypeTestDeleteDialogComponent {
 })
 export class TypeTestDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -54,8 +53,8 @@ export class TypeTestDeletePopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.typeTestPopupService
-                .open(TypeTestDeleteDialogComponent, params['id']);
+            this.typeTestPopupService
+                .open(TypeTestDeleteDialogComponent as Component, params['id']);
         });
     }
 

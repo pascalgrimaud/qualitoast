@@ -44,7 +44,6 @@ export class ApplicationDeleteDialogComponent {
 })
 export class ApplicationDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -54,8 +53,8 @@ export class ApplicationDeletePopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.applicationPopupService
-                .open(ApplicationDeleteDialogComponent, params['id']);
+            this.applicationPopupService
+                .open(ApplicationDeleteDialogComponent as Component, params['id']);
         });
     }
 

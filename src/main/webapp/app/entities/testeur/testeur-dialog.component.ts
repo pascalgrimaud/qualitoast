@@ -20,7 +20,6 @@ import { ResponseWrapper } from '../../shared';
 export class TesteurDialogComponent implements OnInit {
 
     testeur: Testeur;
-    authorities: any[];
     isSaving: boolean;
 
     typetests: TypeTest[];
@@ -39,7 +38,6 @@ export class TesteurDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.typeTestService.query()
             .subscribe((res: ResponseWrapper) => { this.typetests = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.campagneService.query()
@@ -112,7 +110,6 @@ export class TesteurDialogComponent implements OnInit {
 })
 export class TesteurPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -123,11 +120,11 @@ export class TesteurPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.testeurPopupService
-                    .open(TesteurDialogComponent, params['id']);
+                this.testeurPopupService
+                    .open(TesteurDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.testeurPopupService
-                    .open(TesteurDialogComponent);
+                this.testeurPopupService
+                    .open(TesteurDialogComponent as Component);
             }
         });
     }
