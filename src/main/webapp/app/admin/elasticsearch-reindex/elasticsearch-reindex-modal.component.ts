@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
 
 import { ElasticsearchReindexService } from './elasticsearch-reindex.service';
 
@@ -12,11 +11,10 @@ export class ElasticsearchReindexModalComponent {
 
     constructor(
         private elasticsearchReindexService: ElasticsearchReindexService,
-        public activeModal: NgbActiveModal,
+        public activeModal: NgbActiveModal
     ) { }
 
     reindex() {
-        this.elasticsearchReindexService.reindex().subscribe();
-        this.activeModal.dismiss(true);
+        this.elasticsearchReindexService.reindex().subscribe(() => this.activeModal.dismiss());
     }
 }
