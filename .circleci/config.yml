@@ -1,21 +1,25 @@
 version: 2
 jobs:
   build:
-    working_directory: /app
-    docker:
-      - image: docker:17.05.0-ce-git
+    working_directory: ~/app
+    machine: true
     steps:
       - checkout
-      - setup_remote_docker
+      - run: sudo service docker stop
       - run:
-          name: Install dependencies
+          name: Install last version of Docker
+          command: curl -fsSL https://get.docker.com/ | sudo sh
+      - run: docker version
+      - run:
+          name: Install Docker Compose
           command: |
-            apk add --no-cache py-pip=9.0.0-r1
-            pip install docker-compose==1.12.0 awscli==1.11.76
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > docker-compose
+            sudo mv docker-compose /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
       - run:
           name: Build application Docker image
-          command: |
-            docker image build -t pascalgrimaud/qualitoast:circleci .
+          command: docker image build -t pascalgrimaud/qualitoast:circleci .
       - run:
           name: Run docker-compose tests
           command: |
