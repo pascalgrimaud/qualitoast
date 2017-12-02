@@ -148,6 +148,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="dropdown-item" routerLink="logfile" routerLinkActive="active" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
+                            <span jhiTranslate="global.menu.admin.logfile">LogFile</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="dropdown-item" routerLink="logs" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-tasks" aria-hidden="true"></i>
                             <span jhiTranslate="global.menu.admin.logs">Logs</span>
