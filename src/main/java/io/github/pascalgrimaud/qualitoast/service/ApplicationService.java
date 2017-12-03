@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Application.
@@ -44,10 +45,10 @@ public class ApplicationService {
     }
 
     /**
-     *  Get all the applications.
+     * Get all the applications.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Application> findAll(Pageable pageable) {
@@ -56,10 +57,10 @@ public class ApplicationService {
     }
 
     /**
-     *  Get one application by id.
+     * Get one application by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public Application findOne(Long id) {
@@ -68,9 +69,9 @@ public class ApplicationService {
     }
 
     /**
-     *  Delete the  application by id.
+     * Delete the application by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Application : {}", id);
@@ -81,9 +82,9 @@ public class ApplicationService {
     /**
      * Search for the application corresponding to the query.
      *
-     *  @param query the query of the search
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Application> search(String query, Pageable pageable) {

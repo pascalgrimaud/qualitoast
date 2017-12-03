@@ -1,12 +1,12 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.domain.TypeTest;
 import io.github.pascalgrimaud.qualitoast.service.TypeTestService;
+import io.github.pascalgrimaud.qualitoast.web.rest.errors.BadRequestAlertException;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing TypeTest.
@@ -51,7 +55,7 @@ public class TypeTestResource {
     public ResponseEntity<TypeTest> createTypeTest(@Valid @RequestBody TypeTest typeTest) throws URISyntaxException {
         log.debug("REST request to save TypeTest : {}", typeTest);
         if (typeTest.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new typeTest cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new typeTest cannot already have an ID", ENTITY_NAME, "idexists");
         }
         TypeTest result = typeTestService.save(typeTest);
         return ResponseEntity.created(new URI("/api/type-tests/" + result.getId()))
@@ -89,7 +93,7 @@ public class TypeTestResource {
      */
     @GetMapping("/type-tests")
     @Timed
-    public ResponseEntity<List<TypeTest>> getAllTypeTests(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<TypeTest>> getAllTypeTests(Pageable pageable) {
         log.debug("REST request to get a page of TypeTests");
         Page<TypeTest> page = typeTestService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/type-tests");
@@ -134,10 +138,11 @@ public class TypeTestResource {
      */
     @GetMapping("/_search/type-tests")
     @Timed
-    public ResponseEntity<List<TypeTest>> searchTypeTests(@RequestParam String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<TypeTest>> searchTypeTests(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of TypeTests for query {}", query);
         Page<TypeTest> page = typeTestService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/type-tests");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
 }

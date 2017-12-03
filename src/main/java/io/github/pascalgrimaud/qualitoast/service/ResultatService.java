@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Resultat.
@@ -44,10 +45,10 @@ public class ResultatService {
     }
 
     /**
-     *  Get all the resultats.
+     * Get all the resultats.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Resultat> findAll(Pageable pageable) {
@@ -56,10 +57,10 @@ public class ResultatService {
     }
 
     /**
-     *  Get one resultat by id.
+     * Get one resultat by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public Resultat findOne(Long id) {
@@ -68,9 +69,9 @@ public class ResultatService {
     }
 
     /**
-     *  Delete the  resultat by id.
+     * Delete the resultat by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Resultat : {}", id);
@@ -81,9 +82,9 @@ public class ResultatService {
     /**
      * Search for the resultat corresponding to the query.
      *
-     *  @param query the query of the search
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Resultat> search(String query, Pageable pageable) {

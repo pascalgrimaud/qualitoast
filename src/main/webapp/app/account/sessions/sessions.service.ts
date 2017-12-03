@@ -4,10 +4,12 @@ import { Observable } from 'rxjs/Rx';
 
 import { Session } from './session.model';
 
+import { SERVER_API_URL } from '../../app.constants';
+
 @Injectable()
 export class SessionsService {
 
-    private resourceUrl = 'api/account/sessions/';
+    private resourceUrl = SERVER_API_URL + 'api/account/sessions/';
     constructor(private http: Http) { }
 
     findAll(): Observable<Session[]> {

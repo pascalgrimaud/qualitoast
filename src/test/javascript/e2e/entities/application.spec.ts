@@ -1,49 +1,126 @@
 import { browser, element, by, $ } from 'protractor';
+import { NavBarPage } from './../page-objects/jhi-page-objects';
+const path = require('path');
 
 describe('Application e2e test', () => {
 
-    const username = element(by.id('username'));
-    const password = element(by.id('password'));
-    const entityMenu = element(by.id('entity-menu'));
-    const accountMenu = element(by.id('account-menu'));
-    const login = element(by.id('login'));
-    const logout = element(by.id('logout'));
+    let navBarPage: NavBarPage;
+    let applicationDialogPage: ApplicationDialogPage;
+    let applicationComponentsPage: ApplicationComponentsPage;
+    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
+    const absolutePath = path.resolve(__dirname, fileToUpload);
+    
 
     beforeAll(() => {
         browser.get('/');
-
-        accountMenu.click();
-        login.click();
-
-        username.sendKeys('admin');
-        password.sendKeys('admin');
-        element(by.css('button[type=submit]')).click();
+        browser.waitForAngular();
+        navBarPage = new NavBarPage();
+        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
         browser.waitForAngular();
     });
 
     it('should load Applications', () => {
-        entityMenu.click();
-        element.all(by.css('[routerLink="application"]')).first().click().then(() => {
-            const expectVal = /qualiToastApp.application.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-        });
+        navBarPage.goToEntity('application');
+        applicationComponentsPage = new ApplicationComponentsPage();
+        expect(applicationComponentsPage.getTitle()).toMatch(/qualiToastApp.application.home.title/);
+
     });
 
     it('should load create Application dialog', () => {
-        element(by.css('button.create-application')).click().then(() => {
-            const expectVal = /qualiToastApp.application.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-
-            element(by.css('button.close')).click();
-        });
+        applicationComponentsPage.clickOnCreateButton();
+        applicationDialogPage = new ApplicationDialogPage();
+        expect(applicationDialogPage.getModalTitle()).toMatch(/qualiToastApp.application.home.createOrEditLabel/);
+        applicationDialogPage.close();
     });
+
+    it('should create and save Applications', () => {
+        applicationComponentsPage.clickOnCreateButton();
+        applicationDialogPage.setCodeInput('code');
+        expect(applicationDialogPage.getCodeInput()).toMatch('code');
+        applicationDialogPage.setNomInput('nom');
+        expect(applicationDialogPage.getNomInput()).toMatch('nom');
+        applicationDialogPage.setDescriptionInput('description');
+        expect(applicationDialogPage.getDescriptionInput()).toMatch('description');
+        applicationDialogPage.getPriorityInput().isSelected().then(function (selected) {
+            if (selected) {
+                applicationDialogPage.getPriorityInput().click();
+                expect(applicationDialogPage.getPriorityInput().isSelected()).toBeFalsy();
+            } else {
+                applicationDialogPage.getPriorityInput().click();
+                expect(applicationDialogPage.getPriorityInput().isSelected()).toBeTruthy();
+            }
+        });
+        applicationDialogPage.save();
+        expect(applicationDialogPage.getSaveButton().isPresent()).toBeFalsy();
+    }); 
 
     afterAll(() => {
-        accountMenu.click();
-        logout.click();
+        navBarPage.autoSignOut();
     });
 });
+
+export class ApplicationComponentsPage {
+    createButton = element(by.css('.jh-create-entity'));
+    title = element.all(by.css('jhi-application div h2 span')).first();
+
+    clickOnCreateButton() {
+        return this.createButton.click();
+    }
+
+    getTitle() {
+        return this.title.getAttribute('jhiTranslate');
+    }
+}
+
+export class ApplicationDialogPage {
+    modalTitle = element(by.css('h4#myApplicationLabel'));
+    saveButton = element(by.css('.modal-footer .btn.btn-primary'));
+    closeButton = element(by.css('button.close'));
+    codeInput = element(by.css('input#field_code'));
+    nomInput = element(by.css('input#field_nom'));
+    descriptionInput = element(by.css('input#field_description'));
+    priorityInput = element(by.css('input#field_priority'));
+
+    getModalTitle() {
+        return this.modalTitle.getAttribute('jhiTranslate');
+    }
+
+    setCodeInput = function (code) {
+        this.codeInput.sendKeys(code);
+    }
+
+    getCodeInput = function () {
+        return this.codeInput.getAttribute('value');
+    }
+
+    setNomInput = function (nom) {
+        this.nomInput.sendKeys(nom);
+    }
+
+    getNomInput = function () {
+        return this.nomInput.getAttribute('value');
+    }
+
+    setDescriptionInput = function (description) {
+        this.descriptionInput.sendKeys(description);
+    }
+
+    getDescriptionInput = function () {
+        return this.descriptionInput.getAttribute('value');
+    }
+
+    getPriorityInput = function () {
+        return this.priorityInput;
+    }
+    save() {
+        this.saveButton.click();
+    }
+
+    close() {
+        this.closeButton.click();
+    }
+
+    getSaveButton() {
+        return this.saveButton;
+    }
+}

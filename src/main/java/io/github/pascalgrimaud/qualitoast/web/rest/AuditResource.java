@@ -1,9 +1,9 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
-import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.service.AuditEventService;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+
+import io.github.jhipster.web.util.ResponseUtil;
 import org.springframework.boot.actuate.audit.AuditEvent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,13 +30,13 @@ public class AuditResource {
     }
 
     /**
-     * GET  /audits : get a page of AuditEvents.
+     * GET /audits : get a page of AuditEvents.
      *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of AuditEvents in body
      */
     @GetMapping
-    public ResponseEntity<List<AuditEvent>> getAll(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<AuditEvent>> getAll(Pageable pageable) {
         Page<AuditEvent> page = auditEventService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/management/audits");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
@@ -54,7 +54,7 @@ public class AuditResource {
     public ResponseEntity<List<AuditEvent>> getByDates(
         @RequestParam(value = "fromDate") LocalDate fromDate,
         @RequestParam(value = "toDate") LocalDate toDate,
-        @ApiParam Pageable pageable) {
+        Pageable pageable) {
 
         Page<AuditEvent> page = auditEventService.findByDates(
             fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant(),
@@ -78,7 +78,7 @@ public class AuditResource {
         @RequestParam(value = "fromDate") LocalDate fromDate,
         @RequestParam(value = "toDate") LocalDate toDate,
         @RequestParam(value = "desc") String desc,
-        @ApiParam Pageable pageable) {
+        Pageable pageable) {
 
         Page<AuditEvent> page = auditEventService.findByDatesDesc(
             fromDate.atStartOfDay(ZoneId.systemDefault()).toInstant(),

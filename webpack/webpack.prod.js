@@ -3,6 +3,8 @@ const webpackMerge = require('webpack-merge');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const Visualizer = require('webpack-visualizer-plugin');
 const ngcWebpack = require('ngc-webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const path = require('path');
 
 const utils = require('./utils.js');
@@ -12,7 +14,9 @@ const ENV = 'production';
 const extractCSS = new ExtractTextPlugin(`[name].[hash].css`);
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
-    // devtool: 'source-map', // Enable source maps. Please note that this will slow down the build
+    // Enable source maps. Please note that this will slow down the build.
+    // You have to enable it in UglifyJSPlugin config below and in tsconfig-aot.json as well
+    // devtool: 'source-map',
     entry: {
         polyfills: './src/main/webapp/app/polyfills',
         global: './src/main/webapp/content/css/global.css',
@@ -27,15 +31,28 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         rules: [{
             test: /\.ts$/,
             use: [
-                { loader: 'angular2-template-loader' },
                 {
                     loader: 'awesome-typescript-loader',
                     options: {
                         configFileName: 'tsconfig-aot.json'
                     },
-                }
+                },
+                { loader: 'angular2-template-loader' }
             ],
             exclude: ['node_modules/generator-jhipster']
+        },
+        {
+            test: /\.ts$/,
+            use: [
+                {
+                    loader: 'ngc-webpack',
+                    options: {
+                        disable: false,
+                        tsConfigPath: 'tsconfig-aot.json'
+                    }
+                }
+            ],
+            exclude: /(polyfills\.ts|vendor\.ts|Reflect\.ts)/
         },
         {
             test: /\.css$/,
@@ -56,17 +73,30 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
             // Webpack statistics in target folder
             filename: '../stats.html'
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            comments: false,
-            // sourceMap: true, // Enable source maps. Please note that this will slow down the build
-            compress: {
-                screw_ie8: true,
-                warnings: false
-            },
-            mangle: {
-                keep_fnames: true,
-                screw_i8: true
+        new UglifyJSPlugin({
+            parallel: true,
+            uglifyOptions: {
+                ie8: false,
+                // sourceMap: true, // Enable source maps. Please note that this will slow down the build
+                compress: {
+                    dead_code: true,
+                    warnings: false,
+                    properties: true,
+                    drop_debugger: true,
+                    conditionals: true,
+                    booleans: true,
+                    loops: true,
+                    unused: true,
+                    toplevel: true,
+                    if_return: true,
+                    inline: true,
+                    join_vars: true
+                },
+                output: {
+                    comments: false,
+                    beautify: false,
+                    indent_level: 2
+                }
             }
         }),
         new ngcWebpack.NgcWebpackPlugin({
@@ -77,6 +107,16 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false
-        })
+        }),
+        new WorkboxPlugin({
+          // to cache all under target/www
+          globDirectory: utils.root('target/www'),
+          // find these files and cache them
+          globPatterns: ['**/*.{html,bundle.js,css,png,svg,jpg,gif,json}'],
+          // create service worker at the target/www
+          swDest: path.resolve(utils.root('target/www'), 'sw.js'),
+          clientsClaim: true,
+          skipWaiting: true,
+        }),
     ]
 });

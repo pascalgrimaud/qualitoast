@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ResultatRepository extends JpaRepository<Resultat,Long> {
+public interface ResultatRepository extends JpaRepository<Resultat, Long> {
 
 }

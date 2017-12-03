@@ -30,6 +30,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
+import static io.github.pascalgrimaud.qualitoast.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -99,10 +100,11 @@ public class CampagneResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CampagneResource campagneResource = new CampagneResource(campagneService);
+        final CampagneResource campagneResource = new CampagneResource(campagneService);
         this.restCampagneMockMvc = MockMvcBuilders.standaloneSetup(campagneResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -191,7 +193,7 @@ public class CampagneResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(campagne)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Alice in the database
+        // Validate the Campagne in the database
         List<Campagne> campagneList = campagneRepository.findAll();
         assertThat(campagneList).hasSize(databaseSizeBeforeCreate);
     }
@@ -294,6 +296,8 @@ public class CampagneResourceIntTest {
 
         // Update the campagne
         Campagne updatedCampagne = campagneRepository.findOne(campagne.getId());
+        // Disconnect from session so that the updates on updatedCampagne are not directly saved in db
+        em.detach(updatedCampagne);
         updatedCampagne
             .version(UPDATED_VERSION)
             .datedebut(UPDATED_DATEDEBUT)

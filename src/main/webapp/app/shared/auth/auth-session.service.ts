@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { SERVER_API_URL } from '../../app.constants';
 
 @Injectable()
 export class AuthServerProvider {
@@ -17,14 +18,14 @@ export class AuthServerProvider {
             'Content-Type': 'application/x-www-form-urlencoded'
         });
 
-        return this.http.post('api/authentication', data, { headers });
+        return this.http.post(SERVER_API_URL + 'api/authentication', data, { headers });
     }
 
     logout(): Observable<any> {
         // logout from the server
-        return this.http.post('api/logout', {}).map((response: Response) => {
+        return this.http.post(SERVER_API_URL + 'api/logout', {}).map((response: Response) => {
             // to get a new csrf token call the api
-            this.http.get('api/account').subscribe(() => {}, () => {});
+            this.http.get(SERVER_API_URL + 'api/account').subscribe(() => {}, () => {});
             return response;
         });
     }

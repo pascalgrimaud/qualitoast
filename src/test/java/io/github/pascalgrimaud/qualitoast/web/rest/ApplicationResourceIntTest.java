@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static io.github.pascalgrimaud.qualitoast.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -79,10 +80,11 @@ public class ApplicationResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ApplicationResource applicationResource = new ApplicationResource(applicationService);
+        final ApplicationResource applicationResource = new ApplicationResource(applicationService);
         this.restApplicationMockMvc = MockMvcBuilders.standaloneSetup(applicationResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -146,7 +148,7 @@ public class ApplicationResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(application)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Alice in the database
+        // Validate the Application in the database
         List<Application> applicationList = applicationRepository.findAll();
         assertThat(applicationList).hasSize(databaseSizeBeforeCreate);
     }
@@ -239,6 +241,8 @@ public class ApplicationResourceIntTest {
 
         // Update the application
         Application updatedApplication = applicationRepository.findOne(application.getId());
+        // Disconnect from session so that the updates on updatedApplication are not directly saved in db
+        em.detach(updatedApplication);
         updatedApplication
             .code(UPDATED_CODE)
             .nom(UPDATED_NOM)

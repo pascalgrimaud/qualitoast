@@ -6,6 +6,20 @@ body, h1, h2, h3, h4 {
     font-weight: 300;
 }
 
+body {
+    background: #e4e5e6;
+}
+
+a {
+    color: #533f03;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #533f03;
+    font-weight: bold;
+}
+
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -75,7 +89,7 @@ a:hover {
   cursor: pointer;
 }
 
-.hand {
+.hand, [jhisortby] {
     cursor: pointer;
 }
 
@@ -169,90 +183,16 @@ entity detail page css
         margin-left: 0;
     }
 }
-.pagination {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  padding-left: 0;
-  list-style: none;
-  border-radius: 0;
-}
 
-.page-item:first-child .page-link {
-  margin-left: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.page-item:last-child .page-link {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-}
-.page-item.active .page-link {
-  z-index: 2;
-  color: #fff;
-  background-color: #593196;
-  border-color: #593196;
-}
-.page-item.disabled .page-link {
-  color: #cbc8d0;
-  pointer-events: none;
-  cursor: not-allowed;
-  background-color: #fff;
-  border-color: #ddd;
-}
-
-.page-link {
-  position: relative;
-  display: block;
-  padding: 0.5rem 0.75rem;
-  margin-left: -1px;
-  line-height: 1.25;
-  color: #593196;
-  background-color: #fff;
-  border: 1px solid #ddd;
-}
-.page-link:focus, .page-link:hover {
-  color: #593196;
-  text-decoration: none;
-  background-color: #EDEDED;
-  border-color: #ddd;
-}
-
-.pagination-lg .page-link {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-}
-.pagination-lg .page-item:first-child .page-link {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.pagination-lg .page-item:last-child .page-link {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.pagination-sm .page-link {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.875rem;
-}
-.pagination-sm .page-item:first-child .page-link {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-.pagination-sm .page-item:last-child .page-link {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-}
 /* ==========================================================================
 ui bootstrap tweaks
 ========================================================================== */
-.nav, .pagination, .carousel, .panel-title a {
+.nav, .pagination, .carousel, .card-title a {
     cursor: pointer;
 }
 
-.datetime-picker-dropdown > li.date-picker-menu div > table .btn-default,
-.uib-datepicker-popup  > li > div.uib-datepicker > table .btn-default {
+.datetime-picker-dropdown > li.date-picker-menu div > table .btn-secondary,
+.uib-datepicker-popup  > li > div.uib-datepicker > table .btn-secondary {
     border: 0;
 }
 
@@ -261,6 +201,13 @@ ui bootstrap tweaks
     outline: none;
 }
 
+.thread-dump-modal-lock {
+    max-width: 450px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+ }
+
 /* jhipster-needle-css-add-main JHipster will add new css style */
 
 /* ==========================================================================
@@ -268,28 +215,28 @@ Navbar Pulse
 ========================================================================== */
 
 .btn-primary {
-  color: #fff;
-  background-color: #593196;
-  border-color: #593196;
+    color: #fff;
+    background-color: #593196;
+    border-color: #593196;
 }
 .btn-primary:hover {
-  color: #fff;
-  background-color: #422470;
-  border-color: #3e2268;
+    color: #fff;
+    background-color: #422470;
+    border-color: #3e2268;
 }
 .btn-primary:focus, .btn-primary.focus {
-  -webkit-box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
-          box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
+    -webkit-box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
+    box-shadow: 0 0 0 2px rgba(89, 49, 150, 0.5);
 }
 .btn-primary.disabled, .btn-primary:disabled {
-  background-color: #593196;
-  border-color: #593196;
+    background-color: #593196;
+    border-color: #593196;
 }
 .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
-  color: #fff;
-  background-color: #422470;
-  background-image: none;
-  border-color: #3e2268;
+    color: #fff;
+    background-color: #422470;
+    background-image: none;
+    border-color: #3e2268;
 }
 
 .table .thead-inverse th {
@@ -306,65 +253,65 @@ Navbar Pulse
 .table-success,
 .table-success > th,
 .table-success > td {
-  background-color: #dff0d8;
+    background-color: #dff0d8;
 }
 
 .table-hover .table-success:hover {
-  background-color: #d0e9c6;
+    background-color: #d0e9c6;
 }
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th {
-  background-color: #d0e9c6;
+    background-color: #d0e9c6;
 }
 
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #d9edf7;
+    background-color: #d9edf7;
 }
 
 .table-hover .table-info:hover {
-  background-color: #c4e3f3;
+    background-color: #c4e3f3;
 }
 .table-hover .table-info:hover > td,
 .table-hover .table-info:hover > th {
-  background-color: #c4e3f3;
+    background-color: #c4e3f3;
 }
 
 .table-warning,
 .table-warning > th,
 .table-warning > td {
-  background-color: #fcf8e3;
+    background-color: #fcf8e3;
 }
 
 .table-hover .table-warning:hover {
-  background-color: #faf2cc;
+    background-color: #faf2cc;
 }
 .table-hover .table-warning:hover > td,
 .table-hover .table-warning:hover > th {
-  background-color: #faf2cc;
+    background-color: #faf2cc;
 }
 
 .table-danger,
 .table-danger > th,
 .table-danger > td {
-  background-color: #f2dede;
+    background-color: #f2dede;
 }
 
 .table-hover .table-danger:hover {
-  background-color: #ebcccc;
+    background-color: #ebcccc;
 }
 .table-hover .table-danger:hover > td,
 .table-hover .table-danger:hover > th {
-  background-color: #ebcccc;
+    background-color: #ebcccc;
 }
 
 .fa {
-  width: 20px;
-  font-size: 20px;
-  display: inline-block;
-  text-align: center;
+    width: 20px;
+    font-size: 20px;
+    display: inline-block;
+    text-align: center;
 }
 .text-primary {
-  color: #593196 !important;
+    color: #593196 !important;
 }

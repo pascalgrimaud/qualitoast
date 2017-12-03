@@ -1,49 +1,102 @@
 import { browser, element, by, $ } from 'protractor';
+import { NavBarPage } from './../page-objects/jhi-page-objects';
+const path = require('path');
 
 describe('TypeTest e2e test', () => {
 
-    const username = element(by.id('username'));
-    const password = element(by.id('password'));
-    const entityMenu = element(by.id('entity-menu'));
-    const accountMenu = element(by.id('account-menu'));
-    const login = element(by.id('login'));
-    const logout = element(by.id('logout'));
+    let navBarPage: NavBarPage;
+    let typeTestDialogPage: TypeTestDialogPage;
+    let typeTestComponentsPage: TypeTestComponentsPage;
+    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
+    const absolutePath = path.resolve(__dirname, fileToUpload);
+    
 
     beforeAll(() => {
         browser.get('/');
-
-        accountMenu.click();
-        login.click();
-
-        username.sendKeys('admin');
-        password.sendKeys('admin');
-        element(by.css('button[type=submit]')).click();
+        browser.waitForAngular();
+        navBarPage = new NavBarPage();
+        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
         browser.waitForAngular();
     });
 
     it('should load TypeTests', () => {
-        entityMenu.click();
-        element.all(by.css('[routerLink="type-test"]')).first().click().then(() => {
-            const expectVal = /qualiToastApp.typeTest.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-        });
+        navBarPage.goToEntity('type-test');
+        typeTestComponentsPage = new TypeTestComponentsPage();
+        expect(typeTestComponentsPage.getTitle()).toMatch(/qualiToastApp.typeTest.home.title/);
+
     });
 
     it('should load create TypeTest dialog', () => {
-        element(by.css('button.create-type-test')).click().then(() => {
-            const expectVal = /qualiToastApp.typeTest.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-
-            element(by.css('button.close')).click();
-        });
+        typeTestComponentsPage.clickOnCreateButton();
+        typeTestDialogPage = new TypeTestDialogPage();
+        expect(typeTestDialogPage.getModalTitle()).toMatch(/qualiToastApp.typeTest.home.createOrEditLabel/);
+        typeTestDialogPage.close();
     });
+
+    it('should create and save TypeTests', () => {
+        typeTestComponentsPage.clickOnCreateButton();
+        typeTestDialogPage.setCodeInput('code');
+        expect(typeTestDialogPage.getCodeInput()).toMatch('code');
+        typeTestDialogPage.setNomInput('nom');
+        expect(typeTestDialogPage.getNomInput()).toMatch('nom');
+        typeTestDialogPage.save();
+        expect(typeTestDialogPage.getSaveButton().isPresent()).toBeFalsy();
+    }); 
 
     afterAll(() => {
-        accountMenu.click();
-        logout.click();
+        navBarPage.autoSignOut();
     });
 });
+
+export class TypeTestComponentsPage {
+    createButton = element(by.css('.jh-create-entity'));
+    title = element.all(by.css('jhi-type-test div h2 span')).first();
+
+    clickOnCreateButton() {
+        return this.createButton.click();
+    }
+
+    getTitle() {
+        return this.title.getAttribute('jhiTranslate');
+    }
+}
+
+export class TypeTestDialogPage {
+    modalTitle = element(by.css('h4#myTypeTestLabel'));
+    saveButton = element(by.css('.modal-footer .btn.btn-primary'));
+    closeButton = element(by.css('button.close'));
+    codeInput = element(by.css('input#field_code'));
+    nomInput = element(by.css('input#field_nom'));
+
+    getModalTitle() {
+        return this.modalTitle.getAttribute('jhiTranslate');
+    }
+
+    setCodeInput = function (code) {
+        this.codeInput.sendKeys(code);
+    }
+
+    getCodeInput = function () {
+        return this.codeInput.getAttribute('value');
+    }
+
+    setNomInput = function (nom) {
+        this.nomInput.sendKeys(nom);
+    }
+
+    getNomInput = function () {
+        return this.nomInput.getAttribute('value');
+    }
+
+    save() {
+        this.saveButton.click();
+    }
+
+    close() {
+        this.closeButton.click();
+    }
+
+    getSaveButton() {
+        return this.saveButton;
+    }
+}

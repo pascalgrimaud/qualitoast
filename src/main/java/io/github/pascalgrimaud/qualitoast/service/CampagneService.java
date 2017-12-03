@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Campagne.
@@ -44,23 +45,22 @@ public class CampagneService {
     }
 
     /**
-     *  Get all the campagnes.
+     * Get all the campagnes.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Campagne> findAll(Pageable pageable) {
         log.debug("Request to get all Campagnes");
-        Page<Campagne> result = campagneRepository.findAllWithTesteursBy(pageable);
-        return result;
+        return campagneRepository.findAll(pageable);
     }
 
     /**
-     *  Get one campagne by id.
+     * Get one campagne by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public Campagne findOne(Long id) {
@@ -69,9 +69,9 @@ public class CampagneService {
     }
 
     /**
-     *  Delete the  campagne by id.
+     * Delete the campagne by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Campagne : {}", id);
@@ -82,9 +82,9 @@ public class CampagneService {
     /**
      * Search for the campagne corresponding to the query.
      *
-     *  @param query the query of the search
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Campagne> search(String query, Pageable pageable) {

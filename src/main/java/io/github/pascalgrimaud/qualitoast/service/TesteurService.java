@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing Testeur.
@@ -44,10 +45,10 @@ public class TesteurService {
     }
 
     /**
-     *  Get all the testeurs.
+     * Get all the testeurs.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Testeur> findAll(Pageable pageable) {
@@ -56,10 +57,10 @@ public class TesteurService {
     }
 
     /**
-     *  Get one testeur by id.
+     * Get one testeur by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public Testeur findOne(Long id) {
@@ -68,9 +69,9 @@ public class TesteurService {
     }
 
     /**
-     *  Delete the  testeur by id.
+     * Delete the testeur by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Testeur : {}", id);
@@ -81,9 +82,9 @@ public class TesteurService {
     /**
      * Search for the testeur corresponding to the query.
      *
-     *  @param query the query of the search
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<Testeur> search(String query, Pageable pageable) {

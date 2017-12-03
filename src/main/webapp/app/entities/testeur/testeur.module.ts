@@ -24,7 +24,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         QualiToastSharedModule,
-        RouterModule.forRoot(ENTITY_STATES, { useHash: true })
+        RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         TesteurComponent,

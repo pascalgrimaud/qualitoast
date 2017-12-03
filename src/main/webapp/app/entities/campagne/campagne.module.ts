@@ -26,7 +26,7 @@ const ENTITY_STATES = [
     imports: [
         QualiToastSharedModule,
         ChartModule,
-        RouterModule.forRoot(ENTITY_STATES, { useHash: true })
+        RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         CampagneComponent,

@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static io.github.pascalgrimaud.qualitoast.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -73,10 +74,11 @@ public class TypeTestResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        TypeTestResource typeTestResource = new TypeTestResource(typeTestService);
+        final TypeTestResource typeTestResource = new TypeTestResource(typeTestService);
         this.restTypeTestMockMvc = MockMvcBuilders.standaloneSetup(typeTestResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -136,7 +138,7 @@ public class TypeTestResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(typeTest)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Alice in the database
+        // Validate the TypeTest in the database
         List<TypeTest> typeTestList = typeTestRepository.findAll();
         assertThat(typeTestList).hasSize(databaseSizeBeforeCreate);
     }
@@ -225,6 +227,8 @@ public class TypeTestResourceIntTest {
 
         // Update the typeTest
         TypeTest updatedTypeTest = typeTestRepository.findOne(typeTest.getId());
+        // Disconnect from session so that the updates on updatedTypeTest are not directly saved in db
+        em.detach(updatedTypeTest);
         updatedTypeTest
             .code(UPDATED_CODE)
             .nom(UPDATED_NOM);

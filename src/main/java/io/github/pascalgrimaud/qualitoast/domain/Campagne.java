@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+
 /**
  * A Campagne.
  */
@@ -80,6 +81,7 @@ public class Campagne implements Serializable {
                inverseJoinColumns = @JoinColumn(name="testeurs_id", referencedColumnName="id"))
     private Set<Testeur> testeurs = new HashSet<>();
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -268,6 +270,7 @@ public class Campagne implements Serializable {
     public void setTesteurs(Set<Testeur> testeurs) {
         this.testeurs = testeurs;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -297,10 +300,10 @@ public class Campagne implements Serializable {
             ", datedebut='" + getDatedebut() + "'" +
             ", datefin='" + getDatefin() + "'" +
             ", commentaire='" + getCommentaire() + "'" +
-            ", bloquant='" + getBloquant() + "'" +
-            ", majeur='" + getMajeur() + "'" +
-            ", mineur='" + getMineur() + "'" +
-            ", evolution='" + getEvolution() + "'" +
+            ", bloquant=" + getBloquant() +
+            ", majeur=" + getMajeur() +
+            ", mineur=" + getMineur() +
+            ", evolution=" + getEvolution() +
             ", termine='" + isTermine() + "'" +
             "}";
     }

@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
  * A Resultat.
  */
@@ -29,6 +30,7 @@ public class Resultat implements Serializable {
     @Column(name = "code", nullable = false)
     private String code;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -49,6 +51,7 @@ public class Resultat implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

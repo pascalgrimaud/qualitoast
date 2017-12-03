@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
  * A Application.
  */
@@ -39,6 +40,7 @@ public class Application implements Serializable {
     @Column(name = "priority")
     private Boolean priority;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -98,6 +100,7 @@ public class Application implements Serializable {
     public void setPriority(Boolean priority) {
         this.priority = priority;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

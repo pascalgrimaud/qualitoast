@@ -1,12 +1,12 @@
 package io.github.pascalgrimaud.qualitoast.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import io.github.jhipster.web.util.ResponseUtil;
 import io.github.pascalgrimaud.qualitoast.domain.Resultat;
 import io.github.pascalgrimaud.qualitoast.service.ResultatService;
+import io.github.pascalgrimaud.qualitoast.web.rest.errors.BadRequestAlertException;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
+import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Resultat.
@@ -51,7 +55,7 @@ public class ResultatResource {
     public ResponseEntity<Resultat> createResultat(@Valid @RequestBody Resultat resultat) throws URISyntaxException {
         log.debug("REST request to save Resultat : {}", resultat);
         if (resultat.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new resultat cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new resultat cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Resultat result = resultatService.save(resultat);
         return ResponseEntity.created(new URI("/api/resultats/" + result.getId()))
@@ -89,7 +93,7 @@ public class ResultatResource {
      */
     @GetMapping("/resultats")
     @Timed
-    public ResponseEntity<List<Resultat>> getAllResultats(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Resultat>> getAllResultats(Pageable pageable) {
         log.debug("REST request to get a page of Resultats");
         Page<Resultat> page = resultatService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/resultats");
@@ -134,10 +138,11 @@ public class ResultatResource {
      */
     @GetMapping("/_search/resultats")
     @Timed
-    public ResponseEntity<List<Resultat>> searchResultats(@RequestParam String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<Resultat>> searchResultats(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Resultats for query {}", query);
         Page<Resultat> page = resultatService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/resultats");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+
 }

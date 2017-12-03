@@ -1,109 +1,131 @@
 import { browser, element, by, $ } from 'protractor';
+import { NavBarPage } from './../page-objects/jhi-page-objects';
+const path = require('path');
 
 describe('Testeur e2e test', () => {
 
-    const username = element(by.id('username'));
-    const password = element(by.id('password'));
-    const entityMenu = element(by.id('entity-menu'));
-    const accountMenu = element(by.id('account-menu'));
-    const login = element(by.id('login'));
-    const logout = element(by.id('logout'));
-    const identifiant = element(by.id('field_identifiant'));
-    const nom = element(by.id('field_nom'));
-    const prenom = element(by.id('field_prenom'));
-    const typetest = element(by.id('field_typetest'));
+    let navBarPage: NavBarPage;
+    let testeurDialogPage: TesteurDialogPage;
+    let testeurComponentsPage: TesteurComponentsPage;
+    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
+    const absolutePath = path.resolve(__dirname, fileToUpload);
+    
 
     beforeAll(() => {
         browser.get('/');
-
-        accountMenu.click();
-        login.click();
-
-        username.sendKeys('admin');
-        password.sendKeys('admin');
-        element(by.css('button[type=submit]')).click();
+        browser.waitForAngular();
+        navBarPage = new NavBarPage();
+        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
         browser.waitForAngular();
     });
 
     it('should load Testeurs', () => {
-        entityMenu.click();
-        element.all(by.css('[routerLink="testeur"]')).first().click().then(() => {
-            const expectVal = /qualiToastApp.testeur.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-        });
-    });
-    // Cancel creation
-    it('should load create Testeur dialog', function() {
-        element(by.css('button.create-testeur')).click().then(() => {
-            const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
+        navBarPage.goToEntity('testeur');
+        testeurComponentsPage = new TesteurComponentsPage();
+        expect(testeurComponentsPage.getTitle()).toMatch(/qualiToastApp.testeur.home.title/);
 
-            element(by.css('button.close')).click();
-        });
     });
 
-    // Create a new testeur
-    it('should load create Testeur dialog', function() {
-        element(by.css('button.create-testeur')).click().then(() => {
-            const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-            identifiant.sendKeys('111111');
-            nom.sendKeys('testeur');
-            prenom.sendKeys('prenom');
-            typetest.sendKeys('fonc');
-            element(by.id('testeur-dialog-component-save')).click();
-        });
+    it('should load create Testeur dialog', () => {
+        testeurComponentsPage.clickOnCreateButton();
+        testeurDialogPage = new TesteurDialogPage();
+        expect(testeurDialogPage.getModalTitle()).toMatch(/qualiToastApp.testeur.home.createOrEditLabel/);
+        testeurDialogPage.close();
     });
 
-    // Edit a testeur
-    it('should search a testeur', function() {
-        element(by.id('currentSearch')).clear();
-        element(by.id('currentSearch')).sendKeys('testeur');
-        element(by.id('buttonSearch')).click();
-    });
+   /* it('should create and save Testeurs', () => {
+        testeurComponentsPage.clickOnCreateButton();
+        testeurDialogPage.setIdentifiantInput('identifiant');
+        expect(testeurDialogPage.getIdentifiantInput()).toMatch('identifiant');
+        testeurDialogPage.setNomInput('nom');
+        expect(testeurDialogPage.getNomInput()).toMatch('nom');
+        testeurDialogPage.setPrenomInput('prenom');
+        expect(testeurDialogPage.getPrenomInput()).toMatch('prenom');
+        testeurDialogPage.typetestSelectLastOption();
+        testeurDialogPage.save();
+        expect(testeurDialogPage.getSaveButton().isPresent()).toBeFalsy();
+    }); */
 
-    it('should edit a testeur', function() {
-        element(by.id('testeur-component-edit')).click().then(() => {
-            const expectVal = /qualiToastApp.testeur.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-            identifiant.clear();
-            identifiant.sendKeys('111112');
-            nom.clear();
-            nom.sendKeys('nom testeur');
-            prenom.clear();
-            prenom.sendKeys('prenom testeur');
-            typetest.sendKeys('fonc');
-            element(by.id('testeur-dialog-component-save')).click();
-        });
-    });
-
-    // Delete a testeur
-    it('should search a testeur', function() {
-        element(by.id('currentSearch')).clear();
-        element(by.id('currentSearch')).sendKeys('testeur');
-        element(by.id('buttonSearch')).click();
-    });
-
-    it('should load delete Testeur dialog', function() {
-        element(by.id('testeur-component-delete')).click().then(() => {
-            const expectVal = /entity.delete.title/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-            element(by.id('testeur-delete-dialog-component-delete')).click();
-        });
-    });
-
-    afterAll(function() {
-        accountMenu.click();
-        logout.click();
+    afterAll(() => {
+        navBarPage.autoSignOut();
     });
 });
+
+export class TesteurComponentsPage {
+    createButton = element(by.css('.jh-create-entity'));
+    title = element.all(by.css('jhi-testeur div h2 span')).first();
+
+    clickOnCreateButton() {
+        return this.createButton.click();
+    }
+
+    getTitle() {
+        return this.title.getAttribute('jhiTranslate');
+    }
+}
+
+export class TesteurDialogPage {
+    modalTitle = element(by.css('h4#myTesteurLabel'));
+    saveButton = element(by.css('.modal-footer .btn.btn-primary'));
+    closeButton = element(by.css('button.close'));
+    identifiantInput = element(by.css('input#field_identifiant'));
+    nomInput = element(by.css('input#field_nom'));
+    prenomInput = element(by.css('input#field_prenom'));
+    typetestSelect = element(by.css('select#field_typetest'));
+
+    getModalTitle() {
+        return this.modalTitle.getAttribute('jhiTranslate');
+    }
+
+    setIdentifiantInput = function (identifiant) {
+        this.identifiantInput.sendKeys(identifiant);
+    }
+
+    getIdentifiantInput = function () {
+        return this.identifiantInput.getAttribute('value');
+    }
+
+    setNomInput = function (nom) {
+        this.nomInput.sendKeys(nom);
+    }
+
+    getNomInput = function () {
+        return this.nomInput.getAttribute('value');
+    }
+
+    setPrenomInput = function (prenom) {
+        this.prenomInput.sendKeys(prenom);
+    }
+
+    getPrenomInput = function () {
+        return this.prenomInput.getAttribute('value');
+    }
+
+    typetestSelectLastOption = function () {
+        this.typetestSelect.all(by.tagName('option')).last().click();
+    }
+
+    typetestSelectOption = function (option) {
+        this.typetestSelect.sendKeys(option);
+    }
+
+    getTypetestSelect = function () {
+        return this.typetestSelect;
+    }
+
+    getTypetestSelectedOption = function () {
+        return this.typetestSelect.element(by.css('option:checked')).getText();
+    }
+
+    save() {
+        this.saveButton.click();
+    }
+
+    close() {
+        this.closeButton.click();
+    }
+
+    getSaveButton() {
+        return this.saveButton;
+    }
+}

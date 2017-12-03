@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static io.github.pascalgrimaud.qualitoast.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -77,10 +78,11 @@ public class TesteurResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        TesteurResource testeurResource = new TesteurResource(testeurService);
+        final TesteurResource testeurResource = new TesteurResource(testeurService);
         this.restTesteurMockMvc = MockMvcBuilders.standaloneSetup(testeurResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -147,7 +149,7 @@ public class TesteurResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(testeur)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Alice in the database
+        // Validate the Testeur in the database
         List<Testeur> testeurList = testeurRepository.findAll();
         assertThat(testeurList).hasSize(databaseSizeBeforeCreate);
     }
@@ -256,6 +258,8 @@ public class TesteurResourceIntTest {
 
         // Update the testeur
         Testeur updatedTesteur = testeurRepository.findOne(testeur.getId());
+        // Disconnect from session so that the updates on updatedTesteur are not directly saved in db
+        em.detach(updatedTesteur);
         updatedTesteur
             .identifiant(UPDATED_IDENTIFIANT)
             .nom(UPDATED_NOM)

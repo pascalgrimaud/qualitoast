@@ -1,4 +1,4 @@
-const HtmlScreenshotReporter = require("protractor-jasmine2-screenshot-reporter");
+const HtmlScreenshotReporter = require('protractor-jasmine2-screenshot-reporter');
 const JasmineReporters = require('jasmine-reporters');
 
 exports.config = {
@@ -7,17 +7,7 @@ exports.config = {
     specs: [
         './e2e/account/*.spec.ts',
         './e2e/admin/*.spec.ts',
-        './e2e/dashboard/dashboard.spec.ts',
-
-        './e2e/entities/type-test/typetest-add-edit.spec.ts',
-        './e2e/entities/resultat/resultat-add-edit.spec.ts',
-        './e2e/entities/testeur/testeur-add-edit.spec.ts',
-        './e2e/entities/application/application-add-edit.spec.ts',
-
-        './e2e/entities/application/application-delete.spec.ts',
-        './e2e/entities/testeur/testeur-delete.spec.ts',
-        './e2e/entities/type-test/typetest-delete.spec.ts',
-        './e2e/entities/resultat/resultat-delete.spec.ts',
+        './e2e/entities/*.spec.ts',
         /* jhipster-needle-add-protractor-tests - JHipster will add protractors tests here */
     ],
 
@@ -35,7 +25,7 @@ exports.config = {
 
     jasmineNodeOpts: {
         showColors: true,
-        defaultTimeoutInterval: 60000
+        defaultTimeoutInterval: 720000
     },
 
     beforeLaunch: function() {

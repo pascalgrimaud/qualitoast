@@ -5,11 +5,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ng2-webstorage';
 
 import { QualiToastSharedModule, UserRouteAccessService } from './shared';
+import { QualiToastAppRoutingModule} from './app-routing.module';
 import { QualiToastHomeModule } from './home/home.module';
 import { QualiToastAdminModule } from './admin/admin.module';
 import { QualiToastAccountModule } from './account/account.module';
 import { QualiToastEntityModule } from './entities/entity.module';
-
 import { customHttpProvider } from './blocks/interceptor/http.provider';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 
@@ -18,7 +18,6 @@ import { QualiToastDashboardModule } from './dashboard/dashboard.module';
 
 import {
     JhiMainComponent,
-    LayoutRoutingModule,
     NavbarComponent,
     FooterComponent,
     ProfileService,
@@ -30,7 +29,7 @@ import {
 @NgModule({
     imports: [
         BrowserModule,
-        LayoutRoutingModule,
+        QualiToastAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         QualiToastSharedModule,
         QualiToastHomeModule,

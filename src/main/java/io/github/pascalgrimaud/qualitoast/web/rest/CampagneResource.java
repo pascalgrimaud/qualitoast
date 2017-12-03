@@ -3,9 +3,9 @@ package io.github.pascalgrimaud.qualitoast.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import io.github.pascalgrimaud.qualitoast.domain.Campagne;
 import io.github.pascalgrimaud.qualitoast.service.CampagneService;
+import io.github.pascalgrimaud.qualitoast.web.rest.errors.BadRequestAlertException;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.HeaderUtil;
 import io.github.pascalgrimaud.qualitoast.web.rest.util.PaginationUtil;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,7 @@ public class CampagneResource {
     public ResponseEntity<Campagne> createCampagne(@Valid @RequestBody Campagne campagne) throws URISyntaxException {
         log.debug("REST request to save Campagne : {}", campagne);
         if (campagne.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new campagne cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new campagne cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Campagne result = campagneService.save(campagne);
         return ResponseEntity.created(new URI("/api/campagnes/" + result.getId()))
@@ -93,7 +93,7 @@ public class CampagneResource {
      */
     @GetMapping("/campagnes")
     @Timed
-    public ResponseEntity<List<Campagne>> getAllCampagnes(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<Campagne>> getAllCampagnes(Pageable pageable) {
         log.debug("REST request to get a page of Campagnes");
         Page<Campagne> page = campagneService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/campagnes");
@@ -138,7 +138,7 @@ public class CampagneResource {
      */
     @GetMapping("/_search/campagnes")
     @Timed
-    public ResponseEntity<List<Campagne>> searchCampagnes(@RequestParam String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<Campagne>> searchCampagnes(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Campagnes for query {}", query);
         Page<Campagne> page = campagneService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/campagnes");
