@@ -19,6 +19,7 @@ logging:
         ROOT: #logback.loglevel#
         io.github.pascalgrimaud.qualitoast: #logback.loglevel#
         io.github.jhipster: #logback.loglevel#
+    path: target/
 
 management:
     security:
@@ -63,9 +64,6 @@ server:
 info:
     project:
         version: #project.version#
-
-logging:
-    path: target/
 
 # ===================================================================
 # JHipster specific properties
