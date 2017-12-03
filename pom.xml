@@ -4,7 +4,7 @@
 
     <groupId>io.github.pascalgrimaud.qualitoast</groupId>
     <artifactId>quali-toast</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Quali Toast</name>
 
