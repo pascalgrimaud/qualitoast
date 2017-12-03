@@ -9,7 +9,7 @@ describe('Campagne e2e test', () => {
     let campagneComponentsPage: CampagneComponentsPage;
     const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
     const absolutePath = path.resolve(__dirname, fileToUpload);
-    
+
 
     beforeAll(() => {
         browser.get('/');
@@ -33,16 +33,22 @@ describe('Campagne e2e test', () => {
         campagneDialogPage.close();
     });
 
-   /* it('should create and save Campagnes', () => {
+    it('should create and save Campagnes', () => {
         campagneComponentsPage.clickOnCreateButton();
+
+        campagneDialogPage.applicationSelectLastOption();
+
         campagneDialogPage.setVersionInput('version');
         expect(campagneDialogPage.getVersionInput()).toMatch('version');
-        campagneDialogPage.setDatedebutInput('2000-12-31');
-        expect(campagneDialogPage.getDatedebutInput()).toMatch('2000-12-31');
-        campagneDialogPage.setDatefinInput('2000-12-31');
-        expect(campagneDialogPage.getDatefinInput()).toMatch('2000-12-31');
-        campagneDialogPage.setCommentaireInput('commentaire');
-        expect(campagneDialogPage.getCommentaireInput()).toMatch('commentaire');
+
+        campagneDialogPage.typetestSelectLastOption();
+        campagneDialogPage.resultatSelectLastOption();
+
+        campagneDialogPage.setDatedebutInput('2017-12-31');
+        expect(campagneDialogPage.getDatedebutInput()).toMatch('2017-12-31');
+        campagneDialogPage.setDatefinInput('2018-12-31');
+        expect(campagneDialogPage.getDatefinInput()).toMatch('2018-12-31');
+
         campagneDialogPage.setBloquantInput('5');
         expect(campagneDialogPage.getBloquantInput()).toMatch('5');
         campagneDialogPage.setMajeurInput('5');
@@ -60,13 +66,15 @@ describe('Campagne e2e test', () => {
                 expect(campagneDialogPage.getTermineInput().isSelected()).toBeTruthy();
             }
         });
-        campagneDialogPage.applicationSelectLastOption();
-        campagneDialogPage.typetestSelectLastOption();
-        campagneDialogPage.resultatSelectLastOption();
-        // campagneDialogPage.testeurSelectLastOption();
+
+        campagneDialogPage.testeurSelectLastOption();
+
+        campagneDialogPage.setCommentaireInput('commentaire');
+        expect(campagneDialogPage.getCommentaireInput()).toMatch('commentaire');
+
         campagneDialogPage.save();
         expect(campagneDialogPage.getSaveButton().isPresent()).toBeFalsy();
-    }); */
+    });
 
     afterAll(() => {
         navBarPage.autoSignOut();
@@ -93,7 +101,7 @@ export class CampagneDialogPage {
     versionInput = element(by.css('input#field_version'));
     datedebutInput = element(by.css('input#field_datedebut'));
     datefinInput = element(by.css('input#field_datefin'));
-    commentaireInput = element(by.css('input#field_commentaire'));
+    commentaireInput = element(by.css('textarea#field_commentaire'));
     bloquantInput = element(by.css('input#field_bloquant'));
     majeurInput = element(by.css('input#field_majeur'));
     mineurInput = element(by.css('input#field_mineur'));

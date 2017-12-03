@@ -9,7 +9,7 @@ describe('Testeur e2e test', () => {
     let testeurComponentsPage: TesteurComponentsPage;
     const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
     const absolutePath = path.resolve(__dirname, fileToUpload);
-    
+
 
     beforeAll(() => {
         browser.get('/');
@@ -33,7 +33,7 @@ describe('Testeur e2e test', () => {
         testeurDialogPage.close();
     });
 
-   /* it('should create and save Testeurs', () => {
+    it('should create and save Testeurs', () => {
         testeurComponentsPage.clickOnCreateButton();
         testeurDialogPage.setIdentifiantInput('identifiant');
         expect(testeurDialogPage.getIdentifiantInput()).toMatch('identifiant');
@@ -44,7 +44,7 @@ describe('Testeur e2e test', () => {
         testeurDialogPage.typetestSelectLastOption();
         testeurDialogPage.save();
         expect(testeurDialogPage.getSaveButton().isPresent()).toBeFalsy();
-    }); */
+    });
 
     afterAll(() => {
         navBarPage.autoSignOut();

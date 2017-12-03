@@ -9,7 +9,7 @@ describe('Application e2e test', () => {
     let applicationComponentsPage: ApplicationComponentsPage;
     const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
     const absolutePath = path.resolve(__dirname, fileToUpload);
-    
+
 
     beforeAll(() => {
         browser.get('/');
@@ -52,7 +52,7 @@ describe('Application e2e test', () => {
         });
         applicationDialogPage.save();
         expect(applicationDialogPage.getSaveButton().isPresent()).toBeFalsy();
-    }); 
+    });
 
     afterAll(() => {
         navBarPage.autoSignOut();
@@ -78,7 +78,7 @@ export class ApplicationDialogPage {
     closeButton = element(by.css('button.close'));
     codeInput = element(by.css('input#field_code'));
     nomInput = element(by.css('input#field_nom'));
-    descriptionInput = element(by.css('input#field_description'));
+    descriptionInput = element(by.css('textarea#field_description'));
     priorityInput = element(by.css('input#field_priority'));
 
     getModalTitle() {
