@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { SERVER_API_URL } from '../../app.constants';
+
 import { JhiDateUtils } from 'ng-jhipster';
 
 import { Campagne } from './campagne.model';
@@ -9,8 +11,8 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 @Injectable()
 export class CampagneService {
 
-    private resourceUrl = 'api/campagnes';
-    private resourceSearchUrl = 'api/_search/campagnes';
+    private resourceUrl = SERVER_API_URL + 'api/campagnes';
+    private resourceSearchUrl = SERVER_API_URL + 'api/_search/campagnes';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -18,8 +20,7 @@ export class CampagneService {
         const copy = this.convert(campagne);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
-            this.convertItemFromServer(jsonResponse);
-            return jsonResponse;
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
@@ -27,16 +28,14 @@ export class CampagneService {
         const copy = this.convert(campagne);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
-            this.convertItemFromServer(jsonResponse);
-            return jsonResponse;
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     find(id: number): Observable<Campagne> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             const jsonResponse = res.json();
-            this.convertItemFromServer(jsonResponse);
-            return jsonResponse;
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
@@ -58,19 +57,28 @@ export class CampagneService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
+        const result = [];
         for (let i = 0; i < jsonResponse.length; i++) {
-            this.convertItemFromServer(jsonResponse[i]);
+            result.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+        return new ResponseWrapper(res.headers, result, res.status);
     }
 
-    private convertItemFromServer(entity: any) {
+    /**
+     * Convert a returned JSON object to Campagne.
+     */
+    private convertItemFromServer(json: any): Campagne {
+        const entity: Campagne = Object.assign(new Campagne(), json);
         entity.datedebut = this.dateUtils
-            .convertLocalDateFromServer(entity.datedebut);
+            .convertLocalDateFromServer(json.datedebut);
         entity.datefin = this.dateUtils
-            .convertLocalDateFromServer(entity.datefin);
+            .convertLocalDateFromServer(json.datefin);
+        return entity;
     }
 
+    /**
+     * Convert a Campagne to a JSON which can be sent to the server.
+     */
     private convert(campagne: Campagne): Campagne {
         const copy: Campagne = Object.assign({}, campagne);
         copy.datedebut = this.dateUtils

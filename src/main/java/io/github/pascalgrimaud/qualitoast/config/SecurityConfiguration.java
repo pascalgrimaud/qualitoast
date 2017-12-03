@@ -8,6 +8,7 @@ import io.github.jhipster.security.*;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -21,12 +22,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CorsFilter;
+import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
 import javax.annotation.PostConstruct;
 
 @Configuration
+@Import(SecurityProblemSupport.class)
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -41,15 +44,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
 
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,
-        JHipsterProperties jHipsterProperties, RememberMeServices rememberMeServices,
-        CorsFilter corsFilter) {
+    private final SecurityProblemSupport problemSupport;
 
+    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,
+        JHipsterProperties jHipsterProperties, RememberMeServices rememberMeServices,CorsFilter corsFilter, SecurityProblemSupport problemSupport) {
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDetailsService = userDetailsService;
         this.jHipsterProperties = jHipsterProperties;
         this.rememberMeServices = rememberMeServices;
         this.corsFilter = corsFilter;
+        this.problemSupport = problemSupport;
     }
 
     @PostConstruct
@@ -57,7 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         try {
             authenticationManagerBuilder
                 .userDetailsService(userDetailsService)
-                    .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder());
         } catch (Exception e) {
             throw new BeanInitializationException("Security configuration failed", e);
         }
@@ -76,11 +80,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
-    }
-
-    @Bean
-    public Http401UnauthorizedEntryPoint http401UnauthorizedEntryPoint() {
-        return new Http401UnauthorizedEntryPoint();
     }
 
     @Bean
@@ -106,9 +105,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .csrf()
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
         .and()
-            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterBefore(corsFilter, CsrfFilter.class)
             .exceptionHandling()
-            .authenticationEntryPoint(http401UnauthorizedEntryPoint())
+            .authenticationEntryPoint(problemSupport)
+            .accessDeniedHandler(problemSupport)
         .and()
             .rememberMe()
             .rememberMeServices(rememberMeServices)
@@ -136,8 +136,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/register").permitAll()
             .antMatchers("/api/activate").permitAll()
             .antMatchers("/api/authenticate").permitAll()
-            .antMatchers("/api/account/reset_password/init").permitAll()
-            .antMatchers("/api/account/reset_password/finish").permitAll()
+            .antMatchers("/api/account/reset-password/init").permitAll()
+            .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/profile-info").permitAll()
             .antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()

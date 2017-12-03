@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiLanguageService, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { Campagne } from './campagne.model';
 import { CampagneService } from './campagne.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-campagne',
@@ -33,13 +32,11 @@ currentAccount: any;
     constructor(
         private campagneService: CampagneService,
         private parseLinks: JhiParseLinks,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager,
-        private paginationUtil: JhiPaginationUtil,
-        private paginationConfig: PaginationConfig
+        private eventManager: JhiEventManager
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -54,6 +51,7 @@ currentAccount: any;
     loadAll() {
         if (this.currentSearch) {
             this.campagneService.search({
+                page: this.page - 1,
                 query: this.currentSearch,
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
@@ -142,9 +140,8 @@ currentAccount: any;
             return 'text-success btn-sm';
         } else if (resultatState.toLowerCase() === 'ko') {
             return 'text-danger btn-sm';
-        } else {
-            return 'text-warning btn-sm';
         }
+        return 'text-warning btn-sm';
     }
 
     getIconResultat(resultatState) {
@@ -152,9 +149,8 @@ currentAccount: any;
             return 'fa fa-check';
         } else if (resultatState.toLowerCase() === 'ko') {
             return 'fa fa-close';
-        } else {
-            return 'fa fa-warning';
         }
+        return 'fa fa-warning';
     }
 
     private onSuccess(data, headers) {
@@ -165,6 +161,6 @@ currentAccount: any;
         this.campagnes = data;
     }
     private onError(error) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 }

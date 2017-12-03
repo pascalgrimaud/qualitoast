@@ -10,7 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
+import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * Service Implementation for managing TypeTest.
@@ -44,10 +45,10 @@ public class TypeTestService {
     }
 
     /**
-     *  Get all the typeTests.
+     * Get all the typeTests.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<TypeTest> findAll(Pageable pageable) {
@@ -56,10 +57,10 @@ public class TypeTestService {
     }
 
     /**
-     *  Get one typeTest by id.
+     * Get one typeTest by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public TypeTest findOne(Long id) {
@@ -68,9 +69,9 @@ public class TypeTestService {
     }
 
     /**
-     *  Delete the  typeTest by id.
+     * Delete the typeTest by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete TypeTest : {}", id);
@@ -81,9 +82,9 @@ public class TypeTestService {
     /**
      * Search for the typeTest corresponding to the query.
      *
-     *  @param query the query of the search
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param query the query of the search
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<TypeTest> search(String query, Pageable pageable) {

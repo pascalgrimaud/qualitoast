@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="qualiToastApp.resultat.home.title">Resultats</span>
-        <button class="btn btn-primary float-right create-resultat" [routerLink]="['/', { outlets: { popup: ['resultat-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-resultat" [routerLink]="['/', { outlets: { popup: ['resultat-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="qualiToastApp.resultat.home.createLabel">
             Create new Resultat
@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="resultats">
         <table class="table table-striped table-bordered">
-            <thead class="thead-inverse">
+            <thead class="thead-dark">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="code"><span jhiTranslate="qualiToastApp.resultat.code">Code</span> <span class="fa fa-sort"></span></th>
@@ -63,12 +63,12 @@
             </tbody>
         </table>
     </div>
-        <div *ngIf="resultats && resultats.length">
-            <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
-            </div>
-            <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
-            </div>
+    <div *ngIf="resultats && resultats.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
 </div>

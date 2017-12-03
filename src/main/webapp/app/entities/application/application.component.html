@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="qualiToastApp.application.home.title">Applications</span>
-        <button class="btn btn-primary float-right create-application" id="application-component-create" [routerLink]="['/', { outlets: { popup: ['application-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-application" [routerLink]="['/', { outlets: { popup: ['application-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="qualiToastApp.application.home.createLabel">
             Create new Application
@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="applications">
         <table class="table table-striped table-bordered">
-            <thead class="thead-inverse">
+            <thead class="thead-dark">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="code"><span jhiTranslate="qualiToastApp.application.code">Code</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="nom"><span jhiTranslate="qualiToastApp.application.nom">Nom</span> <span class="fa fa-sort"></span></th>
@@ -73,10 +73,10 @@
     </div>
         <div *ngIf="applications && applications.length">
             <div class="row justify-content-center">
-                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+                <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
             </div>
             <div class="row justify-content-center">
-                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+                <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
             </div>
         </div>
 </div>

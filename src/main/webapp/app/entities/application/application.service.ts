@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { SERVER_API_URL } from '../../app.constants';
 
 import { Application } from './application.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -8,28 +9,31 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 @Injectable()
 export class ApplicationService {
 
-    private resourceUrl = 'api/applications';
-    private resourceSearchUrl = 'api/_search/applications';
+    private resourceUrl = SERVER_API_URL + 'api/applications';
+    private resourceSearchUrl = SERVER_API_URL + 'api/_search/applications';
 
     constructor(private http: Http) { }
 
     create(application: Application): Observable<Application> {
         const copy = this.convert(application);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     update(application: Application): Observable<Application> {
         const copy = this.convert(application);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     find(id: number): Observable<Application> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
@@ -51,9 +55,24 @@ export class ApplicationService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
-        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+        const result = [];
+        for (let i = 0; i < jsonResponse.length; i++) {
+            result.push(this.convertItemFromServer(jsonResponse[i]));
+        }
+        return new ResponseWrapper(res.headers, result, res.status);
     }
 
+    /**
+     * Convert a returned JSON object to Application.
+     */
+    private convertItemFromServer(json: any): Application {
+        const entity: Application = Object.assign(new Application(), json);
+        return entity;
+    }
+
+    /**
+     * Convert a Application to a JSON which can be sent to the server.
+     */
     private convert(application: Application): Application {
         const copy: Application = Object.assign({}, application);
         return copy;

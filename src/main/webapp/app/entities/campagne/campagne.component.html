@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="qualiToastApp.campagne.home.title">Campagnes</span>
-        <button class="btn btn-primary float-right create-campagne" id="campagne-component-create" [routerLink]="['/', { outlets: { popup: ['campagne-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-campagne" [routerLink]="['/', { outlets: { popup: ['campagne-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="qualiToastApp.campagne.home.createLabel">
             Create new Campagne
@@ -27,7 +27,7 @@
     <br/>
     <div class="table-responsive" *ngIf="campagnes">
         <table class="table table-striped table-bordered">
-            <thead class="thead-inverse">
+            <thead class="thead-dark">
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="application.id"><span jhiTranslate="qualiToastApp.campagne.application">Application</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="version"><span jhiTranslate="qualiToastApp.campagne.version">Version</span> <span class="fa fa-sort"></span></th>
@@ -105,10 +105,10 @@
     </div>
     <div *ngIf="campagnes && campagnes.length">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [maxSize]="5" [pageSize]="itemsPerPage" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>

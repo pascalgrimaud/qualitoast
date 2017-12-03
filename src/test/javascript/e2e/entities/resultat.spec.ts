@@ -1,49 +1,91 @@
 import { browser, element, by, $ } from 'protractor';
+import { NavBarPage } from './../page-objects/jhi-page-objects';
+const path = require('path');
 
 describe('Resultat e2e test', () => {
 
-    const username = element(by.id('username'));
-    const password = element(by.id('password'));
-    const entityMenu = element(by.id('entity-menu'));
-    const accountMenu = element(by.id('account-menu'));
-    const login = element(by.id('login'));
-    const logout = element(by.id('logout'));
+    let navBarPage: NavBarPage;
+    let resultatDialogPage: ResultatDialogPage;
+    let resultatComponentsPage: ResultatComponentsPage;
+    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
+    const absolutePath = path.resolve(__dirname, fileToUpload);
+    
 
     beforeAll(() => {
         browser.get('/');
-
-        accountMenu.click();
-        login.click();
-
-        username.sendKeys('admin');
-        password.sendKeys('admin');
-        element(by.css('button[type=submit]')).click();
+        browser.waitForAngular();
+        navBarPage = new NavBarPage();
+        navBarPage.getSignInPage().autoSignInUsing('admin', 'admin');
         browser.waitForAngular();
     });
 
     it('should load Resultats', () => {
-        entityMenu.click();
-        element.all(by.css('[routerLink="resultat"]')).first().click().then(() => {
-            const expectVal = /qualiToastApp.resultat.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-        });
+        navBarPage.goToEntity('resultat');
+        resultatComponentsPage = new ResultatComponentsPage();
+        expect(resultatComponentsPage.getTitle()).toMatch(/qualiToastApp.resultat.home.title/);
+
     });
 
     it('should load create Resultat dialog', () => {
-        element(by.css('button.create-resultat')).click().then(() => {
-            const expectVal = /qualiToastApp.resultat.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
-                expect(value).toMatch(expectVal);
-            });
-
-            element(by.css('button.close')).click();
-        });
+        resultatComponentsPage.clickOnCreateButton();
+        resultatDialogPage = new ResultatDialogPage();
+        expect(resultatDialogPage.getModalTitle()).toMatch(/qualiToastApp.resultat.home.createOrEditLabel/);
+        resultatDialogPage.close();
     });
+
+    it('should create and save Resultats', () => {
+        resultatComponentsPage.clickOnCreateButton();
+        resultatDialogPage.setCodeInput('code');
+        expect(resultatDialogPage.getCodeInput()).toMatch('code');
+        resultatDialogPage.save();
+        expect(resultatDialogPage.getSaveButton().isPresent()).toBeFalsy();
+    }); 
 
     afterAll(() => {
-        accountMenu.click();
-        logout.click();
+        navBarPage.autoSignOut();
     });
 });
+
+export class ResultatComponentsPage {
+    createButton = element(by.css('.jh-create-entity'));
+    title = element.all(by.css('jhi-resultat div h2 span')).first();
+
+    clickOnCreateButton() {
+        return this.createButton.click();
+    }
+
+    getTitle() {
+        return this.title.getAttribute('jhiTranslate');
+    }
+}
+
+export class ResultatDialogPage {
+    modalTitle = element(by.css('h4#myResultatLabel'));
+    saveButton = element(by.css('.modal-footer .btn.btn-primary'));
+    closeButton = element(by.css('button.close'));
+    codeInput = element(by.css('input#field_code'));
+
+    getModalTitle() {
+        return this.modalTitle.getAttribute('jhiTranslate');
+    }
+
+    setCodeInput = function (code) {
+        this.codeInput.sendKeys(code);
+    }
+
+    getCodeInput = function () {
+        return this.codeInput.getAttribute('value');
+    }
+
+    save() {
+        this.saveButton.click();
+    }
+
+    close() {
+        this.closeButton.click();
+    }
+
+    getSaveButton() {
+        return this.saveButton;
+    }
+}

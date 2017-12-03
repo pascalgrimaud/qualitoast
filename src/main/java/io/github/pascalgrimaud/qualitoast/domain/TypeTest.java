@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+
 /**
  * A TypeTest.
  */
@@ -33,6 +34,7 @@ public class TypeTest implements Serializable {
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -66,6 +68,7 @@ public class TypeTest implements Serializable {
     public void setNom(String nom) {
         this.nom = nom;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

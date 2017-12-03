@@ -37,16 +37,17 @@ public class CacheConfiguration {
     @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
+            cm.createCache("users", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Campagne.class.getName(), jcacheConfiguration);
+            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Campagne.class.getName() + ".testeurs", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Application.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.TypeTest.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Resultat.class.getName(), jcacheConfiguration);
-            cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Campagne.class.getName() + ".testeurs", jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Testeur.class.getName(), jcacheConfiguration);
             cm.createCache(io.github.pascalgrimaud.qualitoast.domain.Testeur.class.getName() + ".campagnes", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
