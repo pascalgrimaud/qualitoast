@@ -7,7 +7,7 @@
 
 ## Description
 
-This application was generated using JHipster 4.6.2, with the following options:
+This application was generated using JHipster 4.3.0, upgraded to 4.11.1, with the following options:
 - Angular
 - Maven
 - PostgreSQL
@@ -116,7 +116,7 @@ To stop it and remove the container, run:
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
-    ./mvnw package -Pprod docker:build
+    ./mvnw package -Pprod dockerfile:build
 
 Then run:
 
