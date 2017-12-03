@@ -53,7 +53,7 @@ public class CampagneService {
     @Transactional(readOnly = true)
     public Page<Campagne> findAll(Pageable pageable) {
         log.debug("Request to get all Campagnes");
-        return campagneRepository.findAll(pageable);
+        return campagneRepository.findAllWithTesteursBy(pageable);
     }
 
     /**
