@@ -15,10 +15,6 @@
 # ===================================================================
 
 logging:
-    level:
-        ROOT: #logback.loglevel#
-        io.github.pascalgrimaud.qualitoast: #logback.loglevel#
-        io.github.jhipster: #logback.loglevel#
     path: target/
 
 management:
@@ -79,9 +75,9 @@ jhipster:
     # By default CORS is disabled. Uncomment to enable.
     #cors:
         #allowed-origins: "*"
-        #allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+        #allowed-methods: "*"
         #allowed-headers: "*"
-        #exposed-headers:
+        #exposed-headers: "Link,X-Total-Count"
         #allow-credentials: true
         #max-age: 1800
     mail:

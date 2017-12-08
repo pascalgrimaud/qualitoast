@@ -116,7 +116,7 @@ public class ResultatResourceIntTest {
 
         // Validate the Resultat in Elasticsearch
         Resultat resultatEs = resultatSearchRepository.findOne(testResultat.getId());
-        assertThat(resultatEs).isEqualToComparingFieldByField(testResultat);
+        assertThat(resultatEs).isEqualToIgnoringGivenFields(testResultat);
     }
 
     @Test
@@ -220,7 +220,7 @@ public class ResultatResourceIntTest {
 
         // Validate the Resultat in Elasticsearch
         Resultat resultatEs = resultatSearchRepository.findOne(testResultat.getId());
-        assertThat(resultatEs).isEqualToComparingFieldByField(testResultat);
+        assertThat(resultatEs).isEqualToIgnoringGivenFields(testResultat);
     }
 
     @Test

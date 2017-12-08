@@ -132,7 +132,7 @@ public class TesteurResourceIntTest {
 
         // Validate the Testeur in Elasticsearch
         Testeur testeurEs = testeurSearchRepository.findOne(testTesteur.getId());
-        assertThat(testeurEs).isEqualToComparingFieldByField(testTesteur);
+        assertThat(testeurEs).isEqualToIgnoringGivenFields(testTesteur);
     }
 
     @Test
@@ -280,7 +280,7 @@ public class TesteurResourceIntTest {
 
         // Validate the Testeur in Elasticsearch
         Testeur testeurEs = testeurSearchRepository.findOne(testTesteur.getId());
-        assertThat(testeurEs).isEqualToComparingFieldByField(testTesteur);
+        assertThat(testeurEs).isEqualToIgnoringGivenFields(testTesteur);
     }
 
     @Test

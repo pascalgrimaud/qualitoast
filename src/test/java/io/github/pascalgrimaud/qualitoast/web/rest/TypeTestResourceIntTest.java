@@ -121,7 +121,7 @@ public class TypeTestResourceIntTest {
 
         // Validate the TypeTest in Elasticsearch
         TypeTest typeTestEs = typeTestSearchRepository.findOne(testTypeTest.getId());
-        assertThat(typeTestEs).isEqualToComparingFieldByField(testTypeTest);
+        assertThat(typeTestEs).isEqualToIgnoringGivenFields(testTypeTest);
     }
 
     @Test
@@ -247,7 +247,7 @@ public class TypeTestResourceIntTest {
 
         // Validate the TypeTest in Elasticsearch
         TypeTest typeTestEs = typeTestSearchRepository.findOne(testTypeTest.getId());
-        assertThat(typeTestEs).isEqualToComparingFieldByField(testTypeTest);
+        assertThat(typeTestEs).isEqualToIgnoringGivenFields(testTypeTest);
     }
 
     @Test

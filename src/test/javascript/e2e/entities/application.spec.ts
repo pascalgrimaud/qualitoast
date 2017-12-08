@@ -1,15 +1,11 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { NavBarPage } from './../page-objects/jhi-page-objects';
-const path = require('path');
 
 describe('Application e2e test', () => {
 
     let navBarPage: NavBarPage;
     let applicationDialogPage: ApplicationDialogPage;
     let applicationComponentsPage: ApplicationComponentsPage;
-    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
-    const absolutePath = path.resolve(__dirname, fileToUpload);
-
 
     beforeAll(() => {
         browser.get('/');
@@ -41,7 +37,7 @@ describe('Application e2e test', () => {
         expect(applicationDialogPage.getNomInput()).toMatch('nom');
         applicationDialogPage.setDescriptionInput('description');
         expect(applicationDialogPage.getDescriptionInput()).toMatch('description');
-        applicationDialogPage.getPriorityInput().isSelected().then(function (selected) {
+        applicationDialogPage.getPriorityInput().isSelected().then((selected) => {
             if (selected) {
                 applicationDialogPage.getPriorityInput().click();
                 expect(applicationDialogPage.getPriorityInput().isSelected()).toBeFalsy();
@@ -78,38 +74,38 @@ export class ApplicationDialogPage {
     closeButton = element(by.css('button.close'));
     codeInput = element(by.css('input#field_code'));
     nomInput = element(by.css('input#field_nom'));
-    descriptionInput = element(by.css('textarea#field_description'));
+    descriptionInput = element(by.css('input#field_description'));
     priorityInput = element(by.css('input#field_priority'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
 
-    setCodeInput = function (code) {
+    setCodeInput = function(code) {
         this.codeInput.sendKeys(code);
     }
 
-    getCodeInput = function () {
+    getCodeInput = function() {
         return this.codeInput.getAttribute('value');
     }
 
-    setNomInput = function (nom) {
+    setNomInput = function(nom) {
         this.nomInput.sendKeys(nom);
     }
 
-    getNomInput = function () {
+    getNomInput = function() {
         return this.nomInput.getAttribute('value');
     }
 
-    setDescriptionInput = function (description) {
+    setDescriptionInput = function(description) {
         this.descriptionInput.sendKeys(description);
     }
 
-    getDescriptionInput = function () {
+    getDescriptionInput = function() {
         return this.descriptionInput.getAttribute('value');
     }
 
-    getPriorityInput = function () {
+    getPriorityInput = function() {
         return this.priorityInput;
     }
     save() {

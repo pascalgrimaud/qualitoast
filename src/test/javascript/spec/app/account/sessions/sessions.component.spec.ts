@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, inject, tick, fakeAsync } from '@angular/core/testing';
 import { Observable } from 'rxjs/Rx';
+
 import { QualiToastTestModule } from '../../../test.module';
 import { Session } from '../../../../../../main/webapp/app/account/sessions/session.model';
 import { SessionsComponent } from '../../../../../../main/webapp/app/account/sessions/sessions.component';
@@ -22,13 +23,10 @@ describe('Component Tests', () => {
                 imports: [QualiToastTestModule],
                 declarations: [SessionsComponent],
                 providers: [
-                    SessionsService,
-                    {
-                        provide: Principal,
-                        useClass: MockPrincipal
-                    }
+                    SessionsService
                 ]
-            }).overrideTemplate(SessionsComponent, '')
+            })
+            .overrideTemplate(SessionsComponent, '')
             .createComponent(SessionsComponent);
             comp = fixture.componentInstance;
         });

@@ -1,15 +1,11 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { NavBarPage } from './../page-objects/jhi-page-objects';
-const path = require('path');
 
 describe('Testeur e2e test', () => {
 
     let navBarPage: NavBarPage;
     let testeurDialogPage: TesteurDialogPage;
     let testeurComponentsPage: TesteurComponentsPage;
-    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
-    const absolutePath = path.resolve(__dirname, fileToUpload);
-
 
     beforeAll(() => {
         browser.get('/');
@@ -33,7 +29,7 @@ describe('Testeur e2e test', () => {
         testeurDialogPage.close();
     });
 
-    it('should create and save Testeurs', () => {
+   /* it('should create and save Testeurs', () => {
         testeurComponentsPage.clickOnCreateButton();
         testeurDialogPage.setIdentifiantInput('identifiant');
         expect(testeurDialogPage.getIdentifiantInput()).toMatch('identifiant');
@@ -44,7 +40,7 @@ describe('Testeur e2e test', () => {
         testeurDialogPage.typetestSelectLastOption();
         testeurDialogPage.save();
         expect(testeurDialogPage.getSaveButton().isPresent()).toBeFalsy();
-    });
+    });*/
 
     afterAll(() => {
         navBarPage.autoSignOut();
@@ -77,43 +73,43 @@ export class TesteurDialogPage {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
 
-    setIdentifiantInput = function (identifiant) {
+    setIdentifiantInput = function(identifiant) {
         this.identifiantInput.sendKeys(identifiant);
     }
 
-    getIdentifiantInput = function () {
+    getIdentifiantInput = function() {
         return this.identifiantInput.getAttribute('value');
     }
 
-    setNomInput = function (nom) {
+    setNomInput = function(nom) {
         this.nomInput.sendKeys(nom);
     }
 
-    getNomInput = function () {
+    getNomInput = function() {
         return this.nomInput.getAttribute('value');
     }
 
-    setPrenomInput = function (prenom) {
+    setPrenomInput = function(prenom) {
         this.prenomInput.sendKeys(prenom);
     }
 
-    getPrenomInput = function () {
+    getPrenomInput = function() {
         return this.prenomInput.getAttribute('value');
     }
 
-    typetestSelectLastOption = function () {
+    typetestSelectLastOption = function() {
         this.typetestSelect.all(by.tagName('option')).last().click();
     }
 
-    typetestSelectOption = function (option) {
+    typetestSelectOption = function(option) {
         this.typetestSelect.sendKeys(option);
     }
 
-    getTypetestSelect = function () {
+    getTypetestSelect = function() {
         return this.typetestSelect;
     }
 
-    getTypetestSelectedOption = function () {
+    getTypetestSelectedOption = function() {
         return this.typetestSelect.element(by.css('option:checked')).getText();
     }
 
