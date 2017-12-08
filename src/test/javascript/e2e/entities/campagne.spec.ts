@@ -1,15 +1,11 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { NavBarPage } from './../page-objects/jhi-page-objects';
-const path = require('path');
 
 describe('Campagne e2e test', () => {
 
     let navBarPage: NavBarPage;
     let campagneDialogPage: CampagneDialogPage;
     let campagneComponentsPage: CampagneComponentsPage;
-    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
-    const absolutePath = path.resolve(__dirname, fileToUpload);
-
 
     beforeAll(() => {
         browser.get('/');
@@ -57,7 +53,7 @@ describe('Campagne e2e test', () => {
         expect(campagneDialogPage.getMineurInput()).toMatch('5');
         campagneDialogPage.setEvolutionInput('5');
         expect(campagneDialogPage.getEvolutionInput()).toMatch('5');
-        campagneDialogPage.getTermineInput().isSelected().then(function (selected) {
+        campagneDialogPage.getTermineInput().isSelected().then(function(selected) {
             if (selected) {
                 campagneDialogPage.getTermineInput().click();
                 expect(campagneDialogPage.getTermineInput().isSelected()).toBeFalsy();
@@ -116,134 +112,134 @@ export class CampagneDialogPage {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
 
-    setVersionInput = function (version) {
+    setVersionInput = function(version) {
         this.versionInput.sendKeys(version);
     }
 
-    getVersionInput = function () {
+    getVersionInput = function() {
         return this.versionInput.getAttribute('value');
     }
 
-    setDatedebutInput = function (datedebut) {
+    setDatedebutInput = function(datedebut) {
         this.datedebutInput.sendKeys(datedebut);
     }
 
-    getDatedebutInput = function () {
+    getDatedebutInput = function() {
         return this.datedebutInput.getAttribute('value');
     }
 
-    setDatefinInput = function (datefin) {
+    setDatefinInput = function(datefin) {
         this.datefinInput.sendKeys(datefin);
     }
 
-    getDatefinInput = function () {
+    getDatefinInput = function() {
         return this.datefinInput.getAttribute('value');
     }
 
-    setCommentaireInput = function (commentaire) {
+    setCommentaireInput = function(commentaire) {
         this.commentaireInput.sendKeys(commentaire);
     }
 
-    getCommentaireInput = function () {
+    getCommentaireInput = function() {
         return this.commentaireInput.getAttribute('value');
     }
 
-    setBloquantInput = function (bloquant) {
+    setBloquantInput = function(bloquant) {
         this.bloquantInput.sendKeys(bloquant);
     }
 
-    getBloquantInput = function () {
+    getBloquantInput = function() {
         return this.bloquantInput.getAttribute('value');
     }
 
-    setMajeurInput = function (majeur) {
+    setMajeurInput = function(majeur) {
         this.majeurInput.sendKeys(majeur);
     }
 
-    getMajeurInput = function () {
+    getMajeurInput = function() {
         return this.majeurInput.getAttribute('value');
     }
 
-    setMineurInput = function (mineur) {
+    setMineurInput = function(mineur) {
         this.mineurInput.sendKeys(mineur);
     }
 
-    getMineurInput = function () {
+    getMineurInput = function() {
         return this.mineurInput.getAttribute('value');
     }
 
-    setEvolutionInput = function (evolution) {
+    setEvolutionInput = function(evolution) {
         this.evolutionInput.sendKeys(evolution);
     }
 
-    getEvolutionInput = function () {
+    getEvolutionInput = function() {
         return this.evolutionInput.getAttribute('value');
     }
 
-    getTermineInput = function () {
+    getTermineInput = function() {
         return this.termineInput;
     }
-    applicationSelectLastOption = function () {
+    applicationSelectLastOption = function() {
         this.applicationSelect.all(by.tagName('option')).last().click();
     }
 
-    applicationSelectOption = function (option) {
+    applicationSelectOption = function(option) {
         this.applicationSelect.sendKeys(option);
     }
 
-    getApplicationSelect = function () {
+    getApplicationSelect = function() {
         return this.applicationSelect;
     }
 
-    getApplicationSelectedOption = function () {
+    getApplicationSelectedOption = function() {
         return this.applicationSelect.element(by.css('option:checked')).getText();
     }
 
-    typetestSelectLastOption = function () {
+    typetestSelectLastOption = function() {
         this.typetestSelect.all(by.tagName('option')).last().click();
     }
 
-    typetestSelectOption = function (option) {
+    typetestSelectOption = function(option) {
         this.typetestSelect.sendKeys(option);
     }
 
-    getTypetestSelect = function () {
+    getTypetestSelect = function() {
         return this.typetestSelect;
     }
 
-    getTypetestSelectedOption = function () {
+    getTypetestSelectedOption = function() {
         return this.typetestSelect.element(by.css('option:checked')).getText();
     }
 
-    resultatSelectLastOption = function () {
+    resultatSelectLastOption = function() {
         this.resultatSelect.all(by.tagName('option')).last().click();
     }
 
-    resultatSelectOption = function (option) {
+    resultatSelectOption = function(option) {
         this.resultatSelect.sendKeys(option);
     }
 
-    getResultatSelect = function () {
+    getResultatSelect = function() {
         return this.resultatSelect;
     }
 
-    getResultatSelectedOption = function () {
+    getResultatSelectedOption = function() {
         return this.resultatSelect.element(by.css('option:checked')).getText();
     }
 
-    testeurSelectLastOption = function () {
+    testeurSelectLastOption = function() {
         this.testeurSelect.all(by.tagName('option')).last().click();
     }
 
-    testeurSelectOption = function (option) {
+    testeurSelectOption = function(option) {
         this.testeurSelect.sendKeys(option);
     }
 
-    getTesteurSelect = function () {
+    getTesteurSelect = function() {
         return this.testeurSelect;
     }
 
-    getTesteurSelectedOption = function () {
+    getTesteurSelectedOption = function() {
         return this.testeurSelect.element(by.css('option:checked')).getText();
     }
 

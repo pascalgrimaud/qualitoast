@@ -1,4 +1,4 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, element, by } from 'protractor';
 
 describe('Testeur e2e test', () => {
 
@@ -8,11 +8,12 @@ describe('Testeur e2e test', () => {
     const accountMenu = element(by.id('account-menu'));
     const login = element(by.id('login'));
     const logout = element(by.id('logout'));
+    /*
     const identifiant = element(by.id('field_identifiant'));
     const nom = element(by.id('field_nom'));
     const prenom = element(by.id('field_prenom'));
     const typetest = element(by.id('field_typetest'));
-
+    */
     beforeAll(() => {
         browser.get('/');
 
