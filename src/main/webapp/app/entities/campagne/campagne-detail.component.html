@@ -1,9 +1,9 @@
 
 <div *ngIf="campagne">
-    <h2><span jhiTranslate="qualiToastApp.campagne.detail.title">Campagne</span></h2>
+    <h2><span jhiTranslate="qualiToastApp.campagne.detail.title">Campagne</span> {{campagne.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <div class="row">
+    <div class="row" jh-entity-details>
         <dl class="col-md-4">
             <dt><div *ngIf="campagne.application"><span jhiTranslate="qualiToastApp.campagne.application">Application : </span>&nbsp;:&nbsp;&nbsp;
                 <span>

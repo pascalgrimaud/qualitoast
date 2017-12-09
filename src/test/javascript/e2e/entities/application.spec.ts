@@ -74,7 +74,7 @@ export class ApplicationDialogPage {
     closeButton = element(by.css('button.close'));
     codeInput = element(by.css('input#field_code'));
     nomInput = element(by.css('input#field_nom'));
-    descriptionInput = element(by.css('input#field_description'));
+    descriptionInput = element(by.css('textarea#field_description'));
     priorityInput = element(by.css('input#field_priority'));
 
     getModalTitle() {
