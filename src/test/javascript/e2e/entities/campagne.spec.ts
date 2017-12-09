@@ -53,7 +53,7 @@ describe('Campagne e2e test', () => {
         expect(campagneDialogPage.getMineurInput()).toMatch('5');
         campagneDialogPage.setEvolutionInput('5');
         expect(campagneDialogPage.getEvolutionInput()).toMatch('5');
-        campagneDialogPage.getTermineInput().isSelected().then(function(selected) {
+        campagneDialogPage.getTermineInput().isSelected().then((selected) => {
             if (selected) {
                 campagneDialogPage.getTermineInput().click();
                 expect(campagneDialogPage.getTermineInput().isSelected()).toBeFalsy();
