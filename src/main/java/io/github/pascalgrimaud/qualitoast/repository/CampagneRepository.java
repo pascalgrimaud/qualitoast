@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface CampagneRepository extends JpaRepository<Campagne,Long> {
+public interface CampagneRepository extends JpaRepository<Campagne, Long> {
 
     @Query("select distinct campagne from Campagne campagne left join fetch campagne.testeurs")
     List<Campagne> findAllWithEagerRelationships();

@@ -7,7 +7,7 @@
 
 ## Description
 
-This application was generated using JHipster 4.3.0, upgraded to 4.11.1, with the following options:
+This application was generated using JHipster 4.3.0, upgraded to 4.12.0, with the following options:
 - Angular
 - Maven
 - PostgreSQL

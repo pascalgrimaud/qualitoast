@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-
-import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
+import { UserRouteAccessService } from '../../shared';
 import { TypeTestComponent } from './type-test.component';
 import { TypeTestDetailComponent } from './type-test-detail.component';
 import { TypeTestPopupComponent } from './type-test-dialog.component';

@@ -1,15 +1,11 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, element, by } from 'protractor';
 import { NavBarPage } from './../page-objects/jhi-page-objects';
-const path = require('path');
 
 describe('TypeTest e2e test', () => {
 
     let navBarPage: NavBarPage;
     let typeTestDialogPage: TypeTestDialogPage;
     let typeTestComponentsPage: TypeTestComponentsPage;
-    const fileToUpload = '../../../../main/webapp/content/images/logo-jhipster.png';
-    const absolutePath = path.resolve(__dirname, fileToUpload);
-    
 
     beforeAll(() => {
         browser.get('/');
@@ -41,7 +37,7 @@ describe('TypeTest e2e test', () => {
         expect(typeTestDialogPage.getNomInput()).toMatch('nom');
         typeTestDialogPage.save();
         expect(typeTestDialogPage.getSaveButton().isPresent()).toBeFalsy();
-    }); 
+    });
 
     afterAll(() => {
         navBarPage.autoSignOut();
@@ -72,19 +68,19 @@ export class TypeTestDialogPage {
         return this.modalTitle.getAttribute('jhiTranslate');
     }
 
-    setCodeInput = function (code) {
+    setCodeInput = function(code) {
         this.codeInput.sendKeys(code);
     }
 
-    getCodeInput = function () {
+    getCodeInput = function() {
         return this.codeInput.getAttribute('value');
     }
 
-    setNomInput = function (nom) {
+    setNomInput = function(nom) {
         this.nomInput.sendKeys(nom);
     }
 
-    getNomInput = function () {
+    getNomInput = function() {
         return this.nomInput.getAttribute('value');
     }
 

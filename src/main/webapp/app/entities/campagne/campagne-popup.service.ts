@@ -57,10 +57,10 @@ export class CampagnePopupService {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
         modalRef.componentInstance.campagne = campagne;
         modalRef.result.then((result) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;
         }, (reason) => {
-            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
+            this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true, queryParamsHandling: 'merge' });
             this.ngbModalRef = null;
         });
         return modalRef;

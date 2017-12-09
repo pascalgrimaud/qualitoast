@@ -2,7 +2,6 @@ import { JhiEventManager, JhiInterceptableHttp } from 'ng-jhipster';
 import { Injector } from '@angular/core';
 import { Http, XHRBackend, RequestOptions } from '@angular/http';
 
-import { AuthServerProvider } from '../../shared/auth/auth-session.service';
 import { LoginModalService } from '../../shared/login/login-modal.service';
 import { StateStorageService } from '../../shared/auth/state-storage.service';
 import { AuthExpiredInterceptor } from './auth-expired.interceptor';

@@ -176,7 +176,7 @@ public class CampagneResourceIntTest {
 
         // Validate the Campagne in Elasticsearch
         Campagne campagneEs = campagneSearchRepository.findOne(testCampagne.getId());
-        assertThat(campagneEs).isEqualToComparingFieldByField(testCampagne);
+        assertThat(campagneEs).isEqualToIgnoringGivenFields(testCampagne);
     }
 
     @Test
@@ -330,7 +330,7 @@ public class CampagneResourceIntTest {
 
         // Validate the Campagne in Elasticsearch
         Campagne campagneEs = campagneSearchRepository.findOne(testCampagne.getId());
-        assertThat(campagneEs).isEqualToComparingFieldByField(testCampagne);
+        assertThat(campagneEs).isEqualToIgnoringGivenFields(testCampagne);
     }
 
     @Test

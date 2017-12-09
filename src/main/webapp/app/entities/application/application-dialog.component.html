@@ -15,8 +15,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.application.code" for="field_code">Code</label>
             <input type="text" class="form-control" name="code" id="field_code"
-                [(ngModel)]="application.code"
-            required />
+                [(ngModel)]="application.code" required />
             <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
@@ -27,8 +26,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.application.nom" for="field_nom">Nom</label>
             <input type="text" class="form-control" name="nom" id="field_nom"
-                [(ngModel)]="application.nom"
-            required />
+                [(ngModel)]="application.nom" required />
             <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
@@ -38,14 +36,13 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.application.description" for="field_description">Description</label>
-                <textarea type="text" class="form-control" rows="3" name="description" id="field_description"
-                [(ngModel)]="application.description"></textarea>
+            <textarea type="text" class="form-control" rows="3" name="description" id="field_description"
+                      [(ngModel)]="application.description"></textarea>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.application.priority" for="field_priority">Priority</label>
             <input type="checkbox" class="form-control" name="priority" id="field_priority"
-                   [(ngModel)]="application.priority"
-            />
+                [(ngModel)]="application.priority" />
         </div>
 
     </div>

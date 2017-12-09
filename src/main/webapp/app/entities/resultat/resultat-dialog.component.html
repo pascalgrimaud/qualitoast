@@ -15,8 +15,7 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="qualiToastApp.resultat.code" for="field_code">Code</label>
             <input type="text" class="form-control" name="code" id="field_code"
-                [(ngModel)]="resultat.code"
-            required />
+                [(ngModel)]="resultat.code" required />
             <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">

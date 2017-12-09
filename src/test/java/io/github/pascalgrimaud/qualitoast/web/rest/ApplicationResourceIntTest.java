@@ -131,7 +131,7 @@ public class ApplicationResourceIntTest {
 
         // Validate the Application in Elasticsearch
         Application applicationEs = applicationSearchRepository.findOne(testApplication.getId());
-        assertThat(applicationEs).isEqualToComparingFieldByField(testApplication);
+        assertThat(applicationEs).isEqualToIgnoringGivenFields(testApplication);
     }
 
     @Test
@@ -265,7 +265,7 @@ public class ApplicationResourceIntTest {
 
         // Validate the Application in Elasticsearch
         Application applicationEs = applicationSearchRepository.findOne(testApplication.getId());
-        assertThat(applicationEs).isEqualToComparingFieldByField(testApplication);
+        assertThat(applicationEs).isEqualToIgnoringGivenFields(testApplication);
     }
 
     @Test
