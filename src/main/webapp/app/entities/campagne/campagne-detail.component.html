@@ -1,0 +1,82 @@
+
+<div *ngIf="campagne">
+    <h2><span jhiTranslate="qualiToastApp.campagne.detail.title">Campagne</span> {{campagne.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="qualiToastApp.campagne.version">Version</span></dt>
+        <dd>
+            <span>{{campagne.version}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.datedebut">Datedebut</span></dt>
+        <dd>
+            <span>{{campagne.datedebut | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.datefin">Datefin</span></dt>
+        <dd>
+            <span>{{campagne.datefin | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.commentaire">Commentaire</span></dt>
+        <dd>
+            <span>{{campagne.commentaire}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.bloquant">Bloquant</span></dt>
+        <dd>
+            <span>{{campagne.bloquant}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.majeur">Majeur</span></dt>
+        <dd>
+            <span>{{campagne.majeur}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.mineur">Mineur</span></dt>
+        <dd>
+            <span>{{campagne.mineur}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.evolution">Evolution</span></dt>
+        <dd>
+            <span>{{campagne.evolution}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.termine">Termine</span></dt>
+        <dd>
+            <span>{{campagne.termine}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.application">Application</span></dt>
+        <dd>
+            <div *ngIf="campagne.application">
+                <a [routerLink]="['/application', campagne.application?.id]">{{campagne.application?.nom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.typetest">Typetest</span></dt>
+        <dd>
+            <div *ngIf="campagne.typetest">
+                <a [routerLink]="['/type-test', campagne.typetest?.id]">{{campagne.typetest?.nom}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.resultat">Resultat</span></dt>
+        <dd>
+            <div *ngIf="campagne.resultat">
+                <a [routerLink]="['/resultat', campagne.resultat?.id]">{{campagne.resultat?.code}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.campagne.testeur">Testeur</span></dt>
+        <dd>
+            <span *ngFor="let testeur of campagne.testeurs; let last = last">
+                <a [routerLink]="['/testeur', testeur?.id ]">{{testeur.identifiant}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'campagne/'+ campagne.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

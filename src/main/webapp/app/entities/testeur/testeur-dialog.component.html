@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTesteurLabel" jhiTranslate="qualiToastApp.testeur.home.createOrEditLabel">Create or edit a Testeur</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!testeur.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="testeur.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.testeur.identifiant" for="field_identifiant">Identifiant</label>
+            <input type="text" class="form-control" name="identifiant" id="field_identifiant"
+                [(ngModel)]="testeur.identifiant" required/>
+            <div [hidden]="!(editForm.controls.identifiant?.dirty && editForm.controls.identifiant?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.identifiant?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.testeur.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="testeur.nom" required/>
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.testeur.prenom" for="field_prenom">Prenom</label>
+            <input type="text" class="form-control" name="prenom" id="field_prenom"
+                [(ngModel)]="testeur.prenom" required/>
+            <div [hidden]="!(editForm.controls.prenom?.dirty && editForm.controls.prenom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.testeur.typetest" for="field_typetest">Typetest</label>
+            <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="testeur.typetest"  required>
+                <option *ngIf="!editForm.value.typetest" [ngValue]="null" selected></option>
+                <option [ngValue]="typeTestOption.id === testeur.typetest?.id ? testeur.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.nom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.typetest?.dirty && editForm.controls.typetest?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.typetest?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

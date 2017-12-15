@@ -1,0 +1,22 @@
+{
+    "qualiToastApp": {
+        "resultat" : {
+            "home": {
+                "title": "Resultats",
+                "createLabel": "Créer un nouveau Resultat",
+                "createOrEditLabel": "Créer ou éditer un Resultat",
+                "search": "Recherche pour Resultat"
+            },
+            "created": "Un nouveau Resultat a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Resultat avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Resultat avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Resultat {{ id }} ?"
+            },
+            "detail": {
+                "title": "Resultat"
+            },
+            "code": "Code"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+
+<div *ngIf="typeTest">
+    <h2><span jhiTranslate="qualiToastApp.typeTest.detail.title">Type Test</span> {{typeTest.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="qualiToastApp.typeTest.code">Code</span></dt>
+        <dd>
+            <span>{{typeTest.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.typeTest.nom">Nom</span></dt>
+        <dd>
+            <span>{{typeTest.nom}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'type-test/'+ typeTest.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+{
+    "qualiToastApp": {
+        "typeTest" : {
+            "home": {
+                "title": "TypeTests",
+                "createLabel": "Créer un nouveau Type Test",
+                "createOrEditLabel": "Créer ou éditer un Type Test",
+                "search": "Recherche pour Type Test"
+            },
+            "created": "Un nouveau Type Test a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Type Test avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Type Test avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Type Test {{ id }} ?"
+            },
+            "detail": {
+                "title": "Type Test"
+            },
+            "code": "Code",
+            "nom": "Nom"
+        }
+    }
+}

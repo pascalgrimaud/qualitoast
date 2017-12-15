@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "typetest",
+            "otherEntityName": "typeTest",
+            "otherEntityField": "nom"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "campagne",
+            "otherEntityName": "campagne",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "testeur"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "identifiant",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170430152629",
+    "entityTableName": "testeur",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass"
+}

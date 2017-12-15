@@ -1,0 +1,40 @@
+
+<div *ngIf="testeur">
+    <h2><span jhiTranslate="qualiToastApp.testeur.detail.title">Testeur</span> {{testeur.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="qualiToastApp.testeur.identifiant">Identifiant</span></dt>
+        <dd>
+            <span>{{testeur.identifiant}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.testeur.nom">Nom</span></dt>
+        <dd>
+            <span>{{testeur.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.testeur.prenom">Prenom</span></dt>
+        <dd>
+            <span>{{testeur.prenom}}</span>
+        </dd>
+        <dt><span jhiTranslate="qualiToastApp.testeur.typetest">Typetest</span></dt>
+        <dd>
+            <div *ngIf="testeur.typetest">
+                <a [routerLink]="['/type-test', testeur.typetest?.id]">{{testeur.typetest?.nom}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'testeur/'+ testeur.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

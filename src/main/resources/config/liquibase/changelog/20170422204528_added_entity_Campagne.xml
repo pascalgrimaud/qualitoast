@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Campagne.
+    -->
+    <changeSet id="20170422204528-1" author="jhipster">
+        <createTable tableName="campagne">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="version" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="datedebut" type="date">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="datefin" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="commentaire" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bloquant" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="majeur" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="mineur" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="evolution" type="integer">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="termine" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="application_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="typetest_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="resultat_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+        <createTable tableName="campagne_testeur">
+            <column name="testeurs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="campagnes_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="campagnes_id, testeurs_id" tableName="campagne_testeur"/>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

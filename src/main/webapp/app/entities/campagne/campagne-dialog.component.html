@@ -1,0 +1,177 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCampagneLabel" jhiTranslate="qualiToastApp.campagne.home.createOrEditLabel">Create or edit a Campagne</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!campagne.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="campagne.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.version" for="field_version">Version</label>
+            <input type="text" class="form-control" name="version" id="field_version"
+                [(ngModel)]="campagne.version" required/>
+            <div [hidden]="!(editForm.controls.version?.dirty && editForm.controls.version?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.version?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.datedebut" for="field_datedebut">Datedebut</label>
+            <div class="input-group">
+                <input id="field_datedebut" type="text" class="form-control" name="datedebut" ngbDatepicker  #datedebutDp="ngbDatepicker" [(ngModel)]="campagne.datedebut"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="datedebutDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.datedebut?.dirty && editForm.controls.datedebut?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.datedebut?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.datefin" for="field_datefin">Datefin</label>
+            <div class="input-group">
+                <input id="field_datefin" type="text" class="form-control" name="datefin" ngbDatepicker  #datefinDp="ngbDatepicker" [(ngModel)]="campagne.datefin"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="datefinDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.commentaire" for="field_commentaire">Commentaire</label>
+            <input type="text" class="form-control" name="commentaire" id="field_commentaire"
+                [(ngModel)]="campagne.commentaire" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.bloquant" for="field_bloquant">Bloquant</label>
+            <input type="number" class="form-control" name="bloquant" id="field_bloquant"
+                [(ngModel)]="campagne.bloquant" min="0"/>
+            <div [hidden]="!(editForm.controls.bloquant?.dirty && editForm.controls.bloquant?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.bloquant?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.bloquant?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.majeur" for="field_majeur">Majeur</label>
+            <input type="number" class="form-control" name="majeur" id="field_majeur"
+                [(ngModel)]="campagne.majeur" min="0"/>
+            <div [hidden]="!(editForm.controls.majeur?.dirty && editForm.controls.majeur?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.majeur?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.majeur?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.mineur" for="field_mineur">Mineur</label>
+            <input type="number" class="form-control" name="mineur" id="field_mineur"
+                [(ngModel)]="campagne.mineur" min="0"/>
+            <div [hidden]="!(editForm.controls.mineur?.dirty && editForm.controls.mineur?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.mineur?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.mineur?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.evolution" for="field_evolution">Evolution</label>
+            <input type="number" class="form-control" name="evolution" id="field_evolution"
+                [(ngModel)]="campagne.evolution" min="0"/>
+            <div [hidden]="!(editForm.controls.evolution?.dirty && editForm.controls.evolution?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.evolution?.errors?.min" jhiTranslate="entity.validation.min" translateValues="{ min: 0 }">
+                    This field should be at least 0.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.evolution?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.termine" for="field_termine">Termine</label>
+            <input type="checkbox" class="form-control" name="termine" id="field_termine"
+                [(ngModel)]="campagne.termine" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.application" for="field_application">Application</label>
+            <select class="form-control" id="field_application" name="application" [(ngModel)]="campagne.application"  required>
+                <option *ngIf="!editForm.value.application" [ngValue]="null" selected></option>
+                <option [ngValue]="applicationOption.id === campagne.application?.id ? campagne.application : applicationOption" *ngFor="let applicationOption of applications; trackBy: trackApplicationById">{{applicationOption.nom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.application?.dirty && editForm.controls.application?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.application?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.typetest" for="field_typetest">Typetest</label>
+            <select class="form-control" id="field_typetest" name="typetest" [(ngModel)]="campagne.typetest"  required>
+                <option *ngIf="!editForm.value.typetest" [ngValue]="null" selected></option>
+                <option [ngValue]="typeTestOption.id === campagne.typetest?.id ? campagne.typetest : typeTestOption" *ngFor="let typeTestOption of typetests; trackBy: trackTypeTestById">{{typeTestOption.nom}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.typetest?.dirty && editForm.controls.typetest?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.typetest?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="qualiToastApp.campagne.resultat" for="field_resultat">Resultat</label>
+            <select class="form-control" id="field_resultat" name="resultat" [(ngModel)]="campagne.resultat"  required>
+                <option *ngIf="!editForm.value.resultat" [ngValue]="null" selected></option>
+                <option [ngValue]="resultatOption.id === campagne.resultat?.id ? campagne.resultat : resultatOption" *ngFor="let resultatOption of resultats; trackBy: trackResultatById">{{resultatOption.code}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.resultat?.dirty && editForm.controls.resultat?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.resultat?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="qualiToastApp.campagne.testeur" for="field_testeur">Testeur</label>
+            <select class="form-control" id="field_testeur" multiple name="testeur" [(ngModel)]="campagne.testeurs">
+                <option [ngValue]="getSelected(campagne.testeurs, testeurOption)" *ngFor="let testeurOption of testeurs; trackBy: trackTesteurById">{{testeurOption.identifiant}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
